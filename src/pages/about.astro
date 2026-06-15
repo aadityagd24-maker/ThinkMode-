@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About Us — ThinkMode+" description="Learn about ThinkMode+ — the browser extension that automatically enables extended thinking across ChatGPT, Claude, and Gemini. Built by AI power users, for AI power users.">
+  <div class="wrap">
+    <div class="legal-page">
+
+      <h1>About ThinkMode+</h1>
+      <p class="subtitle">Making AI reasoning the default, not the exception.</p>
+
+      <!-- ── Origin Story ── -->
+      <h2>Our Story</h2>
+      <p>
+        ThinkMode+ was born out of a simple, daily frustration. As AI power users, we found ourselves
+        doing the same thing every single time we opened a new chat: clicking "think harder," toggling
+        extended thinking, flipping reasoning mode on — over and over, across every platform, every session.
+      </p>
+      <p>
+        It seemed absurd. The models are capable of deep, careful reasoning — but they default to
+        their fastest guess instead of their best thinking. Every conversation starts at the shallowest
+        level unless you manually ask for more. We kept asking ourselves: <strong>why isn't the best
+        thinking just… on?</strong>
+      </p>
+      <p>
+        So we built ThinkMode+. A lightweight browser extension that silently enables extended thinking
+        mode the moment you open ChatGPT, Claude, or Gemini. No clicking, no toggling, no remembering.
+        Just better answers from the very first message.
+      </p>
+
+      <!-- ── Mission ── -->
+      <h2>Our Mission</h2>
+      <p>
+        We believe every AI conversation deserves the model's best reasoning effort — not its fastest
+        guess. Extended thinking modes exist because they produce dramatically better outputs: fewer
+        hallucinations, stronger logic, more nuanced analysis. But they're buried behind toggles and
+        menus that most users never touch.
+      </p>
+      <p>
+        <strong>Our mission is to make AI reasoning the default, not the exception.</strong> ThinkMode+
+        ensures that every chat, every prompt, and every session starts with the model's full cognitive
+        capabilities engaged. It's a small change with an outsized impact on the quality of every
+        interaction you have with AI.
+      </p>
+
+      <!-- ── How It Works ── -->
+      <h2>How It Works</h2>
+      <p>
+        ThinkMode+ operates entirely in your browser. When you navigate to a supported AI platform,
+        the extension automatically detects the interface and enables extended thinking / reasoning
+        mode in the background — before you even type your first message. It's silent, seamless,
+        and requires zero manual interaction after setup.
+      </p>
+      <ul>
+        <li><strong>Automatic activation</strong> — Extended thinking is enabled as soon as the page loads.</li>
+        <li><strong>Cross-platform support</strong> — Works across all major AI chat platforms.</li>
+        <li><strong>Set-and-forget</strong> — Install once, configure your preferences, and never think about it again.</li>
+        <li><strong>Lightweight</strong> — No performance impact on your browsing experience.</li>
+      </ul>
+
+      <!-- ── Supported Platforms ── -->
+      <h2>Supported Platforms</h2>
+      <p>
+        ThinkMode+ currently supports the three most popular AI assistants — with more on the way:
+      </p>
+
+      <div class="platform-grid">
+        <div class="platform-card">
+          <h3>ChatGPT</h3>
+          <p>
+            Automatically enables reasoning mode on <code>chatgpt.com</code>. Works with GPT‑4o,
+            o1, o3, and all models that support extended thinking.
+          </p>
+        </div>
+        <div class="platform-card">
+          <h3>Claude</h3>
+          <p>
+            Enables extended thinking on <code>claude.ai</code>. Supports Claude 3.5 Sonnet,
+            Claude 4 Opus, and all models with thinking capabilities.
+          </p>
+        </div>
+        <div class="platform-card">
+          <h3>Gemini</h3>
+          <p>
+            Activates deep-think mode on <code>gemini.google.com</code>. Compatible with Gemini
+            2.5 Pro, Ultra, and future reasoning-capable models.
+          </p>
+        </div>
+      </div>
+
+      <p>
+        ThinkMode+ is available as a browser extension for <strong>Google Chrome</strong> and
+        <strong>Microsoft Edge</strong>, installable from the Chrome Web Store.
+      </p>
+
+      <!-- ── Privacy-First ── -->
+      <h2>Built with Privacy-First Principles</h2>
+      <p>
+        Your conversations with AI are deeply personal — from business strategies to creative
+        writing to sensitive research. We built ThinkMode+ with an unwavering commitment to
+        your privacy:
+      </p>
+      <ul>
+        <li><strong>Zero data collection</strong> — We don't collect, store, or transmit any of your data. Period.</li>
+        <li><strong>No prompt reading</strong> — The extension never reads, logs, or accesses the content of your conversations.</li>
+        <li><strong>No analytics or tracking</strong> — There are no analytics scripts, no telemetry, and no usage tracking.</li>
+        <li><strong>Local-only operation</strong> — Everything happens in your browser. Nothing leaves your machine.</li>
+        <li><strong>Minimal permissions</strong> — We only request the permissions strictly necessary to toggle UI elements on supported sites.</li>
+      </ul>
+      <p>
+        You can read our full <a href="/privacy">Privacy Policy</a> for the complete details.
+      </p>
+
+      <!-- ── Get In Touch ── -->
+      <h2>Get in Touch</h2>
+      <p>
+        Have questions, feedback, or feature requests? We'd love to hear from you.
+        Reach out at <a href="mailto:vypur24@gmail.com">vypur24@gmail.com</a>, visit our
+        <a href="/contact">Contact page</a>, or check out our <a href="/support">Support center</a>
+        for help getting started.
+      </p>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .platform-card {
+    background: var(--surface);
+    border: 1px solid rgba(123, 92, 240, 0.15);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .platform-card:hover {
+    border-color: rgba(123, 92, 240, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .platform-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .platform-card p {
+    font-size: 0.92rem;
+    margin: 0;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+</style>

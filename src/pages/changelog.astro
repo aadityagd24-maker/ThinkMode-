@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Changelog — ThinkMode+ Release Notes" description="See what is new in ThinkMode+. Full release history and version notes for the ThinkMode+ browser extension.">
+  <div class="wrap">
+    <div class="legal-page">
+
+      <h1>Changelog</h1>
+      <p class="changelog-intro">
+        A complete history of every ThinkMode+ release. We ship updates regularly to
+        improve compatibility, performance, and your overall experience across ChatGPT,
+        Claude, and Gemini.
+      </p>
+
+      <!-- ── v1.0.0 ─────────────────────────────────────── -->
+      <div class="changelog-entry">
+        <div class="changelog-header">
+          <span class="changelog-version">v1.0.0</span>
+          <span class="changelog-badge">Initial Release</span>
+          <span class="changelog-date">June 2026</span>
+        </div>
+
+        <ul class="changelog-list">
+          <li>Auto-enable extended thinking on ChatGPT</li>
+          <li>Auto-enable extended thinking on Claude</li>
+          <li>Auto-enable extended thinking on Gemini</li>
+          <li>Per-platform on/off controls</li>
+          <li>Master toggle for quick enable/disable</li>
+          <li>Light and dark mode popup UI</li>
+          <li>Chrome and Edge support</li>
+          <li>Thinking depth selection per platform</li>
+          <li>Zero data collection — fully private</li>
+          <li>Optimized performance with minimal CPU usage</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <style>
+    /* ── Intro ─────────────────────────────────────────── */
+    .changelog-intro {
+      color: var(--text-dim);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      max-width: 640px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── Entry card ────────────────────────────────────── */
+    .changelog-entry {
+      background: var(--surface);
+      border: 1px solid rgba(123, 92, 240, 0.12);
+      border-radius: 16px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 2.5rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .changelog-entry:hover {
+      border-color: rgba(123, 92, 240, 0.3);
+      box-shadow: 0 0 24px rgba(123, 92, 240, 0.06);
+    }
+
+    /* ── Header row ────────────────────────────────────── */
+    .changelog-header {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .changelog-version {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.35rem;
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .changelog-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--violet-light);
+      background: rgba(123, 92, 240, 0.12);
+      border: 1px solid rgba(123, 92, 240, 0.2);
+      border-radius: 999px;
+      padding: 0.2em 0.75em;
+    }
+
+    .changelog-date {
+      margin-left: auto;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── Change list ───────────────────────────────────── */
+    .changelog-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .changelog-list li {
+      position: relative;
+      padding-left: 1.6rem;
+      color: var(--text);
+      font-size: 0.97rem;
+      line-height: 1.65;
+    }
+
+    .changelog-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--violet);
+      box-shadow: 0 0 6px rgba(123, 92, 240, 0.4);
+    }
+
+    /* ── Responsive ────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .changelog-entry {
+        padding: 1.5rem 1.25rem;
+      }
+
+      .changelog-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .changelog-date {
+        margin-left: 0;
+      }
+    }
+  </style>
+</BaseLayout>

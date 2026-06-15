@@ -1,0 +1,100 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  ogImage?: string;
+}
+
+const { 
+  title, 
+  description, 
+  canonicalPath = '',
+  ogImage = '/logo.png'
+} = Astro.props;
+
+const siteUrl = 'https://thinkmodeplus.com';
+const canonicalUrl = `${siteUrl}${canonicalPath}`;
+const ogImageUrl = `${siteUrl}${ogImage}`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonicalUrl}>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonicalUrl}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={ogImageUrl}>
+  <meta property="og:site_name" content="ThinkMode+">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImageUrl}>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/logo.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <slot name="head" />
+</head>
+<body>
+  <div class="glow"></div>
+
+  <nav class="nav">
+    <div class="wrap">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <img src="/logo.png" alt="ThinkMode+ logo" class="mark" style="width:28px; height:28px;" />
+          thinkmode<span class="blink"></span>
+        </a>
+        <div class="nav-links">
+          <a href="/#how-it-works">how it works</a>
+          <a href="/#pricing">pricing</a>
+          <a href="/#faq">faq</a>
+          <a href="#" class="nav-cta">add to chrome &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <slot />
+  </div>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="footer-logo">
+        <img src="/logo.png" alt="ThinkMode+ logo" class="mark" style="width:24px; height:24px;" />
+        thinkmode+
+      </div>
+      <div class="footer-links">
+        <a href="/privacy">privacy</a>
+        <a href="/terms">terms</a>
+        <a href="/about">about</a>
+        <a href="/contact">contact</a>
+        <a href="/support">support</a>
+        <a href="/changelog">changelog</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 thinkmode+ &middot; not affiliated with openai, anthropic, or google</div>
+    </div>
+  </footer>
+
+  <slot name="scripts" />
+</body>
+</html>

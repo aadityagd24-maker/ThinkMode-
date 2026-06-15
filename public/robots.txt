@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://thinkmodeplus.com/sitemap-index.xml

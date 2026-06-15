@@ -1,0 +1,268 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact Us — ThinkMode+" description="Get in touch with the ThinkMode+ team. Send us a message for support, feedback, or general inquiries.">
+  <div class="wrap">
+    <div class="legal-page">
+
+      <h1>Contact Us</h1>
+      <p class="subtitle">We'd love to hear from you. Send us a message and we'll get back to you as soon as we can.</p>
+
+      <!-- ── Contact Form ── -->
+      <div class="contact-form-wrapper">
+        <form action="https://formsubmit.co/vypur24@gmail.com" method="POST" class="contact-form">
+          <!-- FormSubmit config -->
+          <input type="hidden" name="_subject" value="ThinkMode+ Contact Form Submission" />
+          <input type="hidden" name="_captcha" value="true" />
+          <input type="hidden" name="_next" value="https://thinkmodeplus.com/contact" />
+          <input type="text" name="_honey" style="display:none" aria-hidden="true" tabindex="-1" aria-label="Ignore this field" />
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your name"
+              required
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              placeholder="What is this about?"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              placeholder="Tell us what's on your mind…"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            Send Message
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- ── Contact Info ── -->
+      <div class="contact-info">
+        <div class="info-card">
+          <div class="info-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </div>
+          <div>
+            <h2>Email</h2>
+            <p><a href="mailto:vypur24@gmail.com">vypur24@gmail.com</a></p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <div>
+            <h2>Response Time</h2>
+            <p>We typically respond within <strong>48 hours</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Billing Note ── -->
+      <div class="billing-note">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        <p>
+          <strong>Billing or subscription issue?</strong> Please include the email address associated
+          with your subscription in your message so we can locate your account quickly and resolve
+          your issue.
+        </p>
+      </div>
+
+      <!-- ── Other Ways ── -->
+      <h2>Other Resources</h2>
+      <p>
+        Before reaching out, you might find what you need in our other resources:
+      </p>
+      <ul>
+        <li><a href="/support">Support & Help Center</a> — Getting started guides and troubleshooting tips.</li>
+        <li><a href="/#faq">FAQ</a> — Quick answers to common questions.</li>
+        <li><a href="/privacy">Privacy Policy</a> — How we handle (or rather, don't handle) your data.</li>
+        <li><a href="/terms">Terms of Service</a> — Usage terms and conditions.</li>
+      </ul>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* ── Form wrapper ── */
+  .contact-form-wrapper {
+    margin: 2rem 0 2.5rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    background: var(--surface);
+    border: 1px solid var(--text-faint);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    resize: vertical;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--text-dim);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--violet);
+    box-shadow: 0 0 0 3px rgba(123, 92, 240, 0.15);
+  }
+
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    align-self: flex-start;
+    padding: 0.8rem 2rem;
+    background: var(--grad);
+    color: #1A0E4A;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .submit-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+
+  /* ── Info cards ── */
+  .contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: var(--surface);
+    border: 1px solid rgba(123, 92, 240, 0.12);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+  }
+
+  .info-icon {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(123, 92, 240, 0.1);
+    border-radius: 10px;
+    color: var(--violet-light);
+  }
+
+  .info-card h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 0.2rem;
+    color: var(--text);
+  }
+
+  .info-card p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: var(--text-dim);
+  }
+
+  /* ── Billing note ── */
+  .billing-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    background: rgba(123, 92, 240, 0.06);
+    border: 1px solid rgba(123, 92, 240, 0.18);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin: 0 0 2rem;
+    color: var(--violet-light);
+  }
+
+  .billing-note svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .billing-note p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+</style>

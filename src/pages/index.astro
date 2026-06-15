@@ -1,0 +1,426 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="ThinkMode+ — Think Mode Extension for ChatGPT, Claude & Gemini | Always-On Extended Thinking"
+  description="ThinkMode+ is the #1 think mode extension that auto-enables extended thinking across ChatGPT, Claude, and Gemini. Enable think mode ChatGPT automatically — every new chat, every time. Chrome & Edge browser extension."
+  canonicalPath="/"
+>
+  <Fragment slot="head">
+    <meta name="keywords" content="think mode extension, chatgpt think mode, enable think mode chatgpt, chatgpt extended thinking, claude extended thinking, gemini deep think, auto enable think mode, chatgpt thinking mode extension, always on thinking mode, chatgpt o1 think mode, enable deep think gemini, extended thinking chrome extension, ai thinking mode browser extension, chatgpt think mode automatically, best chatgpt extensions, force think mode chatgpt, thinking mode for all ai, ai extensions for chrome, chatgpt productivity extension">
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ThinkMode+",
+      "operatingSystem": "Chrome, Edge",
+      "applicationCategory": "BrowserApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "ThinkMode+ is a Chrome and Edge browser extension that automatically enables extended thinking and reasoning mode across ChatGPT, Claude, and Gemini. Set it once and every new chat starts with the AI's deepest reasoning capabilities activated — no manual toggling required.",
+      "url": "https://thinkmodeplus.com",
+      "applicationSubCategory": "AI Productivity Extension",
+      "softwareVersion": "1.0.0",
+      "author": {
+        "@type": "Organization",
+        "name": "ThinkMode+"
+      }
+    })} />
+
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is think mode in ChatGPT?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Think mode (also called extended thinking or reasoning mode) is a feature in ChatGPT that allows the AI model to spend more time reasoning through complex problems before responding. When enabled, ChatGPT uses deeper chain-of-thought processing to produce more accurate, nuanced, and thorough answers. Think mode is especially useful for coding, math, logic puzzles, and detailed analysis. ThinkMode+ automatically enables this feature on every new chat so you never have to toggle it manually."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I enable think mode in ChatGPT automatically?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Install the ThinkMode+ browser extension for Chrome or Edge. Once installed, ThinkMode+ automatically detects when you open a new chat on ChatGPT and enables think mode for you — instantly and silently. You never have to click the thinking toggle again. It works in the background with zero prompt edits and keeps think mode active even when ChatGPT resets it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does ThinkMode+ work with Claude extended thinking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. ThinkMode+ fully supports Claude's extended thinking feature on claude.ai. When you open a new conversation on Claude, ThinkMode+ automatically enables extended thinking mode so Claude uses its deepest reasoning capabilities from the very first message. You can enable or disable Claude support independently from the extension popup."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does ThinkMode+ work with Gemini Deep Think?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. ThinkMode+ supports Gemini's deep think mode on gemini.google.com. The extension automatically activates Gemini's extended reasoning every time you start a new chat, ensuring you always get Gemini's most thorough responses. Like all platforms, Gemini support can be toggled on or off independently."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is ThinkMode+ free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ThinkMode+ offers a free plan that lets you auto-enable thinking mode on one platform with limited daily activations. For unlimited use across ChatGPT, Claude, and Gemini, the Pro plan costs $2/month (or $20/year). There is also a Pro Squad plan for $3.50/month that supports up to 5 devices. All paid plans include a 14-day free trial."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is extended thinking in AI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Extended thinking is a feature available in modern AI models like ChatGPT, Claude, and Gemini that allows the model to perform deeper reasoning before generating a response. Instead of producing an immediate answer, the AI takes additional time to think through the problem step by step, resulting in more accurate and comprehensive outputs. This is particularly valuable for complex tasks like coding, research, mathematical reasoning, and strategic analysis."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why should I always use extended thinking mode?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Without extended thinking, AI models default to faster but shallower responses. Extended thinking mode forces the AI to reason more carefully, producing answers that are more accurate, better structured, and less prone to errors or hallucinations. For professionals, developers, and power users who rely on AI for critical work, always-on thinking mode means every conversation starts with the model's best effort rather than its quickest guess."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does think mode make AI smarter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Think mode doesn't change the underlying AI model, but it does unlock its full reasoning potential. When extended thinking is enabled, the same model produces significantly better results because it spends more computational effort on each response. Think of it as the difference between a quick mental estimate and carefully working through a problem on paper — the same brain, but much better output."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a Chrome extension to enable ChatGPT think mode automatically?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — ThinkMode+ is a Chrome and Edge extension built specifically for this purpose. It automatically enables think mode on ChatGPT every time you open a new chat. It also works on Claude and Gemini, making it the only extension that covers all three major AI platforms. Install it once, configure your preferences, and think mode stays on permanently."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I turn on extended thinking every time in ChatGPT?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The easiest way is to install the ThinkMode+ extension. Without it, you would need to manually click the thinking toggle in ChatGPT's interface every single time you start a new conversation — ChatGPT resets this setting by default. ThinkMode+ eliminates this repetitive step by automatically detecting new chats and enabling extended thinking before you even type your first message."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between think mode and normal mode in ChatGPT?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In normal mode, ChatGPT generates responses quickly using standard processing. In think mode (extended thinking), ChatGPT takes additional time to reason through your question step by step before responding. Think mode produces longer, more detailed, and more accurate answers — especially for complex questions involving code, math, logic, or multi-step reasoning. The tradeoff is slightly longer response times, but the quality improvement is significant."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does ThinkMode+ work on Edge browser?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. ThinkMode+ is fully compatible with Microsoft Edge since Edge supports Chrome extensions natively. You can install ThinkMode+ from the Chrome Web Store and use it on Edge exactly the same way you would on Chrome. All features — including auto-enable for ChatGPT, Claude, and Gemini — work identically on both browsers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I install ThinkMode+?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Visit the Chrome Web Store page for ThinkMode+ and click 'Add to Chrome.' The extension installs in seconds. Once installed, pin it to your browser toolbar, click the icon to open the popup, and toggle on the platforms you want (ChatGPT, Claude, Gemini). That's it — extended thinking will now auto-enable on every new chat across your selected platforms."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will ThinkMode+ slow down my browser?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. ThinkMode+ is extremely lightweight — the entire extension is under 50KB with zero external dependencies. It only activates on supported AI platform pages (chatgpt.com, claude.ai, gemini.google.com) and uses minimal CPU. It does not run background processes, does not track your browsing, and has zero impact on page load times or AI response speed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What AI platforms does ThinkMode+ support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ThinkMode+ currently supports three major AI platforms: ChatGPT (chatgpt.com) by OpenAI, Claude (claude.ai) by Anthropic, and Gemini (gemini.google.com) by Google. Each platform can be enabled or disabled independently from the extension popup. Support for additional AI platforms may be added in future updates."
+          }
+        }
+      ]
+    })} />
+  </Fragment>
+
+  <!-- HERO -->
+  <header class="hero wrap">
+    <div class="hero-content">
+      <div class="eyebrow">
+        <span class="pulse"></span>
+        live on chrome &amp; edge
+      </div>
+      <h1>Supercharge your AI.<br><span class="grad-text">ThinkMode+</span></h1>
+      <p class="lead">
+        Always-on extended thinking, expert role injection, and format forcing for ChatGPT, Claude, and Gemini. Professional-grade outputs, every time.
+      </p>
+      <div class="hero-ctas">
+        <a href="#" class="btn btn-primary">Add to Chrome — free</a>
+        <a href="#features" class="btn btn-ghost">View Features</a>
+      </div>
+      <div class="hero-meta">
+        <span>14-day free trial</span>
+        <span>3 platforms, 1 toggle</span>
+        <span>Zero prompt edits</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="sim-ui">
+        <div class="sim-ui-header">
+          <div class="traffic"><span></span><span></span><span></span></div>
+          <div class="sim-tabs">
+            <div class="sim-tab active"><img src="/chatgpt.png" class="plat-icon" alt="ChatGPT"/></div>
+            <div class="sim-tab"><img src="/claude.png" class="plat-icon" alt="Claude"/></div>
+            <div class="sim-tab"><img src="/gemini.png" class="plat-icon" alt="Gemini"/></div>
+          </div>
+        </div>
+        <div class="sim-ui-body">
+          <div class="sim-inject active-think">
+            <div class="think-dots"><span></span><span></span><span></span></div>
+            <span>Always-On Think Mode Enabled</span>
+          </div>
+          <div class="sim-inject">
+            <div class="inject-label">Expert Role</div>
+            <div class="inject-value">Senior Dev</div>
+          </div>
+          <div class="sim-inject">
+            <div class="inject-label">Response Depth</div>
+            <div class="inject-value">Comprehensive</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BENTO GRID -->
+  <section class="section bento-section wrap" id="features">
+    <div class="section-head text-center">
+      <p class="section-eyebrow">// premium features</p>
+      <h2>Bento Grid Showcase.</h2>
+      <p>Everything you need to squeeze maximum performance out of the world's best AI models.</p>
+    </div>
+    
+    <div class="bento-grid">
+      <!-- Always-On Think Mode -->
+      <div class="bento-card bento-large">
+        <div class="bento-content">
+          <h3>Always-On Think Mode</h3>
+          <p>Never manually click "Think Harder" again. We force the deepest reasoning mode across all platforms.</p>
+        </div>
+        <div class="bento-visual always-on-visual">
+          <div class="toggle-switch"></div>
+        </div>
+      </div>
+
+      <!-- Expert Role Injection -->
+      <div class="bento-card bento-tall">
+        <div class="bento-content">
+          <h3>Expert Role Injection</h3>
+          <p>Instantly adopt professional personas.</p>
+        </div>
+        <div class="bento-visual role-visual">
+          <span class="role-badge">Senior Dev</span>
+          <span class="role-badge">Copywriter</span>
+          <span class="role-badge">Data Analyst</span>
+          <span class="role-badge">UX Designer</span>
+          <span class="role-badge">Product Mgr</span>
+          <span class="role-badge">SEO Expert</span>
+          <span class="role-badge">Legal Advisor</span>
+        </div>
+      </div>
+
+      <!-- Quick Follow-Up Bar -->
+      <div class="bento-card">
+        <div class="bento-content">
+          <h3>Quick Follow-Up Bar</h3>
+          <p>Rapid contextual actions.</p>
+        </div>
+        <div class="bento-visual follow-up-visual">
+          <div class="action-btn">Explain</div>
+          <div class="action-btn">Refactor</div>
+        </div>
+      </div>
+
+      <!-- Format Forcing -->
+      <div class="bento-card bento-wide">
+        <div class="bento-content">
+          <h3>Format Forcing</h3>
+          <p>Ensure the output matches your exact structural needs: Table, Code, or Essay.</p>
+        </div>
+        <div class="bento-visual format-visual">
+          <div class="format-option">Table</div>
+          <div class="format-option active">Code</div>
+          <div class="format-option">Essay</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section class="section wrap" id="about-thinkmode">
+    <div class="section-head text-center">
+      <p class="section-eyebrow">// why thinkmode+</p>
+      <h2>Why You Need a Think Mode Extension for ChatGPT, Claude, and Gemini</h2>
+    </div>
+    <div class="seo-content-body">
+      <p>If you use ChatGPT, Claude, or Gemini for anything beyond casual conversation, you have probably noticed something frustrating: <strong>every single time you open a new chat, the extended thinking toggle resets to off.</strong> That means the AI defaults to its fastest, shallowest mode of response — not its best one. For professionals, developers, founders, and power AI users who depend on accurate, well-reasoned outputs, this silent reset is a daily productivity drain.</p>
+      <p>ChatGPT's think mode (sometimes called <strong>ChatGPT extended thinking</strong> or reasoning mode) is the feature that tells the model to slow down and actually reason through your problem before responding. When enabled, ChatGPT produces significantly more accurate answers for coding, math, analysis, strategy, and multi-step reasoning tasks. The same applies to <strong>Claude extended thinking</strong> on Anthropic's platform and <strong>Gemini deep think</strong> on Google's — both platforms offer their own version of deeper reasoning, and both reset the toggle on every new conversation.</p>
+      <p>The problem is not that these features exist. The problem is that you have to <strong>manually enable think mode in ChatGPT</strong> — and Claude, and Gemini — over and over again, dozens of times a day. Every new chat. Every page refresh. Every session. It is a small friction that adds up to a massive annoyance, and it means you are often getting subpar AI responses without even realizing the thinking toggle was off.</p>
+      <p><strong>ThinkMode+ is the think mode extension that eliminates this problem entirely.</strong> It is a lightweight Chrome and Edge <strong>AI thinking mode browser extension</strong> that runs silently in the background across all three major AI platforms. The moment you open a new chat on ChatGPT, Claude, or Gemini, ThinkMode+ detects the page, finds the thinking toggle, and switches it on — automatically, instantly, and without touching your prompts.</p>
+      <p>Unlike other <strong>AI extensions for Chrome</strong> that inject prompts or modify your workflow, ThinkMode+ does exactly one thing perfectly: it keeps the <strong>always-on thinking mode</strong> active. It does not read your conversations. It does not change what you type. It does not send any data anywhere. It simply flips a switch that the platform itself provides — the same switch you would click manually, except now you never have to.</p>
+      <p>For anyone searching for a way to <strong>auto enable think mode</strong> or <strong>force think mode ChatGPT</strong> to stay on permanently, ThinkMode+ is the direct solution. It works as a <strong>ChatGPT thinking mode extension</strong> that also covers Claude and Gemini, making it the only <strong>extended thinking Chrome extension</strong> built for <strong>thinking mode for all AI</strong> platforms in one install.</p>
+      <p>Whether you are a developer debugging code, a founder drafting strategy documents, a researcher analyzing complex data, or simply a power user who wants every AI conversation to start with the model's deepest reasoning — ThinkMode+ ensures that happens, every single time. Install it once, configure your platforms, and never think about the thinking toggle again. It is one of the <strong>best ChatGPT extensions</strong> for anyone who values quality over speed in their AI workflows, and it is also one of the most efficient <strong>ChatGPT productivity extensions</strong> available — because the best productivity tool is the one that removes a friction you should never have had in the first place.</p>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section wrap" id="pricing">
+    <div class="section-head text-center">
+      <p class="section-eyebrow">// pricing</p>
+      <h2>Cheaper than your coffee.</h2>
+      <p>14-day free trial on every plan. Cancel in two clicks — no retention maze, no dark patterns.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Free</h3>
+        <p>try the core loop</p>
+        <div class="price">$0</div>
+        <ul class="price-features">
+          <li>auto-enable on 1 platform</li>
+          <li>limited daily activations</li>
+          <li>community support</li>
+        </ul>
+        <a href="#" class="btn btn-ghost" style="width:100%; justify-content:center;">add to chrome</a>
+      </div>
+      <div class="price-card featured">
+        <h3>Pro</h3>
+        <p>one account, everywhere you think</p>
+        <div class="price">$1.66</div>
+        <ul class="price-features">
+          <li>ChatGPT + Claude + Gemini</li>
+          <li>unlimited activations</li>
+          <li>per-platform on/off control</li>
+          <li>priority support</li>
+        </ul>
+        <a href="#" class="btn btn-primary" style="width:100%; justify-content:center;">start free trial</a>
+      </div>
+      <div class="price-card">
+        <h3>Pro Squad</h3>
+        <p>1 account, 5 devices</p>
+        <div class="price">$2.49</div>
+        <ul class="price-features">
+          <li>everything in Pro</li>
+          <li>same account on 5 devices</li>
+          <li>built for squads &amp; family</li>
+        </ul>
+        <a href="#" class="btn btn-ghost" style="width:100%; justify-content:center;">start free trial</a>
+      </div>
+    </div>
+    <div class="pricing-foot">// no card required to install</div>
+  </section>
+
+  <!-- SEO FAQ -->
+  <section class="section wrap" id="faq">
+    <div class="section-head text-center">
+      <p class="section-eyebrow">// faq</p>
+      <h2>questions, answered.</h2>
+    </div>
+    <div class="seo-faq-list">
+      <details class="seo-faq-item">
+        <summary>What is think mode in ChatGPT?</summary>
+        <p>Think mode (also called extended thinking or reasoning mode) is a built-in feature in ChatGPT that allows the AI model to spend more time reasoning through complex problems before responding. When think mode is enabled, ChatGPT uses deeper chain-of-thought processing to produce more accurate, nuanced, and thorough answers — especially for coding, math, logic, and detailed analysis tasks.</p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>How do I enable think mode in ChatGPT automatically?</summary>
+        <p>Install the ThinkMode+ browser extension for Chrome or Edge. Once installed, ThinkMode+ automatically detects when you open a new chat on ChatGPT and enables think mode for you — instantly and silently. You never have to click the thinking toggle again. It works in the background with zero prompt edits.</p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Does ThinkMode+ work with Claude extended thinking?</summary>
+        <p>Yes. ThinkMode+ fully supports Claude's extended thinking feature on claude.ai. When you open a new conversation, ThinkMode+ automatically enables extended thinking so Claude uses its deepest reasoning capabilities from the very first message. You can enable or disable Claude support independently.</p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Does ThinkMode+ work with Gemini Deep Think?</summary>
+        <p>Yes. ThinkMode+ supports Gemini's deep think mode on gemini.google.com. The extension automatically activates Gemini's extended reasoning every time you start a new chat, ensuring you always get Gemini's most thorough responses.</p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Is ThinkMode+ free?</summary>
+        <p>ThinkMode+ offers a free plan that lets you auto-enable thinking mode on one platform with limited daily activations. For unlimited use across ChatGPT, Claude, and Gemini, the Pro plan costs $2/month (or $20/year). A Pro Squad plan at $3.50/month supports up to 5 devices. All paid plans include a 14-day free trial.</p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>What is extended thinking in AI?</summary>
+        <p>Extended thinking is a feature in modern AI models like ChatGPT, Claude, and Gemini that allows the model to perform deeper reasoning before generating a response. Instead of producing an immediate answer, the AI takes additional time to think through the problem step by step, resulting in more accurate and comprehensive outputs for complex tasks.</p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Why should I always use extended thinking mode?</summary>
+        <p>Without extended thinking, AI models default to faster but shallower responses. Always-on thinking mode forces the AI to reason more carefully, producing answers that are more accurate, better structured, and less prone to errors or hallucinations. For professionals who rely on AI for critical work, this means every conversation starts with the model's best effort.</p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Does think mode make AI smarter?</summary>
+        <p>Think mode doesn't change the underlying AI model, but it unlocks its full reasoning potential. The same model produces significantly better results because it spends more computational effort on each response. Think of it as the difference between a quick mental estimate and carefully working through a problem on paper — same brain, much better output.</p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Is there a Chrome extension to enable ChatGPT think mode automatically?</summary>
+        <p>Yes — ThinkMode+ is a Chrome and Edge extension built specifically for this purpose. It automatically enables think mode on ChatGPT every time you open a new chat. It also works on Claude and Gemini, making it the only extension that covers all three major AI platforms in one install.</p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>How do I turn on extended thinking every time in ChatGPT?</summary>
+        <p>The easiest way is to install ThinkMode+. Without it, you would need to manually click the thinking toggle every single time you start a new conversation — ChatGPT resets this setting by default. ThinkMode+ eliminates this step by automatically detecting new chats and enabling extended thinking before you even type your first message.</p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>What is the difference between think mode and normal mode in ChatGPT?</summary>
+        <p>In normal mode, ChatGPT generates responses quickly using standard processing. In think mode, ChatGPT takes additional time to reason through your question step by step. Think mode produces longer, more detailed, and more accurate answers — especially for code, math, logic, or multi-step reasoning. The tradeoff is slightly longer response times, but the quality improvement is significant.</p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Does ThinkMode+ work on Edge browser?</summary>
+        <p>Yes. ThinkMode+ is fully compatible with Microsoft Edge since Edge supports Chrome extensions natively. Install ThinkMode+ from the Chrome Web Store and use it on Edge exactly the same way. All features work identically on both browsers.</p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>How do I install ThinkMode+?</summary>
+        <p>Visit the Chrome Web Store, search for ThinkMode+, and click "Add to Chrome." The extension installs in seconds. Once installed, pin it to your toolbar, click the icon, and toggle on the platforms you want. Extended thinking will now auto-enable on every new chat across your selected platforms.</p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Will ThinkMode+ slow down my browser?</summary>
+        <p>No. ThinkMode+ is extremely lightweight — the entire extension is under 50KB with zero external dependencies. It only activates on supported AI platform pages and uses minimal CPU. It has zero impact on page load times or AI response speed.</p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>What AI platforms does ThinkMode+ support?</summary>
+        <p>ThinkMode+ supports three major AI platforms: ChatGPT (chatgpt.com) by OpenAI, Claude (claude.ai) by Anthropic, and Gemini (gemini.google.com) by Google. Each platform can be enabled or disabled independently. Support for additional AI platforms may be added in future updates.</p>
+      </details>
+    </div>
+  </section>
+
+  <Fragment slot="scripts">
+    <script>
+      // Interaction logic
+      document.addEventListener('DOMContentLoaded', () => {
+        // Tabs
+        const tabs = document.querySelectorAll('.sim-tab');
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+          });
+        });
+      });
+    </script>
+  </Fragment>
+</BaseLayout>
