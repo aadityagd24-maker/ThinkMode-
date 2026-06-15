@@ -49,7 +49,7 @@ const ogImageUrl = `${siteUrl}${ogImage}`;
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <slot name="head" />
 </head>
@@ -57,18 +57,16 @@ const ogImageUrl = `${siteUrl}${ogImage}`;
   <div class="glow"></div>
 
   <nav class="nav">
-    <div class="wrap">
-      <div class="nav-inner">
-        <a href="/" class="nav-logo">
-          <img src="/logo.png" alt="ThinkMode+ logo" class="mark" style="width:28px; height:28px;" />
-          thinkmode<span class="blink"></span>
-        </a>
-        <div class="nav-links">
-          <a href="/#how-it-works">how it works</a>
-          <a href="/#pricing">pricing</a>
-          <a href="/#faq">faq</a>
-          <a href="#" class="nav-cta">add to chrome &rarr;</a>
-        </div>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/logo.png" alt="ThinkMode+ Logo" style="width: 28px; height: 28px; object-fit: contain;" />
+        ThinkMode+
+      </a>
+      <div class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/#faq">FAQ</a>
+        <a href="#" class="nav-cta">Add to Chrome &rarr;</a>
       </div>
     </div>
   </nav>
@@ -80,18 +78,18 @@ const ogImageUrl = `${siteUrl}${ogImage}`;
   <footer class="footer">
     <div class="wrap footer-inner">
       <div class="footer-logo">
-        <img src="/logo.png" alt="ThinkMode+ logo" class="mark" style="width:24px; height:24px;" />
-        thinkmode+
+        <img src="/logo.png" alt="ThinkMode+ Logo" style="width: 24px; height: 24px; object-fit: contain; filter: grayscale(1) opacity(0.7);" />
+        ThinkMode+
       </div>
       <div class="footer-links">
-        <a href="/privacy">privacy</a>
-        <a href="/terms">terms</a>
-        <a href="/about">about</a>
-        <a href="/contact">contact</a>
-        <a href="/support">support</a>
-        <a href="/changelog">changelog</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/support">Support</a>
+        <a href="/changelog">Changelog</a>
       </div>
-      <div class="footer-copy">&copy; 2026 thinkmode+ &middot; not affiliated with openai, anthropic, or google</div>
+      <div class="footer-copy">&copy; 2026 ThinkMode+ &middot; Not affiliated with OpenAI, Anthropic, or Google</div>
     </div>
   </footer>
 
