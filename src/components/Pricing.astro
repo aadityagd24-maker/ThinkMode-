@@ -9,12 +9,12 @@
     <p>14-day free trial on every plan. Cancel in two clicks — no retention maze, no dark patterns.</p>
   </div>
 
-  <div class="pricing-toggle-wrap">
-    <span class="toggle-label" id="label-monthly">Monthly</span>
-    <div class="pricing-toggle yearly-active" id="pricing-toggle">
-      <div class="toggle-slider"></div>
+  <div class="pricing-segment-control">
+    <div class="segment-bg yearly-active" id="segment-bg"></div>
+    <div class="segment-btn" id="label-monthly">Monthly</div>
+    <div class="segment-btn active" id="label-yearly">
+      Yearly <span class="discount-badge">Save up to 50%</span>
     </div>
-    <span class="toggle-label active" id="label-yearly">Yearly <span class="discount-badge">Save up to 50%</span></span>
   </div>
 
   <div class="pricing-grid">
@@ -67,7 +67,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const toggle = document.getElementById('pricing-toggle');
+      const segmentBg = document.getElementById('segment-bg');
       const labelMonthly = document.getElementById('label-monthly');
       const labelYearly = document.getElementById('label-yearly');
       const amounts = document.querySelectorAll('.price-amount');
@@ -77,14 +77,14 @@
 
       function updatePricing() {
         if (isYearly) {
-          toggle.classList.add('yearly-active');
+          segmentBg.classList.add('yearly-active');
           labelYearly.classList.add('active');
           labelMonthly.classList.remove('active');
           amounts.forEach(el => el.textContent = el.getAttribute('data-yearly'));
           yearlyElements.forEach(el => el.style.display = '');
           monthlyElements.forEach(el => el.style.display = 'none');
         } else {
-          toggle.classList.remove('yearly-active');
+          segmentBg.classList.remove('yearly-active');
           labelMonthly.classList.add('active');
           labelYearly.classList.remove('active');
           amounts.forEach(el => el.textContent = el.getAttribute('data-monthly'));
@@ -93,11 +93,6 @@
         }
       }
 
-      toggle.addEventListener('click', () => {
-        isYearly = !isYearly;
-        updatePricing();
-      });
-      
       labelMonthly.addEventListener('click', () => { isYearly = false; updatePricing(); });
       labelYearly.addEventListener('click', () => { isYearly = true; updatePricing(); });
 
