@@ -467,8 +467,42 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
   font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 12px; border: 1px solid rgba(186, 58, 184, 0.3);
   white-space: nowrap; letter-spacing: 0.5px; text-transform: uppercase;
 }
-.plan-badge {
-  position: absolute; top: 0px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); color: #fff; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 12px rgba(186, 58, 184,0.3); white-space: nowrap; z-index: 10; border-top: none; letter-spacing: 0.5px; text-transform: uppercase;
+.plan-tag-container {
+  position: absolute; top: 16px; right: 32px; z-index: 10;
+  display: flex; align-items: center; justify-content: center; width: 0; height: 0;
+}
+.hole {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--bg);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.2);
+  position: absolute;
+}
+.tag-wrapper {
+  position: absolute; bottom: 0; transform-origin: bottom center;
+  animation: tag-wave 3s ease-in-out infinite alternate;
+  display: flex; flex-direction: column; align-items: center; padding-bottom: 2px;
+}
+.thread {
+  width: 2px; height: 16px; background: linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(255,255,255,0.2)); border-radius: 1px;
+}
+.plan-tag {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  color: #fff; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 6px;
+  box-shadow: 0 10px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.4);
+  border: 1px solid rgba(255,255,255,0.2); white-space: nowrap; text-transform: uppercase;
+  position: relative; overflow: hidden; margin-bottom: -1px; letter-spacing: 0.5px;
+}
+.tag-shine {
+  position: absolute; top: -100%; left: -100%; width: 50%; height: 300%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+  transform: rotate(35deg); animation: tag-shine-anim 5s infinite linear;
+}
+@keyframes tag-wave {
+  0% { transform: rotate(10deg); }
+  100% { transform: rotate(25deg); }
+}
+@keyframes tag-shine-anim {
+  0%, 80% { top: -100%; left: -100%; }
+  100% { top: -50%; left: 200%; }
 }
 
 .price-features { list-style: none; padding: 0; margin: 0 0 16px; text-align: left; }
