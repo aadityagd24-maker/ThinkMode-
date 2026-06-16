@@ -676,18 +676,22 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
     rgba(255,255,255,0) 100%
   );
   transform: rotate(35deg);
-  animation: shine 10s infinite linear;
+  animation: shine 8s infinite linear;
   pointer-events: none;
   z-index: 10;
 }
 
 @keyframes shine {
-  0%, 70% {
+  0% {
     top: -100%;
     left: -100%;
   }
-  100% {
+  25% {
     top: -50%;
     left: 200%;
+  }
+  25.01%, 100% {
+    top: -100%;
+    left: -100%;
   }
 }
