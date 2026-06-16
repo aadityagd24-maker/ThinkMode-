@@ -8,6 +8,15 @@
     <h2>Cheaper than your coffee.</h2>
     <p>14-day free trial on every plan. Cancel in two clicks — no retention maze, no dark patterns.</p>
   </div>
+
+  <div class="pricing-toggle-wrap">
+    <span class="toggle-label" id="label-monthly">Monthly</span>
+    <div class="pricing-toggle yearly-active" id="pricing-toggle">
+      <div class="toggle-slider"></div>
+    </div>
+    <span class="toggle-label active" id="label-yearly">Yearly <span class="discount-badge">Save up to 50%</span></span>
+  </div>
+
   <div class="pricing-grid">
     <div class="price-card">
       <h3>Free</h3>
@@ -21,28 +30,76 @@
       <a href="#" class="btn btn-ghost" style="width:100%; justify-content:center;">Add to Chrome</a>
     </div>
     <div class="price-card featured">
+      <div class="plan-badge yearly-only">5 Months Free</div>
       <h3>Pro</h3>
       <p>one account, everywhere you think</p>
-      <div class="price">$1.66</div>
+      <div class="price">
+        <span class="price-currency">$</span><span class="price-amount" data-monthly="2.99" data-yearly="1.66">1.66</span><span class="price-period">/mo</span>
+      </div>
+      <div class="price-sub yearly-only">Billed $19.99 yearly</div>
+      <div class="price-sub monthly-only" style="display:none;">Billed $2.99 monthly</div>
       <ul class="price-features">
         <li>ChatGPT + Claude + Gemini</li>
         <li>unlimited activations</li>
         <li>per-platform on/off control</li>
         <li>priority support</li>
       </ul>
-      <a href="#" class="btn btn-primary" style="width:100%; justify-content:center;">Start Free Trial</a>
+      <a href="#" class="btn btn-primary chrome-install-btn" style="width:100%; justify-content:center;">Start Free Trial</a>
     </div>
     <div class="price-card">
+      <div class="plan-badge yearly-only">6 Months Free</div>
       <h3>Pro Squad</h3>
       <p>1 account, 5 devices</p>
-      <div class="price">$2.49</div>
+      <div class="price">
+        <span class="price-currency">$</span><span class="price-amount" data-monthly="4.99" data-yearly="2.49">2.49</span><span class="price-period">/mo</span>
+      </div>
+      <div class="price-sub yearly-only">Billed $29.99 yearly</div>
+      <div class="price-sub monthly-only" style="display:none;">Billed $4.99 monthly</div>
       <ul class="price-features">
         <li>everything in Pro</li>
         <li>same account on 5 devices</li>
         <li>built for squads &amp; family</li>
       </ul>
-      <a href="#" class="btn btn-ghost" style="width:100%; justify-content:center;">Start Free Trial</a>
+      <a href="#" class="btn btn-ghost chrome-install-btn" style="width:100%; justify-content:center;">Start Free Trial</a>
     </div>
   </div>
   <div class="pricing-foot">// no card required to install</div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('pricing-toggle');
+      const labelMonthly = document.getElementById('label-monthly');
+      const labelYearly = document.getElementById('label-yearly');
+      const amounts = document.querySelectorAll('.price-amount');
+      const yearlyElements = document.querySelectorAll('.yearly-only');
+      const monthlyElements = document.querySelectorAll('.monthly-only');
+      let isYearly = true;
+
+      function updatePricing() {
+        if (isYearly) {
+          toggle.classList.add('yearly-active');
+          labelYearly.classList.add('active');
+          labelMonthly.classList.remove('active');
+          amounts.forEach(el => el.textContent = el.getAttribute('data-yearly'));
+          yearlyElements.forEach(el => el.style.display = '');
+          monthlyElements.forEach(el => el.style.display = 'none');
+        } else {
+          toggle.classList.remove('yearly-active');
+          labelMonthly.classList.add('active');
+          labelYearly.classList.remove('active');
+          amounts.forEach(el => el.textContent = el.getAttribute('data-monthly'));
+          yearlyElements.forEach(el => el.style.display = 'none');
+          monthlyElements.forEach(el => el.style.display = '');
+        }
+      }
+
+      toggle.addEventListener('click', () => {
+        isYearly = !isYearly;
+        updatePricing();
+      });
+      
+      labelMonthly.addEventListener('click', () => { isYearly = false; updatePricing(); });
+      labelYearly.addEventListener('click', () => { isYearly = true; updatePricing(); });
+    });
+  </script>
 </section>

@@ -404,7 +404,34 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
 }
 .price-card.featured { border-color: var(--accent); position: relative; }
 .price-card h3 { font-size: 24px; margin-bottom: 8px; }
-.price-card .price { font-size: 48px; font-weight: 700; margin-bottom: 24px; }
+.price-card .price { font-size: 48px; font-weight: 700; margin-bottom: 8px; }
+.price-currency { font-size: 24px; vertical-align: top; margin-top: 6px; display: inline-block; color: var(--text-dim); }
+.price-period { font-size: 16px; color: var(--text-dim); font-weight: 500; }
+.price-sub { font-size: 13px; color: var(--text-faint); margin-top: 0px; margin-bottom: 24px; font-family: var(--mono); }
+
+/* Pricing Toggle */
+.pricing-toggle-wrap {
+  display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 32px; margin-bottom: 16px;
+}
+.toggle-label {
+  font-size: 15px; font-weight: 500; color: var(--text-dim); transition: color 0.2s; cursor: pointer; position: relative;
+}
+.toggle-label.active { color: var(--text); }
+.pricing-toggle {
+  width: 56px; height: 32px; background: var(--surface-2); border: 1px solid var(--border-hi); border-radius: 20px; position: relative; cursor: pointer; transition: background 0.3s;
+}
+.pricing-toggle.yearly-active { background: var(--accent); border-color: var(--accent); }
+.toggle-slider {
+  width: 24px; height: 24px; background: #fff; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.pricing-toggle.yearly-active .toggle-slider { transform: translateX(24px); }
+.discount-badge {
+  position: absolute; top: -24px; right: -60px; background: rgba(139, 92, 246, 0.15); color: var(--accent); font-size: 11px; padding: 2px 8px; border-radius: 10px; border: 1px solid rgba(139, 92, 246, 0.3); white-space: nowrap;
+}
+.plan-badge {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); color: #fff; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; box-shadow: 0 4px 12px rgba(139,92,246,0.3); white-space: nowrap; z-index: 10;
+}
+
 .price-features { list-style: none; padding: 0; margin: 0 0 32px; text-align: left; }
 .price-features li { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text-dim); }
 .pricing-foot { text-align: center; margin-top: 32px; font-family: var(--mono); color: var(--text-faint); font-size: 13px; }
