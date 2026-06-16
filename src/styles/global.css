@@ -420,7 +420,7 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
   background: linear-gradient(180deg, rgba(26, 26, 36, 0.4) 0%, rgba(18, 18, 24, 0.8) 100%);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255,255,255,0.06); padding: 16px; border-radius: 12px; text-align: center;
-  position: relative; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative; z-index: 1; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 .price-card::before {
@@ -430,9 +430,9 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
   z-index: 0; pointer-events: none; opacity: 0; transition: opacity 0.3s;
 }
 .price-card:hover::before { opacity: 1; }
-.price-card:hover { border-color: rgba(186, 58, 184,0.2); transform: translateY(-4px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05); }
+.price-card:hover { border-color: rgba(186, 58, 184,0.2); transform: translateY(-4px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05); z-index: 10; }
 .price-card.featured { 
-  border-color: rgba(186, 58, 184,0.3); position: relative; 
+  border-color: rgba(186, 58, 184,0.3); position: relative; z-index: 5;
   background: linear-gradient(180deg, rgba(35, 25, 55, 0.5) 0%, rgba(18, 18, 24, 0.8) 100%);
   box-shadow: 0 8px 40px -10px rgba(186, 58, 184,0.2), inset 0 1px 0 rgba(255,255,255,0.1); 
 }
@@ -469,7 +469,7 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
   white-space: nowrap; letter-spacing: 0.5px; text-transform: uppercase;
 }
 .plan-tag-container {
-  position: absolute; top: 16px; right: 32px; z-index: 10;
+  position: absolute; top: 16px; right: 16px; z-index: 50;
   display: flex; align-items: center; justify-content: center; width: 0; height: 0;
 }
 .hole {
@@ -483,11 +483,11 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
   display: flex; flex-direction: column; align-items: center; padding-bottom: 2px;
 }
 .thread {
-  width: 2px; height: 16px; background: linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(255,255,255,0.2)); border-radius: 1px;
+  width: 2px; height: 32px; background: linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(255,255,255,0.2)); border-radius: 1px;
 }
 .plan-tag {
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
-  color: #fff; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 6px;
+  color: #fff; font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 6px;
   box-shadow: 0 10px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.4);
   border: 1px solid rgba(255,255,255,0.2); white-space: nowrap; text-transform: uppercase;
   position: relative; overflow: hidden; margin-bottom: -1px; letter-spacing: 0.5px;
@@ -498,8 +498,8 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
   transform: rotate(35deg); animation: tag-shine-anim 5s infinite linear;
 }
 @keyframes tag-wave {
-  0% { transform: rotate(10deg); }
-  100% { transform: rotate(25deg); }
+  0% { transform: rotate(40deg); }
+  100% { transform: rotate(60deg); }
 }
 @keyframes tag-shine-anim {
   0%, 80% { top: -100%; left: -100%; }
