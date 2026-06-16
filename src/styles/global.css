@@ -400,9 +400,20 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
 
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
 .price-card {
-  background: var(--surface); border: 1px solid var(--border); padding: 32px; border-radius: 16px; text-align: center;
+  background: var(--surface); border: 1px solid var(--border); padding: 32px; border-radius: 14px; text-align: center;
+  position: relative; overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.price-card.featured { border-color: var(--accent); position: relative; }
+.price-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(139, 92, 246, 0.08), transparent 40%);
+  z-index: 0; pointer-events: none; opacity: 0; transition: opacity 0.3s;
+}
+.price-card:hover::before { opacity: 1; }
+.price-card:hover { border-color: rgba(139,92,246,0.3); transform: translateY(-4px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.4); }
+.price-card.featured { border-color: var(--accent); position: relative; box-shadow: 0 0 40px -10px rgba(139,92,246,0.15); }
+.price-card > * { position: relative; z-index: 2; }
+.plan-badge { z-index: 3; }
+
 .price-card h3 { font-size: 24px; margin-bottom: 8px; }
 .price-card .price { font-size: 48px; font-weight: 700; margin-bottom: 8px; }
 .price-currency { font-size: 24px; vertical-align: top; margin-top: 6px; display: inline-block; color: var(--text-dim); }
@@ -429,7 +440,7 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
   position: absolute; top: -24px; right: -60px; background: rgba(139, 92, 246, 0.15); color: var(--accent); font-size: 11px; padding: 2px 8px; border-radius: 10px; border: 1px solid rgba(139, 92, 246, 0.3); white-space: nowrap;
 }
 .plan-badge {
-  position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); color: #fff; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; box-shadow: 0 4px 12px rgba(139,92,246,0.3); white-space: nowrap; z-index: 10;
+  position: absolute; top: 0px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); color: #fff; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 12px rgba(139,92,246,0.3); white-space: nowrap; z-index: 10; border-top: none; letter-spacing: 0.5px; text-transform: uppercase;
 }
 
 .price-features { list-style: none; padding: 0; margin: 0 0 32px; text-align: left; }
