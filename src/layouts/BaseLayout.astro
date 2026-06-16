@@ -96,5 +96,49 @@ const ogImageUrl = `${siteUrl}${ogImage}`;
   </footer>
 
   <slot name="scripts" />
+
+  <!-- Premium Coming Soon Modal -->
+  <div id="coming-soon-modal" class="modal-overlay">
+    <div class="premium-modal">
+      <div class="shiny-sweep"></div>
+      <div class="modal-close" id="close-modal">&times;</div>
+      <div class="modal-icon">
+        <div class="pulse-ring-modal"></div>
+        <img src="/logo.png" alt="ThinkMode+ Logo" />
+      </div>
+      <h3>We're upgrading ThinkMode+</h3>
+      <p>We're very sorry, Product under management, will be back in 2 days.</p>
+      <div class="modal-signature">~ Founder- Aayush</div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('coming-soon-modal');
+      const closeBtn = document.getElementById('close-modal');
+      
+      const ctaLinks = document.querySelectorAll('a');
+      
+      ctaLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const text = link.textContent?.toLowerCase() || '';
+          if (text.includes('add to chrome') || text.includes('add to edge') || link.classList.contains('nav-cta')) {
+            e.preventDefault();
+            modal?.classList.add('active');
+          }
+        });
+      });
+
+      closeBtn?.addEventListener('click', () => {
+        modal?.classList.remove('active');
+      });
+
+      modal?.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
