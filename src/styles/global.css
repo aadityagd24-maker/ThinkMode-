@@ -288,39 +288,53 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
 .sim-ui {
   --sim-theme: #10a37f;
   --sim-theme-rgb: 16, 163, 127;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-hi);
+  --sim-bg: #071510;
+  --sim-surface: #0a2019;
+  --sim-border: rgba(16, 163, 127, 0.3);
+  background: var(--sim-bg);
+  border: 1px solid var(--sim-border);
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 24px 70px -30px rgba(186, 58, 184,0.15), 0 8px 30px -10px rgba(0,0,0,0.6);
+  box-shadow: 0 24px 70px -30px rgba(var(--sim-theme-rgb), 0.2), 0 8px 30px -10px rgba(0,0,0,0.6);
+  transition: all 0.4s ease;
 }
 .sim-ui-header {
   display: flex; align-items: center; gap: 16px;
-  padding: 12px 16px; border-bottom: 1px solid var(--border);
-  background: var(--surface);
+  padding: 12px 16px; border-bottom: 1px solid var(--sim-border);
+  background: var(--sim-surface);
+  transition: all 0.4s ease;
 }
 .sim-ui-header .traffic { display: flex; gap: 6px; }
-.sim-ui-header .traffic span { width: 10px; height: 10px; border-radius: 50%; background: var(--border-hi); }
+.sim-ui-header .traffic span { width: 10px; height: 10px; border-radius: 50%; background: var(--sim-border); }
 .sim-tabs { display: flex; gap: 8px; }
 .sim-tab { padding: 4px 8px; border-radius: 6px; border: 1px solid transparent; opacity: 0.5; filter: grayscale(1); cursor: pointer; transition: all 0.2s ease; }
 .sim-tab:hover { opacity: 0.8; background: rgba(255,255,255,0.05); }
-.sim-tab.active { opacity: 1; filter: none; border-color: var(--border-hi); background: var(--surface-2); }
+.sim-tab.active { opacity: 1; filter: none; border-color: var(--sim-theme); background: rgba(var(--sim-theme-rgb), 0.1); color: var(--sim-theme); }
 .plat-icon { width: 18px; height: 18px; display: block; }
 .sim-ui-body { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
 .sim-inject {
   display: flex; justify-content: space-between; align-items: center;
-  background: var(--surface); border: 1px dashed var(--border-hi);
+  background: var(--sim-surface); border: 1px dashed var(--sim-border);
   padding: 12px 16px; border-radius: 8px; font-family: var(--mono); font-size: 13px;
-  cursor: pointer; transition: all 0.2s ease;
+  cursor: pointer; transition: all 0.4s ease;
 }
-.sim-inject:hover { border-color: rgba(255,255,255,0.25); background: var(--surface-2); }
+.sim-inject:hover { border-color: var(--sim-theme); background: rgba(var(--sim-theme-rgb), 0.05); }
 .inject-label { color: var(--text-dim); }
-.inject-value { color: var(--sim-theme); background: rgba(var(--sim-theme-rgb), 0.1); padding: 4px 8px; border-radius: 4px; transition: all 0.3s ease; }
-.sim-inject.active-think { border-style: solid; border-color: var(--sim-theme); color: var(--sim-theme); background: rgba(var(--sim-theme-rgb), 0.05); justify-content: flex-start; gap: 12px; transition: all 0.3s ease; }
+.inject-value { color: var(--sim-theme); background: rgba(var(--sim-theme-rgb), 0.1); padding: 4px 8px; border-radius: 4px; transition: all 0.4s ease; }
+.sim-inject.active-think { border-style: solid; border-color: var(--sim-theme); color: var(--sim-theme); background: rgba(var(--sim-theme-rgb), 0.05); justify-content: flex-start; gap: 12px; transition: all 0.4s ease; }
 
-.sim-ui[data-theme="chatgpt"] { --sim-theme: #10a37f; --sim-theme-rgb: 16, 163, 127; }
-.sim-ui[data-theme="claude"] { --sim-theme: #d97757; --sim-theme-rgb: 217, 119, 87; }
-.sim-ui[data-theme="gemini"] { --sim-theme: #4285f4; --sim-theme-rgb: 66, 133, 244; }
+.sim-ui[data-theme="chatgpt"] { 
+  --sim-theme: #10a37f; --sim-theme-rgb: 16, 163, 127;
+  --sim-bg: #071510; --sim-surface: #0a2019; --sim-border: rgba(16, 163, 127, 0.3);
+}
+.sim-ui[data-theme="claude"] { 
+  --sim-theme: #d97757; --sim-theme-rgb: 217, 119, 87;
+  --sim-bg: #1a0f05; --sim-surface: #281609; --sim-border: rgba(217, 119, 87, 0.3);
+}
+.sim-ui[data-theme="gemini"] { 
+  --sim-theme: #4285f4; --sim-theme-rgb: 66, 133, 244;
+  --sim-bg: #05121a; --sim-surface: #091d28; --sim-border: rgba(66, 133, 244, 0.3);
+}
 
 /* ---------- BENTO GRID ---------- */
 .bento-grid {
