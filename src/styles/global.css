@@ -300,12 +300,12 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
 }
 .sim-ui-header {
   display: flex; align-items: center; gap: 16px;
-  padding: 12px 16px; border-bottom: 1px solid var(--border);
-  background: var(--surface);
+  padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: #18181b;
   transition: all 0.4s ease;
 }
 .sim-ui-header .traffic { display: flex; gap: 6px; }
-.sim-ui-header .traffic span { width: 10px; height: 10px; border-radius: 50%; background: var(--border-hi); }
+.sim-ui-header .traffic span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.2); }
 .sim-tabs { display: flex; gap: 8px; }
 .sim-tab { padding: 4px 8px; border-radius: 6px; border: 1px solid transparent; opacity: 0.5; filter: grayscale(1); cursor: pointer; transition: all 0.2s ease; }
 .sim-tab:hover { opacity: 0.8; background: rgba(255,255,255,0.05); }
