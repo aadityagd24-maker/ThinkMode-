@@ -24,13 +24,13 @@
   </div>
 
   <div class="hero-visual">
-    <div class="sim-ui">
+    <div class="sim-ui" data-theme="chatgpt">
       <div class="sim-ui-header">
         <div class="traffic"><span></span><span></span><span></span></div>
         <div class="sim-tabs">
-          <div class="sim-tab active" style="font-family: var(--mono); font-size: 12px; padding: 4px 10px;">ChatGPT</div>
-          <div class="sim-tab" style="font-family: var(--mono); font-size: 12px; padding: 4px 10px;">Claude</div>
-          <div class="sim-tab" style="font-family: var(--mono); font-size: 12px; padding: 4px 10px;">Gemini</div>
+          <div class="sim-tab active" data-tab="chatgpt" style="font-family: var(--mono); font-size: 12px; padding: 4px 10px;">ChatGPT</div>
+          <div class="sim-tab" data-tab="claude" style="font-family: var(--mono); font-size: 12px; padding: 4px 10px;">Claude</div>
+          <div class="sim-tab" data-tab="gemini" style="font-family: var(--mono); font-size: 12px; padding: 4px 10px;">Gemini</div>
         </div>
       </div>
       <div class="sim-ui-body">
@@ -47,6 +47,24 @@
           <div class="inject-value">Comprehensive</div>
         </div>
       </div>
+      </div>
     </div>
   </div>
 </header>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const tabs = document.querySelectorAll('.sim-tab');
+    const simUi = document.querySelector('.sim-ui');
+    
+    if (!simUi || tabs.length === 0) return;
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        simUi.setAttribute('data-theme', tab.getAttribute('data-tab'));
+      });
+    });
+  });
+</script>

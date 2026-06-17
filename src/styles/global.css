@@ -286,6 +286,8 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
 
 /* Simulated UI (Hero Visual) */
 .sim-ui {
+  --sim-theme: #10a37f;
+  --sim-theme-rgb: 16, 163, 127;
   background: var(--bg-elevated);
   border: 1px solid var(--border-hi);
   border-radius: 14px;
@@ -313,8 +315,12 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
 }
 .sim-inject:hover { border-color: rgba(255,255,255,0.25); background: var(--surface-2); }
 .inject-label { color: var(--text-dim); }
-.inject-value { color: var(--accent); background: rgba(186, 58, 184,0.1); padding: 4px 8px; border-radius: 4px; }
-.sim-inject.active-think { border-style: solid; border-color: #e269ba; color: #e269ba; background: rgba(226, 105, 186,0.05); justify-content: flex-start; gap: 12px; }
+.inject-value { color: var(--sim-theme); background: rgba(var(--sim-theme-rgb), 0.1); padding: 4px 8px; border-radius: 4px; transition: all 0.3s ease; }
+.sim-inject.active-think { border-style: solid; border-color: var(--sim-theme); color: var(--sim-theme); background: rgba(var(--sim-theme-rgb), 0.05); justify-content: flex-start; gap: 12px; transition: all 0.3s ease; }
+
+.sim-ui[data-theme="chatgpt"] { --sim-theme: #10a37f; --sim-theme-rgb: 16, 163, 127; }
+.sim-ui[data-theme="claude"] { --sim-theme: #d97757; --sim-theme-rgb: 217, 119, 87; }
+.sim-ui[data-theme="gemini"] { --sim-theme: #4285f4; --sim-theme-rgb: 66, 133, 244; }
 
 /* ---------- BENTO GRID ---------- */
 .bento-grid {
@@ -525,8 +531,9 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
 .think-dots { display: flex; gap: 3px; }
 .think-dots span {
   width: 6px; height: 6px; border-radius: 50%;
-  background: #e269ba;
+  background: var(--sim-theme);
   animation: think-pulse 1.4s ease-in-out infinite;
+  transition: background 0.3s ease;
 }
 .think-dots span:nth-child(2) { animation-delay: 0.15s; }
 .think-dots span:nth-child(3) { animation-delay: 0.3s; }
