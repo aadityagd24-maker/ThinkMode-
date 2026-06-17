@@ -300,12 +300,12 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
 }
 .sim-ui-header {
   display: flex; align-items: center; gap: 16px;
-  padding: 12px 16px; border-bottom: 1px solid var(--sim-border);
-  background: var(--sim-surface);
+  padding: 12px 16px; border-bottom: 1px solid var(--border);
+  background: var(--surface);
   transition: all 0.4s ease;
 }
 .sim-ui-header .traffic { display: flex; gap: 6px; }
-.sim-ui-header .traffic span { width: 10px; height: 10px; border-radius: 50%; background: var(--sim-border); }
+.sim-ui-header .traffic span { width: 10px; height: 10px; border-radius: 50%; background: var(--border-hi); }
 .sim-tabs { display: flex; gap: 8px; }
 .sim-tab { padding: 4px 8px; border-radius: 6px; border: 1px solid transparent; opacity: 0.5; filter: grayscale(1); cursor: pointer; transition: all 0.2s ease; }
 .sim-tab:hover { opacity: 0.8; background: rgba(255,255,255,0.05); }
@@ -325,15 +325,15 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
 
 .sim-ui[data-theme="chatgpt"] { 
   --sim-theme: #10a37f; --sim-theme-rgb: 16, 163, 127;
-  --sim-bg: #071510; --sim-surface: #0a2019; --sim-border: rgba(16, 163, 127, 0.3);
+  --sim-bg: #0b120f; --sim-surface: #0e1714; --sim-border: rgba(16, 163, 127, 0.2);
 }
 .sim-ui[data-theme="claude"] { 
   --sim-theme: #d97757; --sim-theme-rgb: 217, 119, 87;
-  --sim-bg: #1a0f05; --sim-surface: #281609; --sim-border: rgba(217, 119, 87, 0.3);
+  --sim-bg: #140f0c; --sim-surface: #1a120e; --sim-border: rgba(217, 119, 87, 0.2);
 }
 .sim-ui[data-theme="gemini"] { 
   --sim-theme: #4285f4; --sim-theme-rgb: 66, 133, 244;
-  --sim-bg: #05121a; --sim-surface: #091d28; --sim-border: rgba(66, 133, 244, 0.3);
+  --sim-bg: #091014; --sim-surface: #0d151a; --sim-border: rgba(66, 133, 244, 0.2);
 }
 
 /* ---------- BENTO GRID ---------- */
