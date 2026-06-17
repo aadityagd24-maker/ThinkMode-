@@ -536,8 +536,8 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
-  max-width: 960px;
+  gap: 24px;
+  max-width: 680px;
   margin: 0 auto 48px;
 }
 .heart-icon {
