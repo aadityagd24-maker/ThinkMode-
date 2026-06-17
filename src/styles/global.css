@@ -531,7 +531,45 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
 
 .price-features { list-style: none; padding: 0; margin: 0 0 16px; text-align: left; }
 .price-features li { padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 12px; color: var(--text-dim); }
-.pricing-foot { text-align: center; margin-top: 16px; font-family: var(--mono); color: var(--text-faint); font-size: 12px; }
+/* Why We Charge Box */
+.why-charge-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  max-width: 680px;
+  margin: 48px auto 0;
+}
+.heart-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.heart-icon svg {
+  filter: drop-shadow(0 4px 12px rgba(186, 58, 184, 0.4));
+}
+.why-charge-box {
+  background: var(--surface);
+  border: 1px solid var(--border-hi);
+  border-radius: 12px;
+  padding: 20px 24px;
+  text-align: left;
+}
+.why-charge-box h4 {
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+.why-charge-box p {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.pricing-foot { text-align: center; margin-top: 24px; font-family: var(--mono); color: var(--text-faint); font-size: 12px; }
 
 .seo-faq-list { max-width: 760px; margin: 0 auto; }
 .seo-faq-item {
