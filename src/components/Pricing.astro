@@ -15,6 +15,11 @@
     <div class="segment-btn active" id="label-yearly">
       Yearly <span class="discount-badge">Save up to 50%</span>
     </div>
+    <div class="segment-btn" id="label-lifetime">Lifetime</div>
+  </div>
+
+  <div id="lifetime-headline" style="display:none; text-align:center; color:var(--accent); font-family:var(--mono); text-transform:uppercase; font-size:14px; margin-top:32px; font-weight:700; letter-spacing:1px;">
+    Own Your Product
   </div>
 
   <div class="pricing-grid">
@@ -40,10 +45,11 @@
       <h3>Pro</h3>
       <p>one account, everywhere you think</p>
       <div class="price">
-        <span class="price-currency">$</span><span class="price-amount" data-monthly="2.99" data-yearly="1.66">1.66</span><span class="price-period">/mo</span>
+        <span class="price-currency">$</span><span class="price-amount" data-monthly="2.99" data-yearly="1.66" data-lifetime="69.99">1.66</span><span class="price-period">/mo</span>
       </div>
       <div class="price-sub yearly-only">Billed $19.99 yearly</div>
       <div class="price-sub monthly-only" style="display:none;">Billed $2.99 monthly</div>
+      <div class="price-sub lifetime-only" style="display:none;">One-time payment</div>
       <ul class="price-features">
         <li>ChatGPT + Claude + Gemini</li>
         <li>unlimited activations</li>
@@ -60,17 +66,18 @@
         </div>
         <div class="hole"></div>
       </div>
-      <h3>Pro Squad</h3>
-      <p>1 account, 5 devices</p>
+      <h3>Power User</h3>
+      <p>1 account, 3 browsers</p>
       <div class="price">
-        <span class="price-currency">$</span><span class="price-amount" data-monthly="4.99" data-yearly="2.49">2.49</span><span class="price-period">/mo</span>
+        <span class="price-currency">$</span><span class="price-amount" data-monthly="4.99" data-yearly="2.49" data-lifetime="99.99">2.49</span><span class="price-period">/mo</span>
       </div>
       <div class="price-sub yearly-only">Billed $29.99 yearly</div>
       <div class="price-sub monthly-only" style="display:none;">Billed $4.99 monthly</div>
+      <div class="price-sub lifetime-only" style="display:none;">One-time payment</div>
       <ul class="price-features">
         <li>everything in Pro</li>
-        <li>same account on 5 devices</li>
-        <li>built for squads &amp; family</li>
+        <li>same account on 3 browsers</li>
+        <li>built for power users</li>
       </ul>
       <a href="#" class="btn btn-ghost chrome-install-btn" style="width:100%; justify-content:center;">Buy Now</a>
     </div>
@@ -82,31 +89,54 @@
       const segmentBg = document.getElementById('segment-bg');
       const labelMonthly = document.getElementById('label-monthly');
       const labelYearly = document.getElementById('label-yearly');
+      const labelLifetime = document.getElementById('label-lifetime');
+      const lifetimeHeadline = document.getElementById('lifetime-headline');
       const amounts = document.querySelectorAll('.price-amount');
+      const periods = document.querySelectorAll('.price-period');
       const yearlyElements = document.querySelectorAll('.yearly-only');
       const monthlyElements = document.querySelectorAll('.monthly-only');
-      let isYearly = true;
+      const lifetimeElements = document.querySelectorAll('.lifetime-only');
+      let currentSegment = 'yearly';
 
       function updatePricing() {
-        if (isYearly) {
+        labelMonthly.classList.remove('active');
+        labelYearly.classList.remove('active');
+        labelLifetime.classList.remove('active');
+        segmentBg.classList.remove('yearly-active', 'monthly-active', 'lifetime-active');
+
+        if (currentSegment === 'yearly') {
           segmentBg.classList.add('yearly-active');
           labelYearly.classList.add('active');
-          labelMonthly.classList.remove('active');
           amounts.forEach(el => el.textContent = el.getAttribute('data-yearly'));
+          periods.forEach(el => el.style.display = '');
           yearlyElements.forEach(el => el.style.display = '');
           monthlyElements.forEach(el => el.style.display = 'none');
-        } else {
-          segmentBg.classList.remove('yearly-active');
+          lifetimeElements.forEach(el => el.style.display = 'none');
+          lifetimeHeadline.style.display = 'none';
+        } else if (currentSegment === 'monthly') {
+          segmentBg.classList.add('monthly-active');
           labelMonthly.classList.add('active');
-          labelYearly.classList.remove('active');
           amounts.forEach(el => el.textContent = el.getAttribute('data-monthly'));
+          periods.forEach(el => el.style.display = '');
           yearlyElements.forEach(el => el.style.display = 'none');
           monthlyElements.forEach(el => el.style.display = '');
+          lifetimeElements.forEach(el => el.style.display = 'none');
+          lifetimeHeadline.style.display = 'none';
+        } else if (currentSegment === 'lifetime') {
+          segmentBg.classList.add('lifetime-active');
+          labelLifetime.classList.add('active');
+          amounts.forEach(el => el.textContent = el.getAttribute('data-lifetime'));
+          periods.forEach(el => el.style.display = 'none'); // Hide /mo
+          yearlyElements.forEach(el => el.style.display = 'none');
+          monthlyElements.forEach(el => el.style.display = 'none');
+          lifetimeElements.forEach(el => el.style.display = '');
+          lifetimeHeadline.style.display = 'block';
         }
       }
 
-      labelMonthly.addEventListener('click', () => { isYearly = false; updatePricing(); });
-      labelYearly.addEventListener('click', () => { isYearly = true; updatePricing(); });
+      labelMonthly.addEventListener('click', () => { currentSegment = 'monthly'; updatePricing(); });
+      labelYearly.addEventListener('click', () => { currentSegment = 'yearly'; updatePricing(); });
+      labelLifetime.addEventListener('click', () => { currentSegment = 'lifetime'; updatePricing(); });
 
       // Premium mouse tracking glow
       const cards = document.querySelectorAll('.price-card');
