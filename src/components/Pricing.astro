@@ -23,7 +23,7 @@
   </div>
 
   <div class="pricing-grid">
-    <div class="price-card">
+    <div class="price-card" id="free-card">
       <h3>Free</h3>
       <p>try the core loop</p>
       <div class="price">$0</div>
@@ -115,6 +115,8 @@
         labelLifetime.classList.remove('active');
         segmentBg.classList.remove('yearly-active', 'monthly-active', 'lifetime-active');
 
+        const freeCard = document.getElementById('free-card');
+
         if (currentSegment === 'yearly') {
           segmentBg.classList.add('yearly-active');
           labelYearly.classList.add('active');
@@ -124,6 +126,7 @@
           monthlyElements.forEach(el => el.style.display = 'none');
           lifetimeElements.forEach(el => el.style.display = 'none');
           lifetimeHeadline.style.display = 'none';
+          if(freeCard) freeCard.style.display = 'block';
         } else if (currentSegment === 'monthly') {
           segmentBg.classList.add('monthly-active');
           labelMonthly.classList.add('active');
@@ -133,6 +136,7 @@
           monthlyElements.forEach(el => el.style.display = '');
           lifetimeElements.forEach(el => el.style.display = 'none');
           lifetimeHeadline.style.display = 'none';
+          if(freeCard) freeCard.style.display = 'block';
         } else if (currentSegment === 'lifetime') {
           segmentBg.classList.add('lifetime-active');
           labelLifetime.classList.add('active');
@@ -142,6 +146,7 @@
           monthlyElements.forEach(el => el.style.display = 'none');
           lifetimeElements.forEach(el => el.style.display = '');
           lifetimeHeadline.style.display = 'block';
+          if(freeCard) freeCard.style.display = 'none';
         }
       }
 

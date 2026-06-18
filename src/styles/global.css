@@ -435,13 +435,14 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
 .seo-content-body p {
   font-size: 16px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.7;
 }
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 0px; max-width: 1000px; margin-left: auto; margin-right: auto; }
+.pricing-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-top: 0px; max-width: 1000px; margin-left: auto; margin-right: auto; }
 .price-card {
+  flex: 1; min-width: 280px; max-width: 320px;
   background: linear-gradient(180deg, rgba(26, 26, 36, 0.4) 0%, rgba(18, 18, 24, 0.8) 100%);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255,255,255,0.06); padding: 16px; border-radius: 12px; text-align: center;
   position: relative; z-index: 1; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+  overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 .price-card::before {
   content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -580,7 +581,7 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
 .seo-faq-item p { font-size: 15px; color: var(--text-dim); line-height: 1.6; margin: 0; }
 
 @media (max-width: 768px) {
-  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-grid { flex-direction: column; align-items: center; }
 }
 
 /* Helper classes */
