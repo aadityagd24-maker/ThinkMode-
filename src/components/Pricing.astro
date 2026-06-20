@@ -56,7 +56,11 @@
         <li>per-platform on/off control</li>
         <li>priority support</li>
       </ul>
-      <a href="#" class="btn btn-primary chrome-install-btn" style="width:100%; justify-content:center;">Buy Now</a>
+      <a href="https://checkout.dodopayments.com/buy/pdt_0NhFrC2esMQTjNstTeZ4o?quantity=1" 
+         data-link-monthly="https://checkout.dodopayments.com/buy/pdt_0Nh9P4Io9kgUmaQelNgRh?quantity=1"
+         data-link-yearly="https://checkout.dodopayments.com/buy/pdt_0NhFrC2esMQTjNstTeZ4o?quantity=1"
+         data-link-lifetime="https://checkout.dodopayments.com/buy/pdt_0NhFu8yyr0PBxB2hj6MLH?quantity=1"
+         class="btn btn-primary chrome-install-btn" style="width:100%; justify-content:center;">Buy Now</a>
     </div>
     <div class="price-card">
       <div class="plan-tag-container yearly-only">
@@ -79,7 +83,11 @@
         <li>same account on 3 browsers</li>
         <li>built for power users</li>
       </ul>
-      <a href="#" class="btn btn-ghost chrome-install-btn" style="width:100%; justify-content:center;">Buy Now</a>
+      <a href="https://checkout.dodopayments.com/buy/pdt_0NhRc1e6T4Wr1q7omU29R?quantity=1"
+         data-link-monthly="https://checkout.dodopayments.com/buy/pdt_0NhRbnKw7JWoGJDBCwqQ2?quantity=1"
+         data-link-yearly="https://checkout.dodopayments.com/buy/pdt_0NhRc1e6T4Wr1q7omU29R?quantity=1"
+         data-link-lifetime="https://checkout.dodopayments.com/buy/pdt_0NhRcK0gOlJlI8PUpk6IF?quantity=1"
+         class="btn btn-ghost chrome-install-btn" style="width:100%; justify-content:center;">Buy Now</a>
     </div>
   </div>
 
@@ -109,6 +117,7 @@
       const yearlyElements = document.querySelectorAll('.yearly-only');
       const monthlyElements = document.querySelectorAll('.monthly-only');
       const lifetimeElements = document.querySelectorAll('.lifetime-only');
+      const buyBtns = document.querySelectorAll('.chrome-install-btn');
       let currentSegment = 'yearly';
 
       function updatePricing() {
@@ -150,6 +159,12 @@
           lifetimeHeadline.style.display = 'block';
           if(freeCard) freeCard.style.display = 'none';
         }
+
+        buyBtns.forEach(btn => {
+          if (btn.hasAttribute('data-link-' + currentSegment)) {
+            btn.href = btn.getAttribute('data-link-' + currentSegment);
+          }
+        });
       }
 
       labelMonthly.addEventListener('click', () => { currentSegment = 'monthly'; updatePricing(); });
@@ -169,7 +184,6 @@
       });
 
       // Checkout Intercept
-      const buyBtns = document.querySelectorAll('.chrome-install-btn');
       buyBtns.forEach(btn => {
         btn.addEventListener('click', async (e) => {
           e.preventDefault();
@@ -177,8 +191,11 @@
           if (!session) {
             window.location.href = '/auth?redirect=/dashboard';
           } else {
-            // Placeholder: redirect to checkout or dashboard if already logged in
-            window.location.href = '/dashboard';
+            // User is logged in, redirect to checkout
+            // Append customer_email if supported by dodopayments
+            const checkoutUrl = new URL(btn.href);
+            checkoutUrl.searchParams.set('customer_email', session.user.email);
+            window.location.href = checkoutUrl.toString();
           }
         });
       });
