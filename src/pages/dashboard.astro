@@ -97,6 +97,7 @@ import Pricing from '../components/Pricing.astro';
 
       signOutBtn?.addEventListener('click', async () => {
         await supabase.auth.signOut();
+        window.dispatchEvent(new CustomEvent('tm-auth-sync', { detail: null }));
         window.location.href = '/';
       });
     });

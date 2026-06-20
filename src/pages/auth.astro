@@ -26,7 +26,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
         </div>
         <div class="auth-actions">
-          <button type="button" id="sign-in-btn" class="btn btn-primary">Sign In</button>
+          <button type="submit" id="sign-in-btn" class="btn btn-primary">Sign In</button>
           <button type="button" id="sign-up-btn" class="btn btn-ghost">Sign Up</button>
         </div>
         <p id="auth-message" class="auth-message"></p>
@@ -71,6 +71,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     import { supabase } from '../lib/supabase.js';
 
     document.addEventListener('astro:page-load', () => {
+      const authForm = document.getElementById('auth-form');
       const signInBtn = document.getElementById('sign-in-btn');
       const signUpBtn = document.getElementById('sign-up-btn');
       const emailInput = document.getElementById('email');
@@ -125,12 +126,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             authMessage.className = 'auth-message success';
           } else {
             // Signed in successfully
+            if (data.session) {
+              window.dispatchEvent(new CustomEvent('tm-auth-sync', { detail: JSON.stringify(data.session) }));
+            }
             window.location.href = redirectUrl;
           }
         }
       }
 
-      signInBtn?.addEventListener('click', () => handleAuth('signin'));
+      authForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleAuth('signin');
+      });
       signUpBtn?.addEventListener('click', () => handleAuth('signup'));
     });
   </script>
