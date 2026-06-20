@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Sign In - ThinkMode+" description="Sign in to manage your ThinkMode+ subscriptions.">
+  <div class="auth-container wrap">
+    <div class="auth-box">
+      <h2>Sign In or Create Account</h2>
+      <p>Use the same email as your ThinkMode+ extension.</p>
+      
+      <form id="auth-form" class="auth-form">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required placeholder="you@example.com" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required placeholder="••••••••" />
+        </div>
+        <div class="auth-actions">
+          <button type="button" id="sign-in-btn" class="btn btn-primary">Sign In</button>
+          <button type="button" id="sign-up-btn" class="btn btn-ghost">Sign Up</button>
+        </div>
+        <p id="auth-message" class="auth-message"></p>
+      </form>
+    </div>
+  </div>
+
+  <style>
+    .auth-container { display: flex; justify-content: center; align-items: center; min-height: 70vh; }
+    .auth-box { 
+      background: linear-gradient(180deg, rgba(26, 26, 36, 0.4) 0%, rgba(18, 18, 24, 0.8) 100%);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.06); padding: 40px; border-radius: 12px;
+      max-width: 400px; width: 100%; text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .auth-box h2 { font-size: 24px; margin-bottom: 8px; }
+    .auth-box p { color: var(--text-dim); font-size: 14px; margin-bottom: 24px; }
+    .auth-form { display: flex; flex-direction: column; gap: 16px; text-align: left; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 13px; font-weight: 500; color: var(--text-dim); }
+    .form-group input { 
+      padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); 
+      background: rgba(0,0,0,0.2); color: white; outline: none; font-family: inherit;
+    }
+    .form-group input:focus { border-color: var(--accent); }
+    .auth-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+    .auth-actions .btn { width: 100%; justify-content: center; }
+    .auth-message { font-size: 13px; color: #ff5555; text-align: center; margin-top: 12px; height: 20px; }
+    .auth-message.success { color: #55ff55; }
+  </style>
+
+  <script>
+    import { supabase } from '../lib/supabase.js';
+
+    document.addEventListener('astro:page-load', () => {
+      const signInBtn = document.getElementById('sign-in-btn');
+      const signUpBtn = document.getElementById('sign-up-btn');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const authMessage = document.getElementById('auth-message');
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectUrl = urlParams.get('redirect') || '/dashboard';
+
+      async function handleAuth(type) {
+        if (!authMessage || !emailInput || !passwordInput) return;
+        
+        authMessage.textContent = 'Loading...';
+        authMessage.className = 'auth-message';
+        const email = (emailInput as HTMLInputElement).value;
+        const password = (passwordInput as HTMLInputElement).value;
+
+        if (!email || !password) {
+          authMessage.textContent = 'Please enter email and password.';
+          return;
+        }
+
+        let result;
+        if (type === 'signin') {
+          result = await supabase.auth.signInWithPassword({ email, password });
+        } else {
+          result = await supabase.auth.signUp({ email, password });
+        }
+
+        const { data, error } = result;
+
+        if (error) {
+          authMessage.textContent = error.message;
+        } else {
+          if (type === 'signup' && data.user && data.user.identities && data.user.identities.length === 0) {
+            authMessage.textContent = 'User already exists. Please sign in.';
+          } else if (type === 'signup') {
+            authMessage.textContent = 'Success! Check your email to confirm.';
+            authMessage.className = 'auth-message success';
+          } else {
+            // Signed in successfully
+            window.location.href = redirectUrl;
+          }
+        }
+      }
+
+      signInBtn?.addEventListener('click', () => handleAuth('signin'));
+      signUpBtn?.addEventListener('click', () => handleAuth('signup'));
+    });
+  </script>
+</BaseLayout>

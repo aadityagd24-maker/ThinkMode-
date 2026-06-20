@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Pricing from '../components/Pricing.astro';
+---
+
+<BaseLayout title="Dashboard - ThinkMode+" description="Your ThinkMode+ Dashboard">
+  <div class="dashboard-wrap wrap">
+    <div class="dashboard-header">
+      <h2>Your Subscriptions</h2>
+      <p id="user-email" class="user-email">Loading...</p>
+      <button id="sign-out-btn" class="btn btn-ghost btn-sm" style="margin-top: 16px; padding: 6px 16px; font-size: 13px;">Sign Out</button>
+    </div>
+
+    <div class="plan-status-box">
+      <h3>Current Plan: <span id="current-plan-name" class="plan-badge">Free</span></h3>
+      <p id="plan-description">You are currently on the free tier with limited daily activations.</p>
+    </div>
+
+    <div id="upgrade-section" style="display: none; margin-top: 64px;">
+      <h3 style="text-align: center; margin-bottom: 24px; font-size: 28px;">Upgrade Your Plan</h3>
+      <Pricing />
+    </div>
+  </div>
+
+  <style>
+    .dashboard-wrap { padding-top: 120px; padding-bottom: 80px; min-height: 80vh; }
+    .dashboard-header { margin-bottom: 40px; }
+    .dashboard-header h2 { font-size: 32px; margin-bottom: 8px; }
+    .user-email { color: var(--text-dim); font-size: 16px; font-family: var(--mono); }
+    
+    .plan-status-box {
+      background: linear-gradient(180deg, rgba(26, 26, 36, 0.4) 0%, rgba(18, 18, 24, 0.8) 100%);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.06); padding: 32px; border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .plan-status-box h3 { font-size: 24px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+    .plan-badge { 
+      background: rgba(255,255,255,0.1); color: white; padding: 4px 12px; 
+      border-radius: 100px; font-size: 14px; font-weight: 600; text-transform: uppercase;
+    }
+    .plan-badge.pro { background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
+    #plan-description { color: var(--text-dim); font-size: 15px; }
+  </style>
+
+  <script>
+    import { supabase } from '../lib/supabase.js';
+
+    document.addEventListener('astro:page-load', async () => {
+      const emailEl = document.getElementById('user-email');
+      const planNameEl = document.getElementById('current-plan-name');
+      const planDescEl = document.getElementById('plan-description');
+      const upgradeSection = document.getElementById('upgrade-section');
+      const signOutBtn = document.getElementById('sign-out-btn');
+
+      if (!emailEl) return;
+
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session) {
+        window.location.href = '/auth';
+        return;
+      }
+
+      emailEl.textContent = session.user.email;
+
+      // Default to Free
+      let isFree = true;
+      let planName = 'Free';
+      
+      try {
+        const { data: userData, error } = await supabase
+          .from('users')
+          .select('plan')
+          .eq('id', session.user.id)
+          .single();
+
+        if (userData && userData.plan && userData.plan.toLowerCase() !== 'free') {
+          isFree = false;
+          planName = userData.plan;
+        }
+      } catch (err) {
+        // Ignored. If table doesn't exist, they default to free.
+      }
+
+      if (planNameEl) {
+        planNameEl.textContent = planName.toUpperCase();
+        if (!isFree) {
+          planNameEl.className = 'plan-badge pro';
+          if (planDescEl) planDescEl.textContent = `You have unlimited access on your ${planName} plan.`;
+        }
+      }
+
+      if (isFree && upgradeSection) {
+        upgradeSection.style.display = 'block';
+      }
+
+      signOutBtn?.addEventListener('click', async () => {
+        await supabase.auth.signOut();
+        window.location.href = '/';
+      });
+    });
+  </script>
+</BaseLayout>

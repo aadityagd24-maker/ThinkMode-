@@ -96,6 +96,8 @@
   </div>
 
   <script>
+    import { supabase } from '../lib/supabase.js';
+
     document.addEventListener('astro:page-load', () => {
       const segmentBg = document.getElementById('segment-bg');
       const labelMonthly = document.getElementById('label-monthly');
@@ -163,6 +165,21 @@
           const y = e.clientY - rect.top;
           card.style.setProperty('--mouse-x', `${x}px`);
           card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+
+      // Checkout Intercept
+      const buyBtns = document.querySelectorAll('.chrome-install-btn');
+      buyBtns.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const { data: { session } } = await supabase.auth.getSession();
+          if (!session) {
+            window.location.href = '/auth?redirect=/dashboard';
+          } else {
+            // Placeholder: redirect to checkout or dashboard if already logged in
+            window.location.href = '/dashboard';
+          }
         });
       });
     });
