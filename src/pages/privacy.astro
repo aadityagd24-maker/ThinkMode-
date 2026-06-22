@@ -67,6 +67,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <p>
         ThinkMode+ modifies the user interface of ChatGPT to enable extended thinking features. The extension does not intercept, read, or transmit any of your prompt or conversation data. Your interactions with the platform remain governed by their respective privacy policy.
       </p>
+      <p>
+        When the optional "Precision Mode" feature is enabled by the user, the extension intercepts outgoing conversation requests to ChatGPT on the user's local device solely to append a fixed system directive ("[System Directive: Think step-by-step. Verify factual claims before stating them. Prioritize absolute accuracy.]") to the user's message before it is sent. This interception occurs entirely client-side; no message content is read, stored, logged, or transmitted to ThinkMode+ servers. The interception is disabled when Precision Mode is toggled off. Users are in full control of this feature at all times.
+      </p>
+      
+      <h3>3.4 Supabase (Authentication & Database)</h3>
+      <p>
+        ThinkMode+ uses Supabase (supabase.com) as its backend infrastructure for user authentication and subscription management. When you create an account or sign in, your email address and authentication credentials are processed by Supabase. Supabase stores your account information (email address, hashed password, and subscription status) on its servers. Supabase may process this data in multiple regions. Their privacy policy is available at https://supabase.com/privacy. We do not store your password — it is hashed by Supabase before storage. The Supabase anon/publishable key included in the extension is a non-secret client-side key that grants access only to public data and authenticated user-scoped data via Row Level Security policies.
+      </p>
 
       <!-- ────────────────────────────────────────────── -->
       <h2>4. Cookies</h2>
