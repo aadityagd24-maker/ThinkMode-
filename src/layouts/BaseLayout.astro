@@ -123,7 +123,7 @@ const ogImageUrl = `${siteUrl}${ogImage}`;
       ctaLinks.forEach(link => {
         link.addEventListener('click', (e) => {
           const text = link.textContent?.toLowerCase() || '';
-          if (text.includes('add to chrome') || text.includes('add to edge')) {
+          if (text.includes('add to edge')) {
             e.preventDefault();
             modal?.classList.add('active');
           }
