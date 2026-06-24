@@ -1,0 +1,456 @@
+---
+import TimeSkipLayout from '../../layouts/TimeSkipLayout.astro';
+---
+
+<TimeSkipLayout 
+  title="TimeSkip — Time Travel Through Any Social Media Profile | Chrome Extension"
+  description="TimeSkip is a Chrome extension that lets you instantly jump to any month or year of someone's X (Twitter) posting history. Find first posts, explore old tweets, and navigate profiles through time — all with one click."
+  canonicalPath="/timeskip"
+>
+  <Fragment slot="head">
+    <meta name="keywords" content="twitter time travel, find old tweets, first tweet finder, twitter search by date, twitter advanced search extension, find someone's first tweet, old tweets search, twitter profile search, browse old tweets, twitter history viewer, tweet time machine, social media time travel, chrome extension twitter, twitter search tool, find tweets by date, x search extension, twitter profile explorer, twitter date search, old post finder">
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "TimeSkip",
+      "operatingSystem": "Chrome, Edge",
+      "applicationCategory": "BrowserApplication",
+      "offers": [
+        {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free tier with daily limits"
+        },
+        {
+          "@type": "Offer",
+          "price": "4.99",
+          "priceCurrency": "USD",
+          "description": "TimeSkip for Twitter — Monthly"
+        },
+        {
+          "@type": "Offer",
+          "price": "49.99",
+          "priceCurrency": "USD",
+          "description": "TimeSkip for Twitter — Lifetime"
+        }
+      ],
+      "description": "TimeSkip is a Chrome extension that lets you instantly jump to any month or year of someone's X (Twitter) posting history. Find their first post, explore their old tweets, and navigate profiles through time.",
+      "url": "https://thinkmodeplus.com/timeskip",
+      "applicationSubCategory": "Social Media Research Tool",
+      "softwareVersion": "1.0.0",
+      "author": {
+        "@type": "Organization",
+        "name": "TimeSkip"
+      }
+    })} />
+
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does TimeSkip find old tweets?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TimeSkip uses X's (Twitter's) built-in Advanced Search feature to construct precise date-filtered queries. When you select a month and year, the extension builds a search URL like 'from:username since:YYYY-MM-DD until:YYYY-MM-DD' and navigates you directly to the results. No API keys or scraping involved — just clever use of X's own tools."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can TimeSkip find someone's very first tweet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! TimeSkip has a 'First Posts' feature that uses a progressive search algorithm. It starts with a narrow 1-month window from the user's join date and automatically expands if needed. Once posts are found, it auto-scrolls to the oldest tweet and highlights it with a glowing border."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is TimeSkip free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TimeSkip offers a generous free tier with 5 daily time jumps. For unlimited access, you can upgrade to TimeSkip for Twitter at $4.99/month or $49.99 for lifetime access. LinkedIn support and a combo bundle are coming soon."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does TimeSkip access my private data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. TimeSkip only reads publicly visible profile information (username and join date) from the X.com page you're viewing. It does not access your DMs, private tweets, or any account credentials. All search URLs are constructed client-side in your browser."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will TimeSkip work on LinkedIn?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "LinkedIn support is coming soon. We're developing a separate LinkedIn module that will let you time-travel through LinkedIn profiles and posts in the same way. You'll be able to subscribe to LinkedIn individually or get the Combo bundle for both platforms."
+          }
+        }
+      ]
+    })} />
+  </Fragment>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- HERO -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <header class="ts-hero ts-wrap">
+    <div class="ts-live-badge ts-animate">
+      <span class="ts-pulse"></span>
+      live on chrome & edge
+    </div>
+    <h1 class="ts-animate ts-animate-d1">
+      Time travel through<br><span class="ts-grad-text">any profile.</span>
+    </h1>
+    <p class="ts-lead ts-animate ts-animate-d2">
+      Instantly jump to any month or year of someone's X (Twitter) history. Find their first post, explore old tweets, and navigate profiles through time — all with one click.
+    </p>
+    <div class="ts-hero-ctas ts-animate ts-animate-d3">
+      <a href="#pricing" class="ts-btn ts-btn-primary">Get TimeSkip &rarr;</a>
+      <a href="#features" class="ts-btn ts-btn-ghost">See Features</a>
+    </div>
+    <div class="ts-hero-meta ts-animate ts-animate-d4">
+      <span>Free daily jumps</span>
+      <span>No API keys needed</span>
+      <span>Zero data collected</span>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- FEATURES -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="ts-section ts-wrap" id="features">
+    <div class="ts-section-head ts-text-center">
+      <p class="ts-eyebrow">// features</p>
+      <h2>Everything you need to explore profiles through time.</h2>
+      <p>No scraping. No APIs. No rate limits. TimeSkip uses X's own Advanced Search under the hood.</p>
+    </div>
+
+    <div class="ts-features-grid">
+      <div class="ts-feature-card">
+        <div class="ts-feature-icon">🕐</div>
+        <h3>Jump to Any Date</h3>
+        <p>Select any month and year from a profile's history. TimeSkip builds the perfect search query and takes you straight there. Browse tweets from 2010 or last Tuesday — your choice.</p>
+      </div>
+      <div class="ts-feature-card">
+        <div class="ts-feature-icon">⚡</div>
+        <h3>Quick Jumps</h3>
+        <p>One-tap buttons for "1 year ago" and "2 years ago." Perfect for quickly checking what someone was posting during major events or specific periods.</p>
+      </div>
+      <div class="ts-feature-card">
+        <div class="ts-feature-icon">🏁</div>
+        <h3>Find First Post</h3>
+        <p>Our self-driving search engine progressively narrows the window until it finds the user's oldest tweet, then auto-scrolls and highlights it with a glowing badge.</p>
+      </div>
+      <div class="ts-feature-card">
+        <div class="ts-feature-icon">🔌</div>
+        <h3>Injected Widget</h3>
+        <p>A sleek widget appears directly on X profile pages — right above the Posts/Replies tabs. No context switching, no popup juggling. It's right where you need it.</p>
+      </div>
+      <div class="ts-feature-card">
+        <div class="ts-feature-icon">🔒</div>
+        <h3>Privacy-First</h3>
+        <p>TimeSkip reads only the username and join date from the profile page. It never accesses your DMs, private data, or account credentials. Everything stays in your browser.</p>
+      </div>
+      <div class="ts-feature-card">
+        <div class="ts-feature-icon">🧩</div>
+        <h3>Smart Detection</h3>
+        <p>Works on search pages too. If you land on a search result from a specific user, TimeSkip detects the username and lets you jump straight to their profile.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- HOW IT WORKS -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="ts-section ts-wrap" id="how-it-works">
+    <div class="ts-section-head ts-text-center">
+      <p class="ts-eyebrow">// how it works</p>
+      <h2>Three steps. Zero complexity.</h2>
+      <p>Install once, use everywhere. TimeSkip works automatically on every X profile.</p>
+    </div>
+
+    <div class="ts-steps">
+      <div class="ts-step">
+        <div class="ts-step-number">1</div>
+        <h3>Install the Extension</h3>
+        <p>Add TimeSkip to Chrome or Edge from the Chrome Web Store. It takes 3 seconds.</p>
+      </div>
+      <div class="ts-step">
+        <div class="ts-step-number">2</div>
+        <h3>Visit Any X Profile</h3>
+        <p>Navigate to anyone's profile on X.com. The TimeSkip widget automatically appears below their bio.</p>
+      </div>
+      <div class="ts-step">
+        <div class="ts-step-number">3</div>
+        <h3>Pick a Date & Jump</h3>
+        <p>Select a month and year, click "Go," and you're instantly viewing their posts from that exact time period.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- PRICING -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="ts-section ts-wrap" id="pricing">
+    <div class="ts-section-head ts-text-center">
+      <p class="ts-eyebrow">// pricing</p>
+      <h2>Simple, transparent pricing.</h2>
+      <p>No hidden fees. No dark patterns. Pick the plan that works for you.</p>
+    </div>
+
+    <div class="ts-pricing-toggle">
+      <button class="ts-toggle-btn active" data-period="monthly">Monthly</button>
+      <button class="ts-toggle-btn" data-period="lifetime">Lifetime <span class="ts-savings-tag" style="margin-left:6px;">Best Value</span></button>
+    </div>
+
+    <div class="ts-pricing-grid" id="ts-pricing-cards">
+
+      <!-- Twitter -->
+      <div class="ts-price-card ts-featured">
+        <div class="ts-popular-tag">Most Popular</div>
+        <h3>TimeSkip for Twitter</h3>
+        <div class="ts-price-sub">Full access to X / Twitter time travel</div>
+        <div>
+          <span class="ts-price-amount" id="ts-price-twitter">$4.99</span>
+          <span class="ts-price-period" id="ts-period-twitter">/month</span>
+        </div>
+        <div class="ts-price-billing" id="ts-billing-twitter">Billed monthly</div>
+        <ul class="ts-price-features">
+          <li>Unlimited time jumps</li>
+          <li>Jump to any date on X profiles</li>
+          <li>First Post auto-finder</li>
+          <li>Quick jump buttons</li>
+          <li>Smart search detection</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#" class="ts-btn ts-btn-primary" style="width:100%; justify-content:center;" id="ts-buy-twitter"
+           data-link-monthly="https://checkout.dodopayments.com/buy/pdt_0Nhl7uE95KFlDlmkqYYYj?quantity=1"
+           data-link-lifetime="https://checkout.dodopayments.com/buy/pdt_0Nhl8XfYWDCHTMroQElQe?quantity=1"
+        >Get Now</a>
+      </div>
+
+      <!-- LinkedIn -->
+      <div class="ts-price-card">
+        <h3>TimeSkip for LinkedIn</h3>
+        <div class="ts-price-sub">Navigate LinkedIn profiles through time</div>
+        <div>
+          <span class="ts-price-amount" id="ts-price-linkedin">$4.99</span>
+          <span class="ts-price-period" id="ts-period-linkedin">/month</span>
+        </div>
+        <div class="ts-price-billing" id="ts-billing-linkedin">Billed monthly</div>
+        <ul class="ts-price-features">
+          <li>Unlimited time jumps</li>
+          <li>Jump to any date on LinkedIn profiles</li>
+          <li>First Post auto-finder</li>
+          <li>Activity timeline search</li>
+          <li>Smart detection</li>
+          <li>Priority support</li>
+        </ul>
+        <button class="ts-btn ts-btn-ghost ts-coming-soon-trigger" style="width:100%; justify-content:center;">Coming Soon</button>
+      </div>
+
+      <!-- Combo -->
+      <div class="ts-price-card">
+        <h3>TimeSkip Combo</h3>
+        <div class="ts-price-sub">All platforms, one subscription</div>
+        <div>
+          <span class="ts-price-amount" id="ts-price-combo">$6.99</span>
+          <span class="ts-price-period" id="ts-period-combo">/month</span>
+        </div>
+        <div class="ts-price-billing" id="ts-billing-combo">Billed monthly</div>
+        <div class="ts-savings-tag" id="ts-combo-savings" style="margin-bottom:16px;">Save $2.99/mo vs separate plans</div>
+        <ul class="ts-price-features">
+          <li>Everything in Twitter plan</li>
+          <li>Everything in LinkedIn plan</li>
+          <li>Future platforms included</li>
+          <li>Bundle discount locked in</li>
+          <li>Priority support</li>
+        </ul>
+        <button class="ts-btn ts-btn-ghost ts-coming-soon-trigger" style="width:100%; justify-content:center;">Coming Soon</button>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:24px; font-family:var(--ts-mono); font-size:13px; color:var(--ts-text-faint);">// no card required to try free tier</div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- FAQ -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="ts-section ts-wrap" id="faq">
+    <div class="ts-section-head ts-text-center">
+      <p class="ts-eyebrow">// faq</p>
+      <h2>Frequently asked questions.</h2>
+    </div>
+
+    <div class="ts-faq-list">
+      <details>
+        <summary>How does TimeSkip work?</summary>
+        <p>TimeSkip uses X's (Twitter's) built-in Advanced Search to construct precise date-filtered queries. When you select a month and year on a profile, the extension builds a URL like <code>from:username since:2022-03-01 until:2022-04-01</code> and navigates you directly to the search results. No API keys, no scraping, no rate limits.</p>
+      </details>
+      <details>
+        <summary>Is TimeSkip free?</summary>
+        <p>Yes! TimeSkip offers a free tier with 5 daily time jumps. For unlimited access, you can upgrade to a paid plan starting at $4.99/month. We also offer lifetime plans so you never have to pay again.</p>
+      </details>
+      <details>
+        <summary>Can TimeSkip find someone's very first tweet?</summary>
+        <p>Yes. The "First Posts" feature uses a progressive self-driving search algorithm. It starts with a 1-month window from the user's join date and automatically expands if needed. Once tweets are found, it auto-scrolls to the bottom and highlights the oldest tweet with a glowing "★ OLDEST TWEET FOUND ★" badge.</p>
+      </details>
+      <details>
+        <summary>Why did "First Posts" show the wrong tweet?</summary>
+        <p>X's search index doesn't always include every tweet, especially from newer accounts (created within the last few months). If an account is new, TimeSkip will display a warning: "This account is new, so X's search may not have indexed all posts yet." For accounts older than 6 months, the feature is highly accurate.</p>
+      </details>
+      <details>
+        <summary>Does TimeSkip access my private data?</summary>
+        <p>No. TimeSkip only reads the username and join date from the public profile page you're viewing. It never accesses your DMs, private tweets, account credentials, or browsing history. Everything is processed locally in your browser.</p>
+      </details>
+      <details>
+        <summary>Does TimeSkip work with LinkedIn?</summary>
+        <p>LinkedIn support is coming soon! We're developing a dedicated LinkedIn module that will let you explore LinkedIn profiles and posts through time. You'll be able to subscribe individually or get the Combo bundle for both platforms at a discount.</p>
+      </details>
+      <details>
+        <summary>What's the "Lifetime" plan?</summary>
+        <p>The Lifetime plan is a one-time payment that gives you permanent access to TimeSkip — no recurring charges, ever. At $49.99 for Twitter (vs $4.99/month), you recover your cost in just 10 months and then it's free forever.</p>
+      </details>
+      <details>
+        <summary>Does TimeSkip work on Microsoft Edge?</summary>
+        <p>Yes. Since Edge is Chromium-based, TimeSkip works perfectly on both Chrome and Edge. Install it from the Chrome Web Store and it will work in Edge automatically.</p>
+      </details>
+      <details>
+        <summary>Will my free jumps reset?</summary>
+        <p>Yes, the free tier resets every 24 hours. You get 5 fresh time jumps each day. If you need more, upgrading to a paid plan gives you unlimited jumps.</p>
+      </details>
+      <details>
+        <summary>Can I get a refund?</summary>
+        <p>Due to the digital nature of the product, subscriptions are generally non-refundable. However, if you experience a technical issue that prevents the extension from working, please contact us at vypur24@gmail.com and we'll work with you to resolve it.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SEO CONTENT -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="ts-section ts-wrap" id="about-timeskip" style="padding-top:32px;">
+    <div class="ts-section-head">
+      <h2>Why You Need a Twitter Time Travel Extension</h2>
+    </div>
+    <div style="max-width:720px; margin-top:24px;">
+      <p style="font-size:15px; color:var(--ts-text-dim); margin-bottom:16px; line-height:1.75;">
+        Twitter (now X) has over <strong>600 million monthly active users</strong> and billions of tweets. But finding old tweets from a specific user is surprisingly difficult. Twitter's own search is limited, and scrolling through a profile with thousands of tweets is impractical. That's where <strong>TimeSkip</strong> comes in.
+      </p>
+      <p style="font-size:15px; color:var(--ts-text-dim); margin-bottom:16px; line-height:1.75;">
+        TimeSkip is a <strong>Chrome extension for finding old tweets</strong> by date. It works as a <strong>Twitter search by date tool</strong> that lets you jump to any month and year on any user's profile. Whether you're a journalist researching a public figure's past statements, a recruiter checking a candidate's social media history, or simply curious about what your favorite creator posted years ago — TimeSkip makes it effortless.
+      </p>
+      <p style="font-size:15px; color:var(--ts-text-dim); margin-bottom:16px; line-height:1.75;">
+        Unlike other <strong>old tweet finders</strong> that rely on expensive Twitter API access or sketchy third-party databases, TimeSkip uses <strong>X's own Advanced Search</strong> infrastructure. This means it's fast, reliable, and completely free from rate limits or API quotas. The extension constructs a precise <strong>Twitter advanced search query</strong> in your browser and navigates you directly to the results.
+      </p>
+      <p style="font-size:15px; color:var(--ts-text-dim); margin-bottom:16px; line-height:1.75;">
+        The standout feature is the <strong>First Post Finder</strong> — an intelligent algorithm that automatically locates someone's very first tweet. It uses a progressive search window that starts narrow and expands as needed, then auto-scrolls to the oldest result and highlights it. It's like having a <strong>tweet time machine</strong> that takes you to the very beginning of anyone's Twitter journey.
+      </p>
+      <p style="font-size:15px; color:var(--ts-text-dim); margin-bottom:16px; line-height:1.75;">
+        TimeSkip is designed for <strong>social media researchers, journalists, recruiters, OSINT analysts, and curious individuals</strong> who need to navigate Twitter profiles through time. The extension is lightweight, privacy-first (it never accesses your account data), and works seamlessly on both Chrome and Edge browsers.
+      </p>
+      <p style="font-size:15px; color:var(--ts-text-dim); margin-bottom:16px; line-height:1.75;">
+        With plans starting at just <strong>$4.99/month</strong> and a lifetime option that pays for itself in 10 months, TimeSkip is the most affordable and effective way to <strong>search Twitter by date</strong>, <strong>find someone's first tweet</strong>, and <strong>explore old posts</strong> on X.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- FINAL CTA -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="ts-section ts-wrap" style="padding-bottom:96px;">
+    <div class="ts-cta-banner">
+      <h2>Ready to time travel?</h2>
+      <p>Join thousands of users exploring social media history with TimeSkip.</p>
+      <a href="#pricing" class="ts-btn ts-btn-primary">Get TimeSkip — Free &rarr;</a>
+    </div>
+  </section>
+
+  <!-- Coming Soon Modal -->
+  <div class="ts-coming-soon-overlay" id="ts-coming-soon-modal">
+    <div class="ts-coming-soon-box">
+      <div style="font-size:48px;">🚀</div>
+      <h3>Coming Soon!</h3>
+      <p>This plan is currently under development. Join the waitlist to be notified when it launches.</p>
+      <button class="ts-btn ts-btn-primary" onclick="document.getElementById('ts-coming-soon-modal').classList.remove('active')">Got it</button>
+    </div>
+  </div>
+
+  <Fragment slot="scripts">
+    <script>
+      document.addEventListener('astro:page-load', () => {
+        /* ── Pricing Toggle ────────────────────────────── */
+        const toggleBtns = document.querySelectorAll('.ts-toggle-btn');
+        let currentPeriod = 'monthly';
+
+        const prices = {
+          twitter:  { monthly: '$4.99',  lifetime: '$49.99' },
+          linkedin: { monthly: '$4.99',  lifetime: '$49.99' },
+          combo:    { monthly: '$6.99',  lifetime: '$69.99' },
+        };
+
+        const periods = {
+          monthly:  '/month',
+          lifetime: '',
+        };
+
+        const billings = {
+          monthly:  'Billed monthly',
+          lifetime: 'One-time payment',
+        };
+
+        const comboSavings = {
+          monthly:  'Save $2.99/mo vs separate plans',
+          lifetime: 'Recover cost in 10 months',
+        };
+
+        function updatePricing(period) {
+          currentPeriod = period;
+          toggleBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.period === period));
+
+          ['twitter', 'linkedin', 'combo'].forEach(plan => {
+            const priceEl = document.getElementById(`ts-price-${plan}`);
+            const periodEl = document.getElementById(`ts-period-${plan}`);
+            const billingEl = document.getElementById(`ts-billing-${plan}`);
+            if (priceEl) priceEl.textContent = prices[plan][period];
+            if (periodEl) periodEl.textContent = periods[period];
+            if (billingEl) billingEl.textContent = billings[period];
+          });
+
+          const savingsEl = document.getElementById('ts-combo-savings');
+          if (savingsEl) savingsEl.textContent = comboSavings[period];
+
+          // Update buy link for Twitter
+          const buyBtn = document.getElementById('ts-buy-twitter');
+          if (buyBtn) {
+            const link = buyBtn.getAttribute(`data-link-${period}`);
+            if (link) buyBtn.href = link;
+          }
+        }
+
+        toggleBtns.forEach(btn => {
+          btn.addEventListener('click', () => updatePricing(btn.dataset.period));
+        });
+
+        // Init
+        updatePricing('monthly');
+
+        /* ── Coming Soon Modal ──────────────────────────── */
+        const modal = document.getElementById('ts-coming-soon-modal');
+        document.querySelectorAll('.ts-coming-soon-trigger').forEach(btn => {
+          btn.addEventListener('click', () => modal?.classList.add('active'));
+        });
+
+        modal?.addEventListener('click', (e) => {
+          if (e.target === modal) modal.classList.remove('active');
+        });
+      });
+    </script>
+  </Fragment>
+</TimeSkipLayout>

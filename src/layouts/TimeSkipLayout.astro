@@ -1,0 +1,99 @@
+---
+import '../styles/timeskip.css';
+import { ClientRouter } from 'astro:transitions';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  ogImage?: string;
+}
+
+const { 
+  title, 
+  description, 
+  canonicalPath = '/timeskip',
+  ogImage = '/timeskip/timeskip-logo.png'
+} = Astro.props;
+
+const siteUrl = 'https://thinkmodeplus.com';
+const canonicalUrl = `${siteUrl}${canonicalPath}`;
+const ogImageUrl = `${siteUrl}${ogImage}`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonicalUrl}>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonicalUrl}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={ogImageUrl}>
+  <meta property="og:site_name" content="TimeSkip">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImageUrl}>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/timeskip/timeskip-logo.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <ClientRouter />
+  <slot name="head" />
+</head>
+<body class="ts-site">
+
+  <nav class="ts-nav">
+    <div class="ts-nav-inner">
+      <a href="/timeskip" class="ts-nav-logo">
+        <img src="/timeskip/timeskip-logo.png" alt="TimeSkip Logo" />
+        TimeSkip
+      </a>
+      <div class="ts-nav-links">
+        <a href="/timeskip/#features">Features</a>
+        <a href="/timeskip/#pricing">Pricing</a>
+        <a href="/timeskip/#faq">FAQ</a>
+        <a href="/timeskip/support">Support</a>
+        <a href="/timeskip/#pricing" class="ts-nav-cta">Get TimeSkip &rarr;</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="ts-site">
+    <slot />
+  </div>
+
+  <footer class="ts-footer">
+    <div class="ts-wrap ts-footer-inner">
+      <div class="ts-footer-logo">
+        <img src="/timeskip/timeskip-logo.png" alt="TimeSkip Logo" />
+        TimeSkip
+      </div>
+      <div class="ts-footer-links">
+        <a href="/timeskip">Home</a>
+        <a href="/timeskip/privacy">Privacy</a>
+        <a href="/timeskip/terms">Terms</a>
+        <a href="/timeskip/support">Support</a>
+        <a href="/timeskip/#pricing">Pricing</a>
+        <a href="/">ThinkMode+</a>
+      </div>
+      <div class="ts-footer-copy">&copy; 2026 TimeSkip &middot; A product by ThinkMode+</div>
+    </div>
+  </footer>
+
+  <slot name="scripts" />
+</body>
+</html>

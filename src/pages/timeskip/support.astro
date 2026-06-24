@@ -1,0 +1,119 @@
+---
+import TimeSkipLayout from '../../layouts/TimeSkipLayout.astro';
+---
+
+<TimeSkipLayout 
+  title="Support & Help Center — TimeSkip" 
+  description="Get help with TimeSkip. Installation guides, troubleshooting, and contact support."
+  canonicalPath="/timeskip/support"
+>
+  <div class="ts-wrap">
+    <div class="ts-legal">
+      <h1>Support &amp; Help Center</h1>
+      <p class="ts-subtitle">Everything you need to get started and troubleshoot TimeSkip.</p>
+
+      <h2>Getting Started</h2>
+      <p>Follow these three steps to start time-traveling through X profiles:</p>
+
+      <div class="ts-support-grid">
+        <div class="ts-support-card">
+          <h3>📥 Step 1: Install</h3>
+          <p>Add TimeSkip to your browser from the Chrome Web Store. It works on both Google Chrome and Microsoft Edge. The installation takes less than 5 seconds.</p>
+        </div>
+        <div class="ts-support-card">
+          <h3>👤 Step 2: Visit a Profile</h3>
+          <p>Navigate to any X (Twitter) profile page. The TimeSkip widget will automatically appear below their bio, just above the Posts / Replies / Media tabs.</p>
+        </div>
+        <div class="ts-support-card">
+          <h3>🕐 Step 3: Jump!</h3>
+          <p>Select a month and year from the dropdowns, then click "Go." TimeSkip will instantly take you to that user's posts from your selected time period.</p>
+        </div>
+      </div>
+
+      <h2>Features Overview</h2>
+
+      <div class="ts-support-grid">
+        <div class="ts-support-card">
+          <h3>📅 Jump to Date</h3>
+          <p>Select any month and year to see a user's posts from that exact time period. The extension builds an X Advanced Search query and navigates you directly to the results. Works for any public profile.</p>
+        </div>
+        <div class="ts-support-card">
+          <h3>⚡ Quick Jumps</h3>
+          <p>One-click buttons for "1 year ago" and "2 years ago" are built into the widget. Perfect for a quick look at what someone was posting during a specific period without fiddling with dropdowns.</p>
+        </div>
+        <div class="ts-support-card">
+          <h3>🏁 First Posts Finder</h3>
+          <p>The "First posts" button uses a self-driving search algorithm that progressively narrows the date window, auto-scrolls the results, and highlights the user's oldest tweet with a glowing badge.</p>
+        </div>
+        <div class="ts-support-card">
+          <h3>🔌 Extension Popup</h3>
+          <p>Click the TimeSkip icon in your browser toolbar for quick access. The popup automatically detects if you're on an X profile or search page, and lets you jump to dates or navigate to the user's profile.</p>
+        </div>
+      </div>
+
+      <h2>Troubleshooting</h2>
+
+      <div class="ts-support-grid">
+        <div class="ts-support-card">
+          <h3>🔄 Widget Not Showing?</h3>
+          <ol>
+            <li>Refresh the profile page (Ctrl + R or Cmd + R)</li>
+            <li>Make sure you're on an X.com profile page (not the homepage or search)</li>
+            <li>Check that the extension is enabled in <code>chrome://extensions</code></li>
+            <li>Try navigating away from the profile and then back to it</li>
+          </ol>
+        </div>
+        <div class="ts-support-card">
+          <h3>❌ No Results Found?</h3>
+          <ol>
+            <li>Try a wider date range — the user may not have posted in that exact month</li>
+            <li>Check if the user's account is private (protected accounts don't appear in search)</li>
+            <li>Some very old tweets may not be indexed by X's search engine</li>
+          </ol>
+        </div>
+        <div class="ts-support-card">
+          <h3>🆕 First Post Inaccurate?</h3>
+          <p>If the account was created within the last 6 months, X's search index may not have catalogued all their tweets yet. TimeSkip will show a warning banner in this case. For accounts older than 6 months, the First Post finder is highly accurate.</p>
+        </div>
+        <div class="ts-support-card">
+          <h3>⚠️ Extension Conflicts?</h3>
+          <p>If you have other Twitter/X extensions installed, they may interfere with TimeSkip's widget injection. Try temporarily disabling other X-related extensions to see if the issue resolves.</p>
+        </div>
+        <div class="ts-support-card">
+          <h3>🔧 Still Broken?</h3>
+          <ol>
+            <li>Uninstall TimeSkip from <code>chrome://extensions</code></li>
+            <li>Restart your browser</li>
+            <li>Reinstall from the Chrome Web Store</li>
+            <li>If the issue persists, contact us with details</li>
+          </ol>
+        </div>
+      </div>
+
+      <h2>Reporting Bugs</h2>
+      <p>If you encounter a bug, please email us at <a href="mailto:vypur24@gmail.com">vypur24@gmail.com</a> with the following information:</p>
+      <ul>
+        <li><strong>Browser &amp; version</strong> (e.g., Chrome 128, Edge 127)</li>
+        <li><strong>The X URL</strong> where the issue occurred</li>
+        <li><strong>A screenshot or screen recording</strong> of the issue</li>
+        <li><strong>Steps to reproduce</strong> the problem</li>
+        <li><strong>Any error messages</strong> you saw in the browser console (Ctrl + Shift + J)</li>
+      </ul>
+
+      <h2>Feature Requests</h2>
+      <p>We love hearing from our users! If you have an idea for a new feature, email us at <a href="mailto:vypur24@gmail.com">vypur24@gmail.com</a> with the subject line "<strong>Feature Request</strong>" and describe your idea. We read every message and prioritize features based on user demand.</p>
+
+      <h2>Contact Us</h2>
+      <div class="ts-support-grid">
+        <div class="ts-support-card">
+          <h3>📧 Email</h3>
+          <p><a href="mailto:vypur24@gmail.com">vypur24@gmail.com</a></p>
+        </div>
+        <div class="ts-support-card">
+          <h3>⏰ Response Time</h3>
+          <p>We aim to respond to all inquiries within <strong>48 hours</strong>. Priority support subscribers typically receive a response within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</TimeSkipLayout>
