@@ -1,0 +1,1 @@
+import{s as e}from"./supabase.CcvYrjcZ.js";document.addEventListener("astro:page-load",async()=>{const t=document.getElementById("nav-auth-btn");if(t){const{data:{session:a}}=await e.auth.getSession();a&&(t.textContent="Dashboard →",t.href="/dashboard")}});

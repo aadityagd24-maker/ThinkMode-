@@ -29,12 +29,17 @@ import TimeSkipLayout from '../../layouts/TimeSkipLayout.astro';
 
       <h3>1.2 Extension Settings (Chrome Storage)</h3>
       <p>
-        TimeSkip stores your extension preferences (such as usage counters and subscription status) using the Chrome Storage API. This data is tied to your browser profile. We do not transmit this data to our own servers.
+        TimeSkip stores your extension preferences (such as usage counters and subscription status) using the Chrome Storage API. When you sign in, TimeSkip stores your authentication session (including an access token and refresh token) in Chrome's local storage to keep you signed in across browser sessions. These tokens are not transmitted to any party other than Supabase for authentication purposes. This data is tied to your browser profile.
       </p>
 
       <h3>1.3 Profile Information Accessed</h3>
       <p>
         When you visit an X (Twitter) profile page, TimeSkip reads two pieces of publicly visible information from the page DOM: the <strong>username</strong> and <strong>join date</strong>. This information is used solely to construct search URLs and is never transmitted to any server.
+      </p>
+
+      <h3>1.5 Browser Permissions</h3>
+      <p>
+        TimeSkip requests the following browser permissions: storage (to save your settings and usage data locally), activeTab and tabs (to read the URL of your currently active tab to detect whether you are on an X/Twitter profile page, and to navigate that tab when you use the Jump feature), and access to x.com, twitter.com, and our Supabase backend at bwgqtvtpnqyygdmqopku.supabase.co. No other sites or data are accessed.
       </p>
 
       <h3>1.4 What We Do <em>Not</em> Collect</h3>
@@ -64,7 +69,7 @@ import TimeSkipLayout from '../../layouts/TimeSkipLayout.astro';
       <p>TimeSkip is distributed through the Chrome Web Store, which is operated by Google. Google's <a href="https://policies.google.com/privacy">Privacy Policy</a> governs the collection and use of data by the Chrome Web Store.</p>
 
       <h3>3.2 Dodo Payments</h3>
-      <p>We use Dodo Payments to process subscription payments. When you purchase a paid plan, your payment information is collected and processed directly by Dodo Payments. We receive only your email address and subscription status — never your card details.</p>
+      <p>We use Dodo Payments to process subscription payments. When you purchase a paid plan, your payment information is collected and processed directly by Dodo Payments. We receive only your email address and subscription status — never your card details. When your payment is processed, Dodo Payments sends a secure notification (webhook) to our servers containing your email address and the purchased product. We use this solely to update your subscription status in our database.</p>
 
       <h3>3.3 X (Twitter) Advanced Search</h3>
       <p>TimeSkip constructs search URLs using X's publicly available Advanced Search feature. All queries are executed in your browser as if you typed them into the X search bar yourself. We do not use any Twitter API, scraping tools, or hidden endpoints.</p>
