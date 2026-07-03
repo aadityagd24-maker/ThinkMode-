@@ -2,7 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Sign In - ThinkMode+" description="Sign in to manage your ThinkMode+ subscriptions.">
+<BaseLayout title="Sign In - ThinkMode+" description="Sign in to manage your ThinkMode+ subscriptions." canonicalPath="/auth">
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow">
+  </Fragment>
   <div class="auth-container wrap">
     <div class="auth-box">
       <h2>Sign In or Create Account</h2>

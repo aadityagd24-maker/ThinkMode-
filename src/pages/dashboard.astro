@@ -3,7 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Pricing from '../components/Pricing.astro';
 ---
 
-<BaseLayout title="Dashboard - ThinkMode+" description="Your ThinkMode+ Dashboard">
+<BaseLayout title="Dashboard - ThinkMode+" description="Your ThinkMode+ Dashboard" canonicalPath="/dashboard">
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow">
+  </Fragment>
   <div class="dashboard-wrap wrap">
     <div class="dashboard-header">
       <h2>Your Subscriptions</h2>
