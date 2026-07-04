@@ -1,0 +1,848 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Free ChatGPT Custom Instructions Generator — Create Perfect System Prompts | ThinkMode+"
+  description="Generate optimized custom instructions for ChatGPT in seconds. Select a role, tone, and format to instantly create expert-level system prompts for coding, writing, marketing, and more. Free, no signup required."
+  canonicalPath="/tools/custom-instructions-generator"
+>
+  <Fragment slot="head">
+    <meta name="keywords" content="chatgpt custom instructions generator, chatgpt system prompt generator, custom instructions templates chatgpt, best custom instructions for chatgpt, chatgpt persona generator, how to write custom instructions chatgpt, chatgpt system prompt templates, chatgpt expert mode, ai prompt generator">
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "ChatGPT Custom Instructions Generator",
+      "url": "https://thinkmodeplus.com/tools/custom-instructions-generator",
+      "description": "Generate optimized custom instructions for ChatGPT. Select a role, tone, and format to instantly create expert-level system prompts.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "ThinkMode+"
+      }
+    })} />
+
+    <!-- HowTo Schema for SEO -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Generate Custom Instructions for ChatGPT",
+      "description": "Use this free tool to create optimized system prompts for ChatGPT in 3 simple steps.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Choose a Role",
+          "text": "Select what expert persona ChatGPT should adopt, such as Senior Software Engineer or Expert Copywriter."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Set Tone & Format",
+          "text": "Pick how ChatGPT should communicate and structure its responses."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Copy & Paste",
+          "text": "Copy the generated instructions and paste them into ChatGPT's Custom Instructions settings."
+        }
+      ]
+    })} />
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are ChatGPT Custom Instructions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Custom Instructions are a ChatGPT feature that lets you set persistent context and behavioral rules. Instead of repeating your preferences in every conversation, you tell ChatGPT once how you want it to behave — what role to adopt, what tone to use, and how to format responses. These instructions apply to every new chat automatically."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where do I paste the generated instructions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Open ChatGPT, click your profile icon in the bottom-left corner, select 'Customize ChatGPT' (or 'Custom Instructions'), and paste the generated text into the 'How would you like ChatGPT to respond?' field. Click Save, and every new conversation will follow your instructions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use multiple custom instructions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ChatGPT only supports one set of custom instructions at a time. To switch between different personas (e.g., from a coder to a writer), you'd need to manually swap the text each time. The ThinkMode+ extension solves this by adding an instant role-switching button directly inside ChatGPT."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do custom instructions work with GPT-4 and GPT-4o?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Custom Instructions work with all ChatGPT models including GPT-4, GPT-4o, GPT-4o mini, and GPT-3.5. The instructions persist across model switches within the same account."
+          }
+        }
+      ]
+    })} />
+  </Fragment>
+
+  <!-- Tool Page Content -->
+  <div class="tool-page">
+
+    <!-- Hero / Header -->
+    <div class="tool-hero">
+      <div class="tool-breadcrumb">
+        <a href="/">ThinkMode+</a>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <a href="/tools/custom-instructions-generator">Tools</a>
+      </div>
+      <h1>ChatGPT Custom Instructions Generator</h1>
+      <p class="tool-subtitle">Create expert-level system prompts in seconds. Pick a role, set the tone, and copy — no signup, completely free.</p>
+    </div>
+
+    <!-- Generator -->
+    <div class="generator">
+
+      <!-- Controls -->
+      <div class="gen-controls">
+        <h2 class="gen-section-title">Configure Your Instructions</h2>
+
+        <div class="control-group">
+          <label for="role-select">
+            <span class="label-text">Expert Role</span>
+            <span class="label-hint">Who should ChatGPT act as?</span>
+          </label>
+          <select id="role-select">
+            <option value="software-engineer">Senior Software Engineer</option>
+            <option value="copywriter">Expert Copywriter</option>
+            <option value="marketing-strategist">Marketing Strategist</option>
+            <option value="data-analyst">Data Analyst</option>
+            <option value="academic-researcher">Academic Researcher</option>
+            <option value="business-consultant">Business Consultant</option>
+            <option value="creative-writer">Creative Writer</option>
+            <option value="product-manager">Product Manager</option>
+            <option value="ux-designer">UX/UI Designer</option>
+            <option value="financial-advisor">Financial Advisor</option>
+            <option value="content-strategist">Content & SEO Strategist</option>
+            <option value="teacher">Teacher & Educator</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="tone-select">
+            <span class="label-text">Communication Tone</span>
+            <span class="label-hint">How should ChatGPT communicate?</span>
+          </label>
+          <select id="tone-select">
+            <option value="professional">Professional & Formal</option>
+            <option value="friendly">Friendly & Conversational</option>
+            <option value="direct">Direct & Concise</option>
+            <option value="thorough">Detailed & Thorough</option>
+            <option value="socratic">Socratic (Teaches by Asking)</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="format-select">
+            <span class="label-text">Response Format</span>
+            <span class="label-hint">How should responses be structured?</span>
+          </label>
+          <select id="format-select">
+            <option value="structured">Structured (Headers + Bullets)</option>
+            <option value="step-by-step">Step-by-Step Instructions</option>
+            <option value="concise">Concise Paragraphs</option>
+            <option value="code-first">Code-First (Developers)</option>
+            <option value="table">Table Format When Possible</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="extras-select">
+            <span class="label-text">Extra Rules</span>
+            <span class="label-hint">Additional behavior tweaks</span>
+          </label>
+          <select id="extras-select">
+            <option value="none">None</option>
+            <option value="no-fluff">No Fluff — Skip Pleasantries</option>
+            <option value="cite-sources">Always Cite Sources</option>
+            <option value="ask-clarify">Ask Before Assuming</option>
+            <option value="eli5">Explain Like I'm a Beginner</option>
+            <option value="challenge">Challenge My Assumptions</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Output -->
+      <div class="gen-output">
+        <div class="output-header">
+          <h2 class="gen-section-title">Your Custom Instructions</h2>
+          <button id="copy-btn" class="copy-btn" aria-label="Copy to clipboard">
+            <svg id="copy-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg id="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M20 6L9 17l-5-5"/></svg>
+            <span id="copy-text">Copy</span>
+          </button>
+        </div>
+        <div class="output-box" id="output-box">
+          <!-- Generated text appears here -->
+        </div>
+        <div class="output-meta">
+          <div class="char-counter" id="char-counter">
+            <span id="char-count">0</span> / 1,500 characters
+          </div>
+          <p class="output-hint">Paste into ChatGPT → Profile → Customize ChatGPT → "How would you like ChatGPT to respond?"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bridge CTA -->
+    <div class="bridge-cta">
+      <div class="bridge-content">
+        <div class="bridge-icon">
+          <img src="/logo.png" alt="ThinkMode+" width="40" height="40" style="object-fit: contain;" />
+        </div>
+        <div class="bridge-text">
+          <h3>Tired of copy-pasting this every time?</h3>
+          <p>ThinkMode+ adds a permanent <strong>Expert Role</strong> button directly inside ChatGPT. Switch between 20+ personas instantly — plus auto-enable extended thinking on every chat.</p>
+        </div>
+        <a href="https://chromewebstore.google.com/detail/thinkmode+/gdaonnlalhpjhddfpbfdkhjhinbideni" target="_blank" class="bridge-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C8.21 0 4.831 1.757 2.632 4.476L6.5 11.178c.844-2.457 3.14-4.223 5.908-4.223h9.452C20.081 2.923 16.368 0 12 0z"/><path d="M22.951 14.153a8.163 8.163 0 00-1.464-3.642C19.782 8.01 17.149 6.22 14.075 5.86c-2.915-.341-5.748.868-7.794 2.872a9.231 9.231 0 00-2.614 4.545c1.378-.458 3.123-.612 4.606-.053.864.325 1.644.897 2.251 1.625.598.718 1.026 1.583 1.247 2.493a7.359 7.359 0 01.127 2.827c-.201 1.229-.691 2.378-1.392 3.391-.707 1.018-1.631 1.89-2.73 2.502 1.12.383 2.377.585 3.598.541a10.609 10.609 0 005.158-1.439c1.905-1.088 3.565-2.83 4.561-4.82a9.78 9.78 0 001.365-4.43c.036-.576.223-1.206.493-1.761z"/></svg>
+          Install Free — Chrome & Edge
+        </a>
+      </div>
+    </div>
+
+    <!-- How-To Section -->
+    <div class="howto-section">
+      <h2>How to Use Custom Instructions in ChatGPT</h2>
+      <div class="howto-steps">
+        <div class="howto-step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>Generate Your Instructions</h3>
+            <p>Use the dropdowns above to select a role, tone, and format. Your custom instructions will be generated instantly.</p>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>Copy the Output</h3>
+            <p>Click the "Copy" button to copy the generated instructions to your clipboard.</p>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="step-num">3</div>
+          <div>
+            <h3>Paste into ChatGPT</h3>
+            <p>Open ChatGPT → click your profile icon → select "Customize ChatGPT" → paste into the "How would you like ChatGPT to respond?" field → Save.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What are ChatGPT Custom Instructions?</summary>
+          <p>Custom Instructions are a ChatGPT feature that lets you set persistent context and behavioral rules. Instead of repeating your preferences in every conversation, you tell ChatGPT once how you want it to behave — what role to adopt, what tone to use, and how to format responses. These instructions apply to every new chat automatically.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Where do I paste the generated instructions?</summary>
+          <p>Open ChatGPT, click your profile icon in the bottom-left corner, select "Customize ChatGPT" (or "Custom Instructions"), and paste the generated text into the "How would you like ChatGPT to respond?" field. Click Save, and every new conversation will follow your instructions.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I use multiple custom instructions at the same time?</summary>
+          <p>ChatGPT only supports one set of custom instructions at a time. To switch between different personas (e.g., from a coder to a writer), you'd need to manually swap the text each time. The <a href="https://chromewebstore.google.com/detail/thinkmode+/gdaonnlalhpjhddfpbfdkhjhinbideni">ThinkMode+ extension</a> solves this by adding an instant role-switching button directly inside ChatGPT.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do custom instructions work with GPT-4 and GPT-4o?</summary>
+          <p>Yes. Custom Instructions work with all ChatGPT models including GPT-4, GPT-4o, GPT-4o mini, and o1/o3. The instructions persist across model switches within the same account.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Will this slow down ChatGPT's responses?</summary>
+          <p>No. Custom instructions are lightweight text that ChatGPT processes as part of its system context. They don't measurably impact response speed. In fact, well-written instructions often result in <em>faster</em> answers because the AI doesn't need to ask clarifying questions.</p>
+        </details>
+      </div>
+    </div>
+
+  </div>
+
+  <style>
+    /* ── Tool Page Layout ── */
+    .tool-page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 24px 80px;
+    }
+
+    /* ── Hero ── */
+    .tool-hero {
+      margin-bottom: 48px;
+    }
+
+    .tool-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-faint);
+      margin-bottom: 20px;
+    }
+    .tool-breadcrumb a {
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .tool-breadcrumb a:hover { color: var(--text); }
+    .tool-breadcrumb svg { opacity: 0.4; }
+
+    .tool-hero h1 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 12px;
+      line-height: 1.2;
+    }
+
+    .tool-subtitle {
+      font-size: 17px;
+      color: var(--text-dim);
+      margin: 0;
+      line-height: 1.6;
+      max-width: 620px;
+    }
+
+    /* ── Generator Layout ── */
+    .generator {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 768px) {
+      .generator {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .gen-section-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      margin: 0 0 20px;
+    }
+
+    /* ── Controls ── */
+    .gen-controls {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .control-group {
+      margin-bottom: 20px;
+    }
+    .control-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .control-group label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    .label-text {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .label-hint {
+      display: block;
+      font-size: 12px;
+      color: var(--text-faint);
+    }
+
+    select {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border-hi);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: var(--display);
+      font-size: 14px;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23A1A1AA' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      transition: border-color 0.2s;
+    }
+
+    select:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(186, 58, 184, 0.15);
+    }
+
+    /* ── Output ── */
+    .gen-output {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .output-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .output-header .gen-section-title {
+      margin: 0;
+    }
+
+    .copy-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border-hi);
+      border-radius: 8px;
+      color: var(--text-dim);
+      font-family: var(--display);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--surface-2);
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .copy-btn.copied {
+      border-color: rgba(34, 197, 94, 0.4);
+      color: #22c55e;
+    }
+
+    .output-box {
+      flex: 1;
+      min-height: 300px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text);
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-y: auto;
+    }
+
+    .output-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .char-counter {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-faint);
+    }
+
+    .char-counter.over-limit {
+      color: #ef4444;
+    }
+
+    .char-counter.near-limit {
+      color: #eab308;
+    }
+
+    .output-hint {
+      font-size: 12px;
+      color: var(--text-faint);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ── Bridge CTA ── */
+    .bridge-cta {
+      background: linear-gradient(135deg, rgba(186, 58, 184, 0.08) 0%, rgba(137, 20, 183, 0.06) 100%);
+      border: 1px solid rgba(186, 58, 184, 0.15);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 64px;
+    }
+
+    .bridge-content {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .bridge-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    .bridge-icon {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bridge-text {
+      flex: 1;
+    }
+
+    .bridge-text h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 6px;
+    }
+
+    .bridge-text p {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .bridge-btn {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .bridge-btn:hover {
+      background: #d040ce;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(186, 58, 184, 0.3);
+    }
+
+    /* ── How-To Section ── */
+    .howto-section {
+      margin-bottom: 64px;
+    }
+
+    .howto-section h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 28px;
+    }
+
+    .howto-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .howto-step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: var(--surface);
+      border: 1px solid var(--border-hi);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--accent);
+      font-family: var(--mono);
+    }
+
+    .howto-step h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 4px;
+    }
+
+    .howto-step p {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      margin-bottom: 48px;
+    }
+
+    .faq-section h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 28px;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .faq-item {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      padding: 18px 24px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color 0.2s;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: '+';
+      font-size: 20px;
+      color: var(--text-faint);
+      font-weight: 300;
+      transition: transform 0.2s;
+    }
+
+    .faq-item[open] summary::after {
+      content: '−';
+    }
+
+    .faq-item summary:hover { color: var(--accent-pink); }
+
+    .faq-item p {
+      padding: 0 24px 18px;
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .faq-item a {
+      color: var(--accent-pink);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      // ── Templates ──
+      const roles = {
+        'software-engineer': {
+          title: 'Senior Software Engineer',
+          instructions: `You are a senior software engineer with 15+ years of industry experience across full-stack development, system design, and code review. You write clean, production-ready code that prioritizes readability, maintainability, and performance. You always consider edge cases, error handling, and security implications. When reviewing code, you explain *why* something is a problem, not just *what* to change. You prefer practical solutions over theoretical ones and always include working code examples.`
+        },
+        'copywriter': {
+          title: 'Expert Copywriter',
+          instructions: `You are an expert copywriter and conversion specialist with deep experience in direct response marketing, brand storytelling, and digital content. You write copy that is clear, persuasive, and action-oriented. You understand psychological triggers, headline formulas, and the difference between features and benefits. You always write for a specific audience and optimize for the desired action — whether that's a click, signup, or purchase.`
+        },
+        'marketing-strategist': {
+          title: 'Marketing Strategist',
+          instructions: `You are a seasoned marketing strategist with expertise in growth marketing, brand positioning, content strategy, and data-driven campaign optimization. You think in terms of funnels, customer journeys, and ROI. You back recommendations with reasoning and prioritize strategies by impact and effort. You understand both B2B and B2C marketing and can adapt your frameworks accordingly.`
+        },
+        'data-analyst': {
+          title: 'Data Analyst',
+          instructions: `You are a senior data analyst with expertise in statistical analysis, data visualization, SQL, Python/Pandas, and business intelligence. You approach every question by first clarifying the data available, then proposing the right analytical method. You explain findings in plain language, always connect insights to actionable business recommendations, and flag potential biases or data quality issues.`
+        },
+        'academic-researcher': {
+          title: 'Academic Researcher',
+          instructions: `You are a rigorous academic researcher with experience publishing in peer-reviewed journals. You approach every topic with intellectual honesty, clearly distinguishing between established facts, emerging evidence, and speculation. You cite relevant theories and frameworks. You acknowledge the limitations of your knowledge and avoid overgeneralizing from limited data. You use precise language and define technical terms when first introduced.`
+        },
+        'business-consultant': {
+          title: 'Business Consultant',
+          instructions: `You are a top-tier management consultant with experience at firms like McKinsey, BCG, or Bain. You think in structured frameworks (MECE, Porter's Five Forces, Jobs to Be Done) and always start by defining the problem clearly before jumping to solutions. You present recommendations with supporting logic, consider trade-offs explicitly, and prioritize by impact. You communicate in a clear, executive-ready style.`
+        },
+        'creative-writer': {
+          title: 'Creative Writer',
+          instructions: `You are a skilled creative writer with a talent for vivid storytelling, compelling characters, and evocative prose. You understand narrative structure, pacing, voice, and genre conventions. You write with originality and avoid clichés. When given a creative brief, you ask clarifying questions about audience, mood, and purpose before diving in. You can adapt your style from literary fiction to punchy marketing copy.`
+        },
+        'product-manager': {
+          title: 'Product Manager',
+          instructions: `You are a senior product manager with experience shipping products at high-growth startups and established tech companies. You think in terms of user problems, not feature lists. You prioritize ruthlessly using frameworks like RICE or ICE. You write clear PRDs, user stories, and acceptance criteria. You balance user needs, business goals, and technical constraints. You back decisions with data when possible and gut when necessary.`
+        },
+        'ux-designer': {
+          title: 'UX/UI Designer',
+          instructions: `You are an experienced UX/UI designer with deep knowledge of user-centered design, interaction patterns, accessibility standards (WCAG), and modern design systems. You think about user flows, information architecture, and usability before aesthetics. You can articulate *why* a design decision works, not just what looks good. You design for real users with real constraints and always consider edge cases like error states, empty states, and loading states.`
+        },
+        'financial-advisor': {
+          title: 'Financial Advisor',
+          instructions: `You are a certified financial advisor with expertise in personal finance, investment strategy, tax planning, and retirement planning. You explain complex financial concepts in simple terms without being condescending. You always caveat that you're providing educational information, not personalized financial advice. You consider risk tolerance, time horizon, and individual circumstances when discussing strategies.`
+        },
+        'content-strategist': {
+          title: 'Content & SEO Strategist',
+          instructions: `You are a content strategist and SEO expert who understands how to create content that ranks on search engines and converts readers into customers. You think about search intent, keyword targeting, content structure (H1/H2/H3 hierarchy), internal linking, and E-E-A-T signals. You write for humans first and search engines second. You understand the full content funnel from awareness to conversion.`
+        },
+        'teacher': {
+          title: 'Teacher & Educator',
+          instructions: `You are a patient, experienced educator who excels at breaking down complex topics into digestible lessons. You use analogies, examples, and progressive complexity to build understanding. You check for comprehension before moving forward. You never make the learner feel dumb for asking basic questions. You adapt your teaching style based on the learner's level — from complete beginner to advanced student.`
+        }
+      };
+
+      const tones = {
+        'professional': `Maintain a professional and formal tone. Use precise language, avoid slang and colloquialisms. Be authoritative but not arrogant.`,
+        'friendly': `Be warm, approachable, and conversational. Use a natural speaking voice. It's okay to use contractions and light humor when appropriate. Be encouraging.`,
+        'direct': `Be extremely direct and concise. No preambles, no filler, no "Great question!" responses. Get straight to the answer. Use short sentences. If something can be said in fewer words, do it.`,
+        'thorough': `Be comprehensive and detailed. Cover all angles, edge cases, and nuances. Provide context and background when relevant. It's better to over-explain than under-explain.`,
+        'socratic': `Teach through questions rather than direct answers. Guide the user to discover the answer themselves. Ask probing questions that build understanding. Only provide direct answers when asked explicitly.`
+      };
+
+      const formats = {
+        'structured': `Structure every response with clear headings (##) and bullet points. Use bold for key terms. Break complex answers into labeled sections. Use horizontal rules to separate distinct topics.`,
+        'step-by-step': `Present information as numbered step-by-step instructions whenever possible. Each step should be one clear action. Include expected outcomes after key steps. Start with a brief overview before the steps.`,
+        'concise': `Use clear, concise paragraphs. Avoid excessive formatting or bullet points unless listing items. Prioritize readability and flow over structure. Keep responses focused and scannable.`,
+        'code-first': `Lead with code whenever the question involves programming. Show the working solution first, then explain the reasoning below. Use inline comments for complex logic. Always specify the language in code blocks.`,
+        'table': `Use markdown tables to present comparisons, options, pros/cons, and structured data whenever possible. Tables make information scannable and easy to reference. Include a summary row or conclusion after the table.`
+      };
+
+      const extras = {
+        'none': '',
+        'no-fluff': `\n\nAdditional rule: Skip all pleasantries, greetings, and filler phrases like "Certainly!", "Of course!", "That's a great question!" — just get to the substance immediately.`,
+        'cite-sources': `\n\nAdditional rule: When making factual claims, cite your sources or indicate the basis of the information (e.g., "According to standard practice..." or "Based on [framework/study]..."). If you're uncertain about a fact, say so explicitly.`,
+        'ask-clarify': `\n\nAdditional rule: If my request is ambiguous or could be interpreted multiple ways, ask a brief clarifying question before proceeding. Don't assume what I mean — it's better to ask than to answer the wrong question.`,
+        'eli5': `\n\nAdditional rule: Default to simple, beginner-friendly explanations. Avoid jargon unless you define it immediately. Use everyday analogies to explain technical concepts. Assume I'm learning this topic for the first time.`,
+        'challenge': `\n\nAdditional rule: Don't just agree with me. If my assumptions, logic, or approach has flaws, point them out constructively. Play devil's advocate when appropriate. Help me stress-test my ideas.`
+      };
+
+      function generate() {
+        const role = roles[document.getElementById('role-select').value];
+        const tone = tones[document.getElementById('tone-select').value];
+        const format = formats[document.getElementById('format-select').value];
+        const extra = extras[document.getElementById('extras-select').value];
+
+        const output =
+`# Role & Expertise
+${role.instructions}
+
+# Communication Style
+${tone}
+
+# Response Format
+${format}${extra}`;
+
+        document.getElementById('output-box').textContent = output;
+
+        // Update character counter
+        const charCount = output.length;
+        const charCountEl = document.getElementById('char-count');
+        const charCounterEl = document.getElementById('char-counter');
+        if (charCountEl && charCounterEl) {
+          charCountEl.textContent = charCount.toLocaleString();
+          charCounterEl.classList.remove('over-limit', 'near-limit');
+          if (charCount > 1500) {
+            charCounterEl.classList.add('over-limit');
+          } else if (charCount > 1200) {
+            charCounterEl.classList.add('near-limit');
+          }
+        }
+      }
+
+      // Generate on load and on change
+      generate();
+      document.querySelectorAll('select').forEach(el => el.addEventListener('change', generate));
+
+      // Copy button
+      const copyBtn = document.getElementById('copy-btn');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+          const text = document.getElementById('output-box').textContent;
+          try {
+            await navigator.clipboard.writeText(text);
+            const copyIcon = document.getElementById('copy-icon');
+            const checkIcon = document.getElementById('check-icon');
+            const copyText = document.getElementById('copy-text');
+
+            copyIcon.style.display = 'none';
+            checkIcon.style.display = 'block';
+            copyText.textContent = 'Copied!';
+            copyBtn.classList.add('copied');
+
+            setTimeout(() => {
+              copyIcon.style.display = 'block';
+              checkIcon.style.display = 'none';
+              copyText.textContent = 'Copy';
+              copyBtn.classList.remove('copied');
+            }, 2000);
+          } catch (err) {
+            // Fallback for older browsers
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+          }
+        });
+      }
+    });
+  </script>
+</BaseLayout>
