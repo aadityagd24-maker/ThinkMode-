@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ToolHero from '../../components/ToolHero.astro';
 import BridgeCTA from '../../components/BridgeCTA.astro';
+import RelatedTools from '../../components/RelatedTools.astro';
 ---
 
 <BaseLayout
@@ -24,12 +25,22 @@ import BridgeCTA from '../../components/BridgeCTA.astro';
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "HowTo",
-      "name": "How to Fact-Check ChatGPT Outputs",
-      "description": "Use a self-reflection prompt to force ChatGPT to audit its own answers for hallucinations.",
+      "name": "How to check ChatGPT facts",
+      "description": "Use the Hallucination Checker prompt builder to force ChatGPT to cross-reference and verify its own claims before you trust them.",
       "step": [
-        { "@type": "HowToStep", "name": "Paste the Claim", "text": "Paste the suspicious AI output into the Fact-Checker input field." },
-        { "@type": "HowToStep", "name": "Set Strictness", "text": "Choose whether you want a moderate review or a strict, highly skeptical audit." },
-        { "@type": "HowToStep", "name": "Generate & Copy", "text": "Generate the prompt and copy it back into your ChatGPT conversation." }
+        { "@type": "HowToStep", "name": "Paste Claim", "text": "Paste the output ChatGPT gave you that you want to verify." },
+        { "@type": "HowToStep", "name": "Set Strictness", "text": "Choose standard verification or high-stakes forensic verification." },
+        { "@type": "HowToStep", "name": "Generate Prompt", "text": "Copy the self-reflection prompt and send it back to ChatGPT." }
+      ]
+    })} />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thinkmodeplus.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://thinkmodeplus.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "AI Hallucination Fact-Checker", "item": "https://thinkmodeplus.com/tools/hallucination-checker" }
       ]
     })} />
   </Fragment>
@@ -85,11 +96,13 @@ import BridgeCTA from '../../components/BridgeCTA.astro';
     </div>
 
     <BridgeCTA 
-      heading="Don't want to doubt your AI?"
-      subtext="ThinkMode+ includes a Precision Toggle that automatically forces the AI to verify factual claims before stating them. Stop hallucination before it happens."
+      heading="Want a smarter ChatGPT by default?"
+      subtext="ThinkMode+ auto-enables ChatGPT's extended thinking mode on every single chat. Let the AI reason, self-correct, and fact-check its own logic before it even starts typing."
       link="/#features"
-      btnText="Discover ThinkMode+"
+      btnText="Get ThinkMode+ Free"
     />
+    
+    <RelatedTools />
   </div>
 
   <style>

@@ -2,22 +2,23 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ToolHero from '../../components/ToolHero.astro';
 import BridgeCTA from '../../components/BridgeCTA.astro';
+import RelatedTools from '../../components/RelatedTools.astro';
 ---
 
 <BaseLayout
-  title="Free AI Prompt Generator & ChatGPT Prompt Optimizer | ThinkMode+"
-  description="Improve your AI outputs with our free ChatGPT prompt optimizer. Generate smarter, more effective prompts instantly for ChatGPT, Claude, and Gemini. Try it for free today!"
+  title="Why is ChatGPT Giving Bad Answers? | Fix Bad Prompts Instantly"
+  description="Is ChatGPT giving you bad, generic answers? Use our free Prompt Fixer to figure out why and automatically turn weak instructions into highly optimized prompts."
   canonicalPath="/tools/prompt-optimizer"
 >
   <Fragment slot="head">
-    <meta name="keywords" content="ai prompt generator, chatgpt prompt optimizer, improve chatgpt prompt, make chatgpt smarter, prompt enhancer">
+    <meta name="keywords" content="why is chatgpt giving bad answers, chatgpt bad prompt fixer, make my chatgpt prompt better, improve chatgpt prompt, chatgpt prompt improver, prompt engineering for beginners chatgpt">
 
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "ChatGPT Prompt Optimizer",
+      "name": "ChatGPT Bad Prompt Fixer",
       "url": "https://thinkmodeplus.com/tools/prompt-optimizer",
-      "description": "Instantly optimize and enhance ChatGPT prompts.",
+      "description": "Diagnose why ChatGPT is giving bad answers and instantly optimize your prompts.",
       "applicationCategory": "UtilityApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -25,22 +26,32 @@ import BridgeCTA from '../../components/BridgeCTA.astro';
 
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thinkmodeplus.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://thinkmodeplus.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "Bad Prompt Fixer", "item": "https://thinkmodeplus.com/tools/prompt-optimizer" }
+      ]
+    })} />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
       "@type": "HowTo",
-      "name": "How to Optimize a ChatGPT Prompt",
-      "description": "Use the free Prompt Optimizer to automatically inject roles, frameworks, and instructions into weak prompts.",
+      "name": "How to fix a bad ChatGPT prompt",
+      "description": "Use the free Prompt Fixer to diagnose why ChatGPT is giving bad answers and inject roles, frameworks, and instructions into weak prompts.",
       "step": [
-        { "@type": "HowToStep", "name": "Paste Weak Prompt", "text": "Paste your basic idea into the input box." },
-        { "@type": "HowToStep", "name": "Select Enhancement Level", "text": "Choose between Minimal, Standard, or Deep Thinking enhancement levels." },
-        { "@type": "HowToStep", "name": "Generate & Copy", "text": "Click Generate and copy the enhanced prompt." }
+        { "@type": "HowToStep", "name": "Paste Weak Prompt", "text": "Paste the prompt that gave you a bad answer into the input box." },
+        { "@type": "HowToStep", "name": "Select Fix Level", "text": "Choose between Minimal, Standard, or Deep Thinking fixes." },
+        { "@type": "HowToStep", "name": "Generate & Copy", "text": "Click Fix Prompt and copy the enhanced version." }
       ]
     })} />
   </Fragment>
 
   <div class="tool-page">
     <ToolHero 
-      title="Free AI Prompt Generator & Optimizer"
-      subtitle="Paste your basic prompt and get an expert-level version instantly. Works with ChatGPT, Claude, and Gemini — free, no signup."
-      breadcrumbToolName="Prompt Optimizer"
+      title="Why is ChatGPT Giving Bad Answers?"
+      subtitle="If ChatGPT is giving you lazy, generic responses, it's usually because your prompt lacks constraints. Paste your bad prompt below, and we'll fix it instantly."
+      breadcrumbToolName="Bad Prompt Fixer"
       toolPath="/tools/prompt-optimizer"
     />
 
@@ -55,14 +66,14 @@ import BridgeCTA from '../../components/BridgeCTA.astro';
         
         <div class="controls">
           <div class="control-group">
-            <label for="enhancement-level">Enhancement Level</label>
+            <label for="enhancement-level">Fix Level</label>
             <select id="enhancement-level">
               <option value="minimal">Minimal (Fix clarity & tone)</option>
               <option value="standard" selected>Standard (Add role & structure)</option>
               <option value="deep">Deep Thinking (Add logic frameworks)</option>
             </select>
           </div>
-          <button id="optimize-btn" class="action-btn">Optimize Prompt</button>
+          <button id="optimize-btn" class="action-btn">Fix Prompt</button>
         </div>
       </div>
 
@@ -70,7 +81,7 @@ import BridgeCTA from '../../components/BridgeCTA.astro';
       <div class="panel output-panel">
         <div class="panel-header">
           <div class="output-title">
-            <h2>Optimized Prompt</h2>
+            <h2>Fixed Prompt</h2>
             <div id="detected-role" class="role-badge" style="display: none;"></div>
           </div>
           <button id="copy-btn" class="action-btn secondary" disabled>
@@ -82,7 +93,7 @@ import BridgeCTA from '../../components/BridgeCTA.astro';
         <div aria-live="polite" class="sr-only" id="sr-announcer"></div>
 
         <div class="output-box" id="output-box">
-          <span class="placeholder-text">Enter your prompt on the left to see the optimized version here...</span>
+          <span class="placeholder-text">Enter your bad prompt on the left to see the fixed version here...</span>
         </div>
 
         <div class="enhancement-tags" id="enhancement-tags">
@@ -92,11 +103,13 @@ import BridgeCTA from '../../components/BridgeCTA.astro';
     </div>
 
     <BridgeCTA 
-      heading="Why optimize prompts manually every time?"
-      subtext="ThinkMode+ automatically forces ChatGPT, Claude, and Gemini into deep thinking mode on every single prompt you send. No copy-pasting, no manual edits."
+      heading="Stop fixing bad prompts manually."
+      subtext="ThinkMode+ automatically forces ChatGPT, Claude, and Gemini into deep thinking mode on every single prompt you send. No more lazy, generic answers."
       link="/#features"
       btnText="Discover ThinkMode+"
     />
+    
+    <RelatedTools />
   </div>
 
   <style>
@@ -175,7 +188,7 @@ import BridgeCTA from '../../components/BridgeCTA.astro';
       clearBtn.addEventListener('click', () => {
         basicInput.value = '';
         sessionStorage.removeItem('po_basic_prompt');
-        outputBox.innerHTML = '<span class="placeholder-text">Enter your prompt on the left to see the optimized version here...</span>';
+        outputBox.innerHTML = '<span class="placeholder-text">Enter your bad prompt on the left to see the fixed version here...</span>';
         copyBtn.disabled = true;
         detectedRoleBadge.style.display = 'none';
         tagsContainer.innerHTML = '';

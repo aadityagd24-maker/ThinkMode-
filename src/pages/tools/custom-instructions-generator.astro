@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ToolHero from '../../components/ToolHero.astro';
 import BridgeCTA from '../../components/BridgeCTA.astro';
+import RelatedTools from '../../components/RelatedTools.astro';
 
 const roles = [
   { id: 'swe', name: 'Software Engineer', icon: '💻' },
@@ -80,16 +81,18 @@ const extras = [
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What are ChatGPT Custom Instructions?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Custom Instructions are a ChatGPT feature that lets you set persistent context and behavioral rules." }
-        },
-        {
-          "@type": "Question",
-          "name": "Where do I paste the generated instructions?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Open ChatGPT, select 'Customize ChatGPT', and paste the generated text into the 'How would you like ChatGPT to respond?' field." }
-        }
+        { "@type": "Question", "name": "What are ChatGPT Custom Instructions?", "acceptedAnswer": { "@type": "Answer", "text": "They are permanent rules you can set in ChatGPT so it always remembers how you want it to act, format responses, or what constraints to follow." } },
+        { "@type": "Question", "name": "How do I use this generator?", "acceptedAnswer": { "@type": "Answer", "text": "Select an expert persona, set the output style, and copy the generated block of text directly into your ChatGPT settings." } }
+      ]
+    })} />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thinkmodeplus.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://thinkmodeplus.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "Custom Instructions Generator", "item": "https://thinkmodeplus.com/tools/custom-instructions-generator" }
       ]
     })} />
   </Fragment>
@@ -201,11 +204,13 @@ const extras = [
     </div>
 
     <BridgeCTA 
-      heading="Tired of copy-pasting this every time?"
-      subtext="ThinkMode+ adds a permanent Expert Role button directly inside ChatGPT. Switch between 20+ personas instantly — plus auto-enable extended thinking on every chat."
+      heading="Tired of manually setting rules?"
+      subtext="ThinkMode+ adds a permanent Expert Role button directly inside ChatGPT so you can switch personas on the fly, plus auto-enable extended thinking on every chat."
       link="/#features"
-      btnText="Discover ThinkMode+"
+      btnText="Explore ThinkMode+"
     />
+    
+    <RelatedTools />
   </div>
 
   <style>
