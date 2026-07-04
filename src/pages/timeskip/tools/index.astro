@@ -1,316 +1,172 @@
 ---
 import TimeSkipLayout from '../../../layouts/TimeSkipLayout.astro';
 
-const title = "Find First Tweet - Free X/Twitter Oldest Post Finder";
-const description = "Instantly find the first tweet of any user on X (formerly Twitter) with our free tool. No login required. Enter a username to see their oldest posts.";
-const canonicalPath = "/timeskip/tools/first-tweet-finder";
+const title = "Free X (Twitter) Search Tools - TimeSkip";
+const description = "A collection of free utility tools to search old tweets, find deleted interactions, and master Twitter Advanced Search.";
+const canonicalPath = "/timeskip/tools";
+
+const tools = [
+  {
+    title: "First Tweet Finder",
+    description: "Instantly find the oldest tweets of any public X/Twitter account. No login required.",
+    href: "/timeskip/tools/first-tweet-finder",
+    icon: "🔍"
+  },
+  {
+    title: "Advanced Search Generator",
+    description: "Generate complex X (Twitter) search queries instantly without memorizing operators.",
+    href: "/timeskip/tools/advanced-search",
+    icon: "⚙️"
+  },
+  {
+    title: "On This Day Tweet Finder",
+    description: "Find what any user tweeted on a specific date in history.",
+    href: "/timeskip/tools/on-this-day",
+    icon: "📅"
+  },
+  {
+    title: "Relationship Explorer",
+    description: "Find conversations and replies between two specific X accounts.",
+    href: "/timeskip/tools/relationship-explorer",
+    icon: "💬"
+  },
+  {
+    title: "Old Tweets Eraser Assistant",
+    description: "Find your old tweets from a specific era so you can review and delete them.",
+    href: "/timeskip/tools/old-tweets-eraser",
+    icon: "🗑️"
+  }
+];
 ---
 
 <TimeSkipLayout title={title} description={description} canonicalPath={canonicalPath}>
   <Fragment slot="head">
     <style>
-      /* Minimal, accessible, non-flashy design specifically for this utility tool */
-      .tool-page {
+      .tools-index {
         background-color: #f9fafb;
         min-height: calc(100vh - 140px);
         padding: 80px 20px;
         font-family: 'Inter', sans-serif;
         color: #111827;
       }
-      .tool-container {
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .header-section {
+        text-align: center;
+        margin-bottom: 56px;
+      }
+      .title {
+        font-size: 36px;
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 16px;
+      }
+      .subtitle {
+        font-size: 18px;
+        color: #4b5563;
         max-width: 600px;
         margin: 0 auto;
+        line-height: 1.6;
+      }
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
       }
       .tool-card {
         background: #ffffff;
         border: 1px solid #e5e7eb;
         border-radius: 12px;
-        padding: 40px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-        text-align: center;
+        padding: 32px 24px;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        display: flex;
+        flex-direction: column;
       }
-      .tool-title {
-        font-size: 28px;
+      .tool-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border-color: #d1d5db;
+      }
+      .tool-icon {
+        font-size: 32px;
+        margin-bottom: 16px;
+      }
+      .tool-name {
+        font-size: 20px;
         font-weight: 700;
         margin-bottom: 12px;
-        letter-spacing: -0.5px;
         color: #111827;
       }
-      .tool-subtitle {
-        font-size: 16px;
-        color: #4b5563;
-        margin-bottom: 32px;
-        line-height: 1.5;
-      }
-      .input-group {
-        display: flex;
-        align-items: center;
-        background: #f3f4f6;
-        border: 2px solid #e5e7eb;
-        border-radius: 8px;
-        padding: 0 16px;
-        transition: border-color 0.2s;
-        margin-bottom: 24px;
-      }
-      .input-group:focus-within {
-        border-color: #0f1419;
-        background: #ffffff;
-      }
-      .input-prefix {
+      .tool-desc {
+        font-size: 15px;
         color: #6b7280;
-        font-size: 20px;
-        font-weight: 500;
-        user-select: none;
+        line-height: 1.5;
+        flex-grow: 1;
       }
-      .tool-input {
-        flex: 1;
-        background: transparent;
-        border: none;
-        padding: 16px 12px;
-        font-size: 20px;
-        font-weight: 500;
-        color: #111827;
-        outline: none;
-      }
-      .tool-input::placeholder {
-        color: #9ca3af;
-      }
-      .tool-btn {
-        display: block;
-        width: 100%;
-        background-color: #0f1419;
-        color: #ffffff;
-        border: none;
-        border-radius: 8px;
-        padding: 18px;
-        font-size: 18px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.2s;
-        text-decoration: none;
-      }
-      .tool-btn:hover {
-        background-color: #272c30;
-      }
-      .tool-btn:disabled {
-        background-color: #d1d5db;
-        cursor: not-allowed;
-      }
-      .error-msg {
-        color: #dc2626;
-        font-size: 14px;
-        margin-top: -16px;
-        margin-bottom: 16px;
-        display: none;
-        text-align: left;
-      }
-      
-      /* CTA Bridge */
       .bridge-cta {
-        margin-top: 32px;
-        padding: 24px;
-        background: #eff6ff;
-        border: 1px solid #bfdbfe;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        text-align: left;
-      }
-      .bridge-content h3 {
-        font-size: 16px;
-        font-weight: 600;
-        color: #1e3a8a;
-        margin-bottom: 4px;
-      }
-      .bridge-content p {
-        font-size: 14px;
-        color: #1e40af;
-        margin: 0;
-      }
-      .bridge-btn {
-        background: #2563eb;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 600;
-        white-space: nowrap;
-      }
-      .bridge-btn:hover {
-        background: #1d4ed8;
-      }
-
-      /* SEO Content */
-      .seo-content {
         margin-top: 64px;
-        padding-top: 48px;
-        border-top: 1px solid #e5e7eb;
+        padding: 32px;
+        background: #0f1419;
+        border-radius: 12px;
+        text-align: center;
+        color: white;
       }
-      .seo-content h2 {
+      .bridge-cta h3 {
         font-size: 24px;
         font-weight: 700;
-        margin-bottom: 16px;
-        margin-top: 32px;
-        color: #111827;
+        margin-bottom: 12px;
       }
-      .seo-content p {
+      .bridge-cta p {
         font-size: 16px;
-        line-height: 1.7;
-        color: #4b5563;
-        margin-bottom: 16px;
-      }
-      .seo-content ul {
-        list-style-type: disc;
-        padding-left: 24px;
+        color: #9ca3af;
         margin-bottom: 24px;
-        color: #4b5563;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
       }
-      .seo-content li {
-        margin-bottom: 8px;
-        line-height: 1.6;
+      .bridge-btn {
+        display: inline-block;
+        background: #ffffff;
+        color: #0f1419;
+        padding: 14px 28px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        transition: background 0.2s;
       }
-      .seo-content code {
+      .bridge-btn:hover {
         background: #f3f4f6;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 14px;
-      }
-
-      @media (max-width: 640px) {
-        .tool-card {
-          padding: 24px;
-        }
-        .bridge-cta {
-          flex-direction: column;
-          text-align: center;
-        }
-        .bridge-btn {
-          width: 100%;
-          text-align: center;
-        }
       }
     </style>
   </Fragment>
 
-  <main class="tool-page">
-    <div class="tool-container">
-      
-      <!-- Interactive Tool -->
-      <div class="tool-card">
-        <h1 class="tool-title">Find First Tweet</h1>
-        <p class="tool-subtitle">Instantly find the oldest tweets of any public X/Twitter account. No login required.</p>
-        
-        <form id="findForm">
-          <div class="input-group">
-            <span class="input-prefix">@</span>
-            <input 
-              type="text" 
-              id="usernameInput" 
-              class="tool-input" 
-              placeholder="elonmusk" 
-              autocomplete="off" 
-              spellcheck="false"
-              required
-            />
-          </div>
-          <div class="error-msg" id="errorMsg">Please enter a valid username (letters, numbers, underscores).</div>
-          
-          <button type="submit" class="tool-btn" id="submitBtn">
-            Find First Tweet
-          </button>
-        </form>
-
-        <!-- Engineering as Marketing CTA Bridge -->
-        <div class="bridge-cta">
-          <div class="bridge-content">
-            <h3>Do this 10x faster with TimeSkip</h3>
-            <p>Get a time-machine UI directly on every X profile. Instantly jump to any month or year.</p>
-          </div>
-          <a href="/timeskip/#pricing" class="bridge-btn">Get Extension</a>
-        </div>
+  <main class="tools-index">
+    <div class="container">
+      <div class="header-section">
+        <h1 class="title">Free X (Twitter) Search Tools</h1>
+        <p class="subtitle">A collection of free utilities designed to help you search, explore, and find historical tweets effortlessly.</p>
       </div>
 
-      <!-- SEO Content -->
-      <article class="seo-content">
-        <h2>How to find someone's first tweet</h2>
-        <p>Finding the very first post of a public figure, a brand, or even your own account can be a fun trip down memory lane. However, scrolling manually to the bottom of an active Twitter feed is nearly impossible due to rate limits and infinite scrolling.</p>
-        <p>Our <strong>First Tweet Finder</strong> tool automates this process by instantly generating an Advanced Search query that targets the very beginning of an account's history. Just enter their handle, and you'll be redirected to X.com showing their oldest indexed posts.</p>
+      <div class="tools-grid">
+        {tools.map(tool => (
+          <a href={tool.href} class="tool-card">
+            <div class="tool-icon">{tool.icon}</div>
+            <h2 class="tool-name">{tool.title}</h2>
+            <p class="tool-desc">{tool.description}</p>
+          </a>
+        ))}
+      </div>
 
-        <h2>The Manual Method (Advanced Search)</h2>
-        <p>If you prefer to do this manually without a tool, you can use X's Advanced Search operators. You will need to know roughly when the account was created.</p>
-        <ul>
-          <li>Go to the X search bar.</li>
-          <li>Type: <code>from:username since:YYYY-MM-DD until:YYYY-MM-DD</code></li>
-          <li>For example, to find Elon Musk's first tweets from June 2009, you would search: <code>from:elonmusk since:2009-06-01 until:2009-07-01</code></li>
-        </ul>
-        <p>While effective, guessing the exact join date and typing out dates manually can be tedious.</p>
-
-        <h2>Why use the TimeSkip Extension?</h2>
-        <p>This free web tool is great for a quick, one-off search. However, if you are a marketer, researcher, or journalist who frequently needs to navigate historical tweets, you need <strong>TimeSkip</strong>.</p>
-        <p>TimeSkip is a Chrome Extension that injects a sleek date-picker widget directly onto every X profile. It auto-detects the account's join date and lets you jump to any month and year in just two clicks, saving you hours of manual searching.</p>
-      </article>
-
+      <div class="bridge-cta">
+        <h3>Want all of this directly on X.com?</h3>
+        <p>TimeSkip is a Chrome extension that turns every Twitter profile into a time machine. Jump to any month or year in one click.</p>
+        <a href="/timeskip/#pricing" class="bridge-btn">Get TimeSkip Now</a>
+      </div>
     </div>
   </main>
-
-  <Fragment slot="scripts">
-    <script>
-      // Client-side logic for the utility tool
-      document.addEventListener('DOMContentLoaded', () => {
-        const form = document.getElementById('findForm');
-        const input = document.getElementById('usernameInput');
-        const errorMsg = document.getElementById('errorMsg');
-        const submitBtn = document.getElementById('submitBtn');
-
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const rawValue = input.value.trim();
-          
-          // Remove any @ symbol the user might have pasted
-          const username = rawValue.replace(/^@/, '');
-
-          // Basic validation (letters, numbers, underscores, max 15 chars)
-          const validRegex = /^[a-zA-Z0-9_]{1,15}$/;
-          
-          if (!validRegex.test(username)) {
-            errorMsg.style.display = 'block';
-            input.parentElement.style.borderColor = '#dc2626';
-            return;
-          }
-
-          errorMsg.style.display = 'none';
-          input.parentElement.style.borderColor = '#0f1419';
-
-          // As a generic stateless tool, we use a broad 6-year window from Twitter's inception.
-          // This will capture most OG users' first tweets without needing an exact join date.
-          // For newer users, X will still return results if we use f=live.
-          // However, the best generic trick is `until:2010` for old accounts.
-          // Since we want them to upgrade to TimeSkip for accuracy, this is a perfect "teaser".
-          const query = \`from:\${username} since:2006-03-21 until:2012-01-01\`;
-          const xUrl = \`https://x.com/search?q=\${encodeURIComponent(query)}&src=typed_query&f=live\`;
-          
-          // Change button state
-          submitBtn.textContent = 'Redirecting to X...';
-          submitBtn.style.opacity = '0.8';
-
-          // Redirect
-          setTimeout(() => {
-            window.open(xUrl, '_blank');
-            submitBtn.textContent = 'Find First Tweet';
-            submitBtn.style.opacity = '1';
-          }, 600);
-        });
-
-        // Clear error on input
-        input.addEventListener('input', () => {
-          errorMsg.style.display = 'none';
-          input.parentElement.style.borderColor = '#e5e7eb';
-        });
-      });
-    </script>
-  </Fragment>
 </TimeSkipLayout>

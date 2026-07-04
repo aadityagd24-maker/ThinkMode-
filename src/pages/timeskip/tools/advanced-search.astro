@@ -1,0 +1,299 @@
+---
+import TimeSkipLayout from '../../../layouts/TimeSkipLayout.astro';
+
+const title = "Twitter Advanced Search Generator - Free X Search Link Maker";
+const description = "Easily create Twitter advanced search queries without memorizing operators. Find old tweets by exact date, minimum likes, and keywords.";
+const canonicalPath = "/tools/advanced-search";
+---
+
+<TimeSkipLayout title={title} description={description} canonicalPath={canonicalPath}>
+  <Fragment slot="head">
+    <style>
+      .tool-page {
+        background-color: #f9fafb;
+        min-height: calc(100vh - 140px);
+        padding: 80px 20px;
+        font-family: 'Inter', sans-serif;
+        color: #111827;
+      }
+      .tool-container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .tool-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      }
+      .tool-title {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        text-align: center;
+        letter-spacing: -0.5px;
+      }
+      .tool-subtitle {
+        font-size: 16px;
+        color: #4b5563;
+        margin-bottom: 32px;
+        text-align: center;
+        line-height: 1.5;
+      }
+      .input-group {
+        margin-bottom: 20px;
+      }
+      .input-label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 8px;
+      }
+      .tool-input {
+        width: 100%;
+        background: #f3f4f6;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 12px 16px;
+        font-size: 16px;
+        color: #111827;
+        outline: none;
+        transition: border-color 0.2s, background 0.2s;
+        box-sizing: border-box;
+      }
+      .tool-input:focus {
+        border-color: #0f1419;
+        background: #ffffff;
+      }
+      .flex-row {
+        display: flex;
+        gap: 16px;
+      }
+      .flex-row .input-group {
+        flex: 1;
+      }
+      .tool-btn {
+        display: block;
+        width: 100%;
+        background-color: #0f1419;
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        padding: 16px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-top: 24px;
+      }
+      .tool-btn:hover {
+        background-color: #272c30;
+      }
+      
+      /* CTA Bridge */
+      .bridge-cta {
+        margin-top: 32px;
+        padding: 24px;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .bridge-content h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1e3a8a;
+        margin-bottom: 4px;
+      }
+      .bridge-content p {
+        font-size: 14px;
+        color: #1e40af;
+        margin: 0;
+      }
+      .bridge-btn {
+        background: #2563eb;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .bridge-btn:hover {
+        background: #1d4ed8;
+      }
+
+      /* SEO Content */
+      .seo-content {
+        margin-top: 64px;
+        padding-top: 48px;
+        border-top: 1px solid #e5e7eb;
+      }
+      .seo-content h2 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        margin-top: 32px;
+        color: #111827;
+      }
+      .seo-content p {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #4b5563;
+        margin-bottom: 16px;
+      }
+      .seo-content ul {
+        list-style-type: disc;
+        padding-left: 24px;
+        margin-bottom: 24px;
+        color: #4b5563;
+      }
+      .seo-content li {
+        margin-bottom: 8px;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 640px) {
+        .tool-card {
+          padding: 24px;
+        }
+        .flex-row {
+          flex-direction: column;
+          gap: 0;
+        }
+        .bridge-cta {
+          flex-direction: column;
+          text-align: center;
+        }
+        .bridge-btn {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+  </Fragment>
+
+  <main class="tool-page">
+    <div class="tool-container">
+      
+      <!-- Interactive Tool -->
+      <div class="tool-card">
+        <h1 class="tool-title">Twitter Advanced Search Generator</h1>
+        <p class="tool-subtitle">Generate complex X (Twitter) search queries instantly without memorizing operators.</p>
+        
+        <form id="searchForm">
+          <div class="input-group">
+            <label class="input-label" for="username">From Account (optional)</label>
+            <input type="text" id="username" class="tool-input" placeholder="e.g. elonmusk" />
+          </div>
+          
+          <div class="input-group">
+            <label class="input-label" for="keywords">Keywords (optional)</label>
+            <input type="text" id="keywords" class="tool-input" placeholder="e.g. rocket mars" />
+          </div>
+
+          <div class="flex-row">
+            <div class="input-group">
+              <label class="input-label" for="sinceDate">Since (optional)</label>
+              <input type="date" id="sinceDate" class="tool-input" />
+            </div>
+            <div class="input-group">
+              <label class="input-label" for="untilDate">Until (optional)</label>
+              <input type="date" id="untilDate" class="tool-input" />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="minLikes">Minimum Likes (optional)</label>
+            <input type="number" id="minLikes" class="tool-input" placeholder="e.g. 1000" min="0" />
+          </div>
+          
+          <button type="submit" class="tool-btn" id="submitBtn">
+            Generate & Search
+          </button>
+        </form>
+
+        <!-- Engineering as Marketing CTA Bridge -->
+        <div class="bridge-cta">
+          <div class="bridge-content">
+            <h3>Tired of entering dates manually?</h3>
+            <p>TimeSkip adds a beautiful time-travel widget directly to every X profile.</p>
+          </div>
+          <a href="/timeskip/#pricing" class="bridge-btn">Get Extension</a>
+        </div>
+      </div>
+
+      <!-- SEO Content -->
+      <article class="seo-content">
+        <h2>What is Twitter Advanced Search?</h2>
+        <p>Twitter (now X) has a powerful backend search engine, but its native interface can be hard to reach on mobile or confusing to use. Advanced Search allows you to filter tweets by specific accounts, exact date ranges, keywords, and even minimum engagement metrics (like finding only viral tweets).</p>
+        
+        <h2>How to use this generator</h2>
+        <p>Our free tool simplifies the process. Just fill in the fields you care about—like a target username and a minimum like count—and click Generate. We will instantly compile the correct search operators and open the exact results page on X for you.</p>
+
+        <h2>Common Search Operators</h2>
+        <ul>
+          <li><strong>from:username</strong> - Finds tweets sent by a specific account.</li>
+          <li><strong>since:YYYY-MM-DD</strong> - Finds tweets sent on or after a date.</li>
+          <li><strong>until:YYYY-MM-DD</strong> - Finds tweets sent before a date.</li>
+          <li><strong>min_faves:1000</strong> - Finds tweets with at least 1,000 likes.</li>
+        </ul>
+
+        <h2>The TimeSkip Advantage</h2>
+        <p>If you find yourself frequently using advanced search to look at old tweets, you need <strong>TimeSkip</strong>. Instead of typing out dates every time, TimeSkip gives you a one-click calendar widget right on the X profile page. Browse someone's tweets from 2018 in seconds.</p>
+      </article>
+
+    </div>
+  </main>
+
+  <Fragment slot="scripts">
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('searchForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          
+          let queryParts = [];
+          
+          const username = document.getElementById('username').value.trim().replace(/^@/, '');
+          const keywords = document.getElementById('keywords').value.trim();
+          const sinceDate = document.getElementById('sinceDate').value;
+          const untilDate = document.getElementById('untilDate').value;
+          const minLikes = document.getElementById('minLikes').value.trim();
+
+          if (username) queryParts.push(\`from:\${username}\`);
+          if (keywords) queryParts.push(keywords);
+          if (sinceDate) queryParts.push(\`since:\${sinceDate}\`);
+          if (untilDate) queryParts.push(\`until:\${untilDate}\`);
+          if (minLikes) queryParts.push(\`min_faves:\${minLikes}\`);
+
+          const finalQuery = queryParts.join(' ');
+          
+          if (!finalQuery) {
+            alert('Please enter at least one search criteria.');
+            return;
+          }
+
+          const xUrl = \`https://x.com/search?q=\${encodeURIComponent(finalQuery)}&src=typed_query&f=live\`;
+          
+          submitBtn.textContent = 'Redirecting to X...';
+          submitBtn.style.opacity = '0.8';
+
+          setTimeout(() => {
+            window.open(xUrl, '_blank');
+            submitBtn.textContent = 'Generate & Search';
+            submitBtn.style.opacity = '1';
+          }, 600);
+        });
+      });
+    </script>
+  </Fragment>
+</TimeSkipLayout>

@@ -1,0 +1,234 @@
+---
+import TimeSkipLayout from '../../../layouts/TimeSkipLayout.astro';
+
+const title = "Twitter Relationship Explorer - Find Interactions Between Users";
+const description = "Discover old conversations and interactions between two specific X (Twitter) accounts quickly and easily.";
+const canonicalPath = "/tools/relationship-explorer";
+---
+
+<TimeSkipLayout title={title} description={description} canonicalPath={canonicalPath}>
+  <Fragment slot="head">
+    <style>
+      .tool-page {
+        background-color: #f9fafb;
+        min-height: calc(100vh - 140px);
+        padding: 80px 20px;
+        font-family: 'Inter', sans-serif;
+        color: #111827;
+      }
+      .tool-container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .tool-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      }
+      .tool-title {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        text-align: center;
+        letter-spacing: -0.5px;
+      }
+      .tool-subtitle {
+        font-size: 16px;
+        color: #4b5563;
+        margin-bottom: 32px;
+        text-align: center;
+        line-height: 1.5;
+      }
+      .input-group {
+        margin-bottom: 20px;
+      }
+      .input-label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 8px;
+      }
+      .tool-input {
+        width: 100%;
+        background: #f3f4f6;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 12px 16px;
+        font-size: 16px;
+        color: #111827;
+        outline: none;
+        transition: border-color 0.2s, background 0.2s;
+        box-sizing: border-box;
+      }
+      .tool-input:focus {
+        border-color: #0f1419;
+        background: #ffffff;
+      }
+      .tool-btn {
+        display: block;
+        width: 100%;
+        background-color: #0f1419;
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        padding: 16px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-top: 24px;
+      }
+      .tool-btn:hover {
+        background-color: #272c30;
+      }
+      
+      /* CTA Bridge */
+      .bridge-cta {
+        margin-top: 32px;
+        padding: 24px;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .bridge-content h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1e3a8a;
+        margin-bottom: 4px;
+      }
+      .bridge-content p {
+        font-size: 14px;
+        color: #1e40af;
+        margin: 0;
+      }
+      .bridge-btn {
+        background: #2563eb;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .bridge-btn:hover {
+        background: #1d4ed8;
+      }
+
+      /* SEO Content */
+      .seo-content {
+        margin-top: 64px;
+        padding-top: 48px;
+        border-top: 1px solid #e5e7eb;
+      }
+      .seo-content h2 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        margin-top: 32px;
+        color: #111827;
+      }
+      .seo-content p {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #4b5563;
+        margin-bottom: 16px;
+      }
+
+      @media (max-width: 640px) {
+        .tool-card {
+          padding: 24px;
+        }
+        .bridge-cta {
+          flex-direction: column;
+          text-align: center;
+        }
+        .bridge-btn {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+  </Fragment>
+
+  <main class="tool-page">
+    <div class="tool-container">
+      
+      <div class="tool-card">
+        <h1 class="tool-title">Twitter Relationship Explorer</h1>
+        <p class="tool-subtitle">Find conversations and replies between two specific X accounts.</p>
+        
+        <form id="searchForm">
+          <div class="input-group">
+            <label class="input-label" for="userA">User A Handle</label>
+            <input type="text" id="userA" class="tool-input" placeholder="e.g. stevejobs" required />
+          </div>
+          
+          <div class="input-group">
+            <label class="input-label" for="userB">User B Handle</label>
+            <input type="text" id="userB" class="tool-input" placeholder="e.g. billgates" required />
+          </div>
+          
+          <button type="submit" class="tool-btn" id="submitBtn">
+            Find Interactions
+          </button>
+        </form>
+
+        <div class="bridge-cta">
+          <div class="bridge-content">
+            <h3>Doing deep-dive research?</h3>
+            <p>TimeSkip lets you view any account's historical timeline month-by-month.</p>
+          </div>
+          <a href="/timeskip/#pricing" class="bridge-btn">Get Extension</a>
+        </div>
+      </div>
+
+      <article class="seo-content">
+        <h2>How to find interactions between two Twitter users</h2>
+        <p>Curious if two founders ever talked to each other back in the day? Want to see how a brand interacted with a specific influencer? Finding these conversations manually is like looking for a needle in a haystack.</p>
+        <p>Our tool generates a bi-directional search query (<code>from:UserA to:UserB OR from:UserB to:UserA</code>) to instantly pull up all public mentions and replies between those exact accounts.</p>
+        
+        <h2>Speed up your Twitter Research</h2>
+        <p>If you're a journalist, researcher, or social media manager digging through Twitter history, <strong>TimeSkip</strong> is the ultimate tool. It seamlessly integrates into X.com and lets you jump to any month or year on any profile without needing to remember complex search operators.</p>
+      </article>
+
+    </div>
+  </main>
+
+  <Fragment slot="scripts">
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('searchForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          
+          const userA = document.getElementById('userA').value.trim().replace(/^@/, '');
+          const userB = document.getElementById('userB').value.trim().replace(/^@/, '');
+
+          if (!userA || !userB) return;
+
+          const query = \`(from:\${userA} to:\${userB}) OR (from:\${userB} to:\${userA})\`;
+          const xUrl = \`https://x.com/search?q=\${encodeURIComponent(query)}&src=typed_query&f=live\`;
+          
+          submitBtn.textContent = 'Redirecting to X...';
+          submitBtn.style.opacity = '0.8';
+
+          setTimeout(() => {
+            window.open(xUrl, '_blank');
+            submitBtn.textContent = 'Find Interactions';
+            submitBtn.style.opacity = '1';
+          }, 600);
+        });
+      });
+    </script>
+  </Fragment>
+</TimeSkipLayout>
