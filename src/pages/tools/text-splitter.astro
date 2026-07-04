@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ToolHero from '../../components/ToolHero.astro';
+import BridgeCTA from '../../components/BridgeCTA.astro';
 ---
 
 <BaseLayout
@@ -20,25 +22,34 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
     })} />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to bypass ChatGPT character limits by splitting text",
+      "description": "Use the AI Text Splitter to chunk large documents into pieces small enough for ChatGPT to process.",
+      "step": [
+        { "@type": "HowToStep", "name": "Paste Document", "text": "Paste your large text, code, or essay into the splitter input box." },
+        { "@type": "HowToStep", "name": "Select Chunk Size", "text": "Choose a target character limit based on the AI model you are using." },
+        { "@type": "HowToStep", "name": "Copy Chunks", "text": "Copy each generated chunk sequentially and paste it into ChatGPT." }
+      ]
+    })} />
   </Fragment>
 
   <div class="tool-page">
-    <!-- Hero -->
-    <div class="tool-hero">
-      <div class="tool-breadcrumb">
-        <a href="/">ThinkMode+</a>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-        <a href="/tools">Tools</a>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-        <a href="/tools/text-splitter">Text Splitter</a>
-      </div>
-      <h1>Free AI Text Splitter for ChatGPT</h1>
-      <p class="tool-subtitle">Paste your massive document below. We'll automatically split it into prompt-ready chunks so you can bypass ChatGPT's character limits.</p>
-    </div>
+    <ToolHero 
+      title="Free AI Text Splitter for ChatGPT"
+      subtitle="Paste your massive document below. We'll automatically split it into prompt-ready chunks so you can bypass ChatGPT's character limits."
+      breadcrumbToolName="Text Splitter"
+      toolPath="/tools/text-splitter"
+    />
 
     <div class="splitter-tool">
       <div class="input-section">
-        <label for="source-text" class="section-label">Your Document</label>
+        <div class="input-header">
+          <label for="source-text" class="section-label">Your Document</label>
+          <button id="clear-btn" class="ghost-btn">Clear Input</button>
+        </div>
         <textarea id="source-text" placeholder="Paste your very long text here (e.g., codebases, PDF content, essays)..."></textarea>
         
         <div class="controls-bar">
@@ -57,70 +68,68 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="output-section" id="output-section" style="display: none;">
         <h2 class="section-label">Your Chunks</h2>
         <p class="output-helper">Copy and paste these chunks one by one into your AI chat.</p>
+        <!-- ARIA Live region for screen readers -->
+        <div aria-live="polite" class="sr-only" id="sr-announcer"></div>
         <div id="chunks-container" class="chunks-container"></div>
       </div>
     </div>
 
-    <!-- Bridge CTA -->
-    <div class="bridge-cta">
-      <div class="bridge-content">
-        <div class="bridge-icon">
-          <img src="/logo.png" alt="ThinkMode+" width="40" height="40" style="object-fit: contain;" />
-        </div>
-        <div class="bridge-text">
-          <h3>Now that your data is loaded...</h3>
-          <p>You need to extract it perfectly. ThinkMode+ injects a persistent formatting bar into ChatGPT, allowing you to request Markdown Tables, JSON, and Lists with one click.</p>
-        </div>
-        <a href="/" class="bridge-btn">Discover ThinkMode+</a>
-      </div>
-    </div>
+    <BridgeCTA 
+      heading="Now that your data is loaded..."
+      subtext="You need to extract it perfectly. ThinkMode+ injects a persistent formatting bar into ChatGPT, allowing you to request Markdown Tables, JSON, and Lists with one click."
+      link="/#features"
+      btnText="Discover ThinkMode+"
+    />
   </div>
 
   <style>
     .tool-page { max-width: 960px; margin: 0 auto; padding: 32px 24px 80px; }
-    .tool-hero { margin-bottom: 48px; }
-    .tool-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-faint); margin-bottom: 20px; }
-    .tool-breadcrumb a { color: var(--text-dim); text-decoration: none; }
-    .tool-breadcrumb a:hover { color: var(--text); }
-    .tool-breadcrumb svg { opacity: 0.4; }
-    .tool-hero h1 { font-size: 36px; font-weight: 700; margin: 0 0 12px; }
-    .tool-subtitle { font-size: 17px; color: var(--text-dim); max-width: 640px; margin: 0; }
-
+    
     .splitter-tool { display: flex; flex-direction: column; gap: 32px; margin-bottom: 64px; }
     
     .input-section, .output-section { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
-    .section-label { display: block; font-size: 16px; font-weight: 600; margin-bottom: 12px; }
     
-    #source-text { width: 100%; min-height: 250px; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; color: var(--text); font-family: var(--display); font-size: 14px; line-height: 1.6; resize: vertical; margin-bottom: 16px; }
-    #source-text:focus { outline: none; border-color: var(--accent); }
+    .input-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .section-label { display: block; font-size: 16px; font-weight: 600; margin: 0; }
+    .ghost-btn { background: transparent; border: none; color: var(--text-dim); font-size: 13px; cursor: pointer; transition: color 0.2s; padding: 4px 8px; }
+    .ghost-btn:hover { color: var(--accent-pink); }
+    
+    #source-text { width: 100%; min-height: 250px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; color: var(--text); font-family: var(--display); font-size: 14px; line-height: 1.6; resize: vertical; margin-bottom: 16px; transition: border-color 0.3s, box-shadow 0.3s; }
+    #source-text:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(186, 58, 184, 0.2); }
+    #source-text.error { border-color: #ef4444; animation: shake 0.4s; }
     
     .controls-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .control-group label { display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 6px; }
-    select { padding: 8px 12px; background: var(--surface); border: 1px solid var(--border-hi); border-radius: 8px; color: var(--text); font-size: 14px; }
+    select { padding: 8px 12px; background: var(--surface); border: 1px solid var(--border-hi); border-radius: 8px; color: var(--text); font-size: 14px; transition: border-color 0.2s; }
+    select:focus-visible { outline: none; border-color: var(--accent); }
     
-    .action-btn { padding: 10px 24px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-    .action-btn:hover { background: #d040ce; }
+    .action-btn { padding: 10px 24px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+    .action-btn:hover { background: #d040ce; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(186, 58, 184, 0.2); }
+    .action-btn:active { transform: scale(0.98); }
     
     .output-helper { font-size: 14px; color: var(--text-dim); margin: 0 0 20px; }
     
     .chunks-container { display: flex; flex-direction: column; gap: 16px; }
-    .chunk-card { background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .chunk-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; animation: fadeUp 0.4s ease forwards; opacity: 0; transform: translateY(10px); }
     .chunk-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--border); }
     .chunk-title { font-weight: 600; font-size: 14px; color: var(--accent-pink); }
     .chunk-text { padding: 16px; font-family: var(--mono); font-size: 13px; color: var(--text-dim); max-height: 150px; overflow-y: auto; white-space: pre-wrap; }
     
-    .chunk-copy-btn { padding: 6px 12px; background: var(--surface); border: 1px solid var(--border-hi); border-radius: 6px; color: var(--text); font-size: 12px; cursor: pointer; }
-    .chunk-copy-btn:hover { background: var(--surface-2); }
+    .chunk-copy-btn { padding: 6px 12px; background: var(--surface-2); border: 1px solid var(--border-hi); border-radius: 6px; color: var(--text); font-size: 12px; cursor: pointer; transition: all 0.2s; }
+    .chunk-copy-btn:hover { background: var(--border); }
+    .chunk-copy-btn:active { transform: scale(0.95); }
     .chunk-copy-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.4); }
 
-    /* Bridge CTA */
-    .bridge-cta { background: linear-gradient(135deg, rgba(186, 58, 184, 0.08), rgba(137, 20, 183, 0.06)); border: 1px solid rgba(186, 58, 184, 0.15); border-radius: 16px; padding: 32px; display: flex; align-items: center; gap: 24px; }
-    .bridge-icon { width: 56px; height: 56px; background: rgba(255,255,255,0.05); border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .bridge-text { flex: 1; }
-    .bridge-text h3 { margin: 0 0 6px; font-size: 18px; font-weight: 600; }
-    .bridge-text p { margin: 0; font-size: 14px; color: var(--text-dim); }
-    .bridge-btn { padding: 12px 24px; background: var(--accent); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 600; flex-shrink: 0; }
-    .bridge-btn:hover { background: #d040ce; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 
   <script>
@@ -130,11 +139,27 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       const sizeSelect = document.getElementById('chunk-size');
       const outputSection = document.getElementById('output-section');
       const chunksContainer = document.getElementById('chunks-container');
+      const clearBtn = document.getElementById('clear-btn');
+      const srAnnouncer = document.getElementById('sr-announcer');
 
       if (!splitBtn || !sourceInput) return;
 
+      // Restore session storage
+      const savedText = sessionStorage.getItem('ts_source_text');
+      if (savedText) sourceInput.value = savedText;
+      sourceInput.addEventListener('input', () => {
+        sourceInput.classList.remove('error');
+        sessionStorage.setItem('ts_source_text', sourceInput.value);
+      });
+
+      clearBtn.addEventListener('click', () => {
+        sourceInput.value = '';
+        sessionStorage.removeItem('ts_source_text');
+        outputSection.style.display = 'none';
+        sourceInput.focus();
+      });
+
       function splitText(text, maxChars) {
-        // Reserve some space for the instruction wrapper (approx 100 chars)
         const safeLimit = maxChars - 150;
         const chunks = [];
         let currentIdx = 0;
@@ -146,10 +171,23 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             break;
           }
           
-          // Try to break at a double newline, single newline, or space
-          let breakIdx = text.lastIndexOf('\n\n', nextIdx);
-          if (breakIdx <= currentIdx) breakIdx = text.lastIndexOf('\n', nextIdx);
-          if (breakIdx <= currentIdx) breakIdx = text.lastIndexOf(' ', nextIdx);
+          let chunkStr = text.slice(currentIdx, nextIdx);
+          
+          // Smart splitting: avoid breaking inside code blocks (```) if possible
+          const lastCodeFence = chunkStr.lastIndexOf('```');
+          const isInsideCode = (chunkStr.match(/```/g) || []).length % 2 !== 0;
+          
+          let breakIdx = -1;
+          
+          if (isInsideCode && lastCodeFence > 0) {
+            // Cut before the code block started to keep it intact
+            breakIdx = currentIdx + lastCodeFence;
+          } else {
+            // Natural break hierarchy
+            breakIdx = text.lastIndexOf('\n\n', nextIdx);
+            if (breakIdx <= currentIdx) breakIdx = text.lastIndexOf('\n', nextIdx);
+            if (breakIdx <= currentIdx) breakIdx = text.lastIndexOf(' ', nextIdx);
+          }
           
           // Fallback if no natural break found
           if (breakIdx <= currentIdx) breakIdx = nextIdx;
@@ -162,7 +200,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       splitBtn.addEventListener('click', () => {
         const text = sourceInput.value.trim();
-        if (!text) return;
+        if (!text) {
+          sourceInput.classList.add('error');
+          sourceInput.focus();
+          return;
+        }
 
         const maxChars = parseInt(sizeSelect.value, 10);
         const rawChunks = splitText(text, maxChars);
@@ -172,7 +214,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         
         rawChunks.forEach((chunk, index) => {
           const partNum = index + 1;
-          // Create the wrapped prompt
           let wrappedText = '';
           if (partNum === 1 && total > 1) {
             wrappedText = `[Part 1 of ${total}] I am going to send you a large document in multiple parts. Do NOT reply or summarize until I say "ALL PARTS RECEIVED". Acknowledge this part by saying "Part 1 received".\n\n${chunk}`;
@@ -184,6 +225,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
           const card = document.createElement('div');
           card.className = 'chunk-card';
+          card.style.animationDelay = `${index * 0.1}s`;
           card.innerHTML = `
             <div class="chunk-header">
               <span class="chunk-title">Part ${partNum} of ${total}</span>
@@ -195,23 +237,40 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         });
 
         outputSection.style.display = 'block';
-        outputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Smart scroll (only scroll if offscreen)
+        const rect = outputSection.getBoundingClientRect();
+        if (rect.bottom > window.innerHeight) {
+          outputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
 
       // Delegate copy events
+      const copyTimers = new Map();
       chunksContainer.addEventListener('click', async (e) => {
         if (e.target.classList.contains('chunk-copy-btn')) {
           const btn = e.target;
           const text = decodeURIComponent(btn.getAttribute('data-content'));
           try {
             await navigator.clipboard.writeText(text);
-            const origText = btn.textContent;
+            
+            // Screen reader announcement
+            srAnnouncer.textContent = `Part copied to clipboard`;
+            
+            const origText = btn.getAttribute('data-orig') || btn.textContent;
+            btn.setAttribute('data-orig', origText);
             btn.textContent = 'Copied!';
             btn.classList.add('copied');
-            setTimeout(() => {
+            
+            if (copyTimers.has(btn)) clearTimeout(copyTimers.get(btn));
+            
+            const timerId = setTimeout(() => {
               btn.textContent = origText;
               btn.classList.remove('copied');
+              copyTimers.delete(btn);
             }, 2000);
+            
+            copyTimers.set(btn, timerId);
           } catch (err) {
             console.error('Copy failed', err);
           }

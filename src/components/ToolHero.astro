@@ -1,0 +1,31 @@
+---
+export interface Props {
+  title: string;
+  subtitle: string;
+  breadcrumbToolName: string;
+  toolPath: string;
+}
+const { title, subtitle, breadcrumbToolName, toolPath } = Astro.props;
+---
+
+<div class="tool-hero">
+  <div class="tool-breadcrumb">
+    <a href="/">ThinkMode+</a>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    <a href="/tools">Tools</a>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    <a href={toolPath}>{breadcrumbToolName}</a>
+  </div>
+  <h1>{title}</h1>
+  <p class="tool-subtitle">{subtitle}</p>
+</div>
+
+<style>
+  .tool-hero { margin-bottom: 48px; }
+  .tool-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-faint); margin-bottom: 20px; }
+  .tool-breadcrumb a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  .tool-breadcrumb a:hover { color: var(--text); }
+  .tool-breadcrumb svg { opacity: 0.4; }
+  .tool-hero h1 { font-size: 36px; font-weight: 700; margin: 0 0 12px; }
+  .tool-subtitle { font-size: 17px; color: var(--text-dim); max-width: 640px; margin: 0; line-height: 1.5; }
+</style>

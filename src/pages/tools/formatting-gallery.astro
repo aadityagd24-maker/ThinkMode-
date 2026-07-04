@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ToolHero from '../../components/ToolHero.astro';
+import BridgeCTA from '../../components/BridgeCTA.astro';
 ---
 
 <BaseLayout
@@ -18,23 +20,37 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       "description": "Gallery of ChatGPT prompt templates for structured output formatting.",
       "applicationCategory": "UtilityApplication"
     })} />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I force ChatGPT to output JSON?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Append our strict JSON template to your prompt. It explicitly tells the AI not to wrap the output in Markdown backticks or include conversational text." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I make ChatGPT write Markdown tables?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, our Markdown Table prompt instructs ChatGPT to structure its output cleanly into columns and rows without preambles." }
+        }
+      ]
+    })} />
   </Fragment>
 
   <div class="tool-page">
-    <div class="tool-hero">
-      <div class="tool-breadcrumb">
-        <a href="/">ThinkMode+</a>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-        <a href="/tools">Tools</a>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-        <a href="/tools/formatting-gallery">Formatting Gallery</a>
-      </div>
-      <h1>Free AI Formatting Template Gallery for Developers</h1>
-      <p class="tool-subtitle">Copy these proven prompt snippets to force ChatGPT, Claude, and Gemini into strict output formats like JSON, Tables, and Code Blocks.</p>
-    </div>
+    <ToolHero 
+      title="Free AI Formatting Template Gallery for Developers"
+      subtitle="Copy these proven prompt snippets to force ChatGPT, Claude, and Gemini into strict output formats like JSON, Tables, and Code Blocks."
+      breadcrumbToolName="Formatting Gallery"
+      toolPath="/tools/formatting-gallery"
+    />
+
+    <!-- ARIA Live region for screen readers -->
+    <div aria-live="polite" class="sr-only" id="sr-announcer"></div>
 
     <div class="gallery-grid">
-      
       <!-- Template 1 -->
       <div class="format-card">
         <div class="format-header">
@@ -42,9 +58,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <button class="copy-btn" data-content="Format the output strictly as a Markdown table. Do not include any text before or after the table. Ensure the columns are properly aligned.">Copy</button>
         </div>
         <p class="format-desc">Force the AI to output a clean, organized table perfect for comparisons or data extraction.</p>
-        <div class="format-code">
-Format the output strictly as a Markdown table. Do not include any text before or after the table. Ensure the columns are properly aligned.
-        </div>
+        <div class="format-code">Format the output strictly as a Markdown table. Do not include any text before or after the table. Ensure the columns are properly aligned.</div>
       </div>
 
       <!-- Template 2 -->
@@ -54,9 +68,7 @@ Format the output strictly as a Markdown table. Do not include any text before o
           <button class="copy-btn" data-content="Output the response strictly in valid JSON format. Do not wrap the JSON in Markdown backticks. Do not include any explanatory text before or after the JSON.">Copy</button>
         </div>
         <p class="format-desc">Essential for developers building AI pipelines who need parseable data without conversational fluff.</p>
-        <div class="format-code">
-Output the response strictly in valid JSON format. Do not wrap the JSON in Markdown backticks. Do not include any explanatory text before or after the JSON.
-        </div>
+        <div class="format-code">Output the response strictly in valid JSON format. Do not wrap the JSON in Markdown backticks. Do not include any explanatory text before or after the JSON.</div>
       </div>
 
       <!-- Template 3 -->
@@ -66,9 +78,7 @@ Output the response strictly in valid JSON format. Do not wrap the JSON in Markd
           <button class="copy-btn" data-content="Format the response as a numbered step-by-step guide. Use bold headers for each step. Provide a brief sentence explaining the expected outcome of each step.">Copy</button>
         </div>
         <p class="format-desc">Turns complex explanations into actionable, easy-to-follow tutorials.</p>
-        <div class="format-code">
-Format the response as a numbered step-by-step guide. Use bold headers for each step. Provide a brief sentence explaining the expected outcome of each step.
-        </div>
+        <div class="format-code">Format the response as a numbered step-by-step guide. Use bold headers for each step. Provide a brief sentence explaining the expected outcome of each step.</div>
       </div>
 
       <!-- Template 4 -->
@@ -78,77 +88,69 @@ Format the response as a numbered step-by-step guide. Use bold headers for each 
           <button class="copy-btn" data-content="Provide only the raw code block. Do not include any conversational text, greetings, or explanations before or after the code.">Copy</button>
         </div>
         <p class="format-desc">Stops the AI from explaining the code when you just want a snippet to copy-paste into your editor.</p>
-        <div class="format-code">
-Provide only the raw code block. Do not include any conversational text, greetings, or explanations before or after the code.
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Bridge CTA -->
-    <div class="bridge-cta">
-      <div class="bridge-content">
-        <div class="bridge-icon">
-          <img src="/logo.png" alt="ThinkMode+" width="40" height="40" style="object-fit: contain;" />
-        </div>
-        <div class="bridge-text">
-          <h3>Stop typing out formatting rules.</h3>
-          <p>ThinkMode+ injects a persistent formatting bar right above your ChatGPT chatbox, allowing you to request Tables, Code, and Lists with a single click.</p>
-        </div>
-        <a href="/" class="bridge-btn">Discover ThinkMode+</a>
+        <div class="format-code">Provide only the raw code block. Do not include any conversational text, greetings, or explanations before or after the code.</div>
       </div>
     </div>
+
+    <BridgeCTA 
+      heading="Stop typing out formatting rules."
+      subtext="ThinkMode+ injects a persistent formatting bar right above your ChatGPT chatbox, allowing you to request Tables, Code, and Lists with a single click."
+      link="/#features"
+      btnText="Discover ThinkMode+"
+    />
   </div>
 
   <style>
     .tool-page { max-width: 960px; margin: 0 auto; padding: 32px 24px 80px; }
-    .tool-hero { margin-bottom: 48px; }
-    .tool-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-faint); margin-bottom: 20px; }
-    .tool-breadcrumb a { color: var(--text-dim); text-decoration: none; }
-    .tool-breadcrumb a:hover { color: var(--text); }
-    .tool-breadcrumb svg { opacity: 0.4; }
-    .tool-hero h1 { font-size: 36px; font-weight: 700; margin: 0 0 12px; }
-    .tool-subtitle { font-size: 17px; color: var(--text-dim); max-width: 640px; margin: 0; }
 
     .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 64px; }
     @media (max-width: 768px) { .gallery-grid { grid-template-columns: 1fr; } }
 
-    .format-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; }
+    .format-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
+    .format-card:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.05); }
+    
     .format-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .format-header h2 { margin: 0; font-size: 18px; font-weight: 700; }
     .format-desc { color: var(--text-dim); font-size: 14px; margin: 0 0 16px; line-height: 1.5; }
     
-    .format-code { background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px; padding: 16px; font-family: var(--mono); font-size: 13px; color: var(--text); line-height: 1.6; white-space: pre-wrap; margin-top: auto; }
+    .format-code { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; font-family: var(--mono); font-size: 13px; color: var(--text); line-height: 1.6; white-space: pre-wrap; margin-top: auto; }
     
-    .copy-btn { padding: 6px 12px; background: var(--surface); border: 1px solid var(--border-hi); border-radius: 6px; color: var(--text); font-size: 12px; cursor: pointer; transition: all 0.2s; }
-    .copy-btn:hover { background: var(--surface-2); }
+    .copy-btn { padding: 6px 12px; background: var(--surface-2); border: 1px solid var(--border-hi); border-radius: 6px; color: var(--text); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .copy-btn:hover { background: var(--border); }
+    .copy-btn:active { transform: scale(0.95); }
+    .copy-btn:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(186, 58, 184, 0.2); }
     .copy-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.4); }
 
-    /* Bridge CTA */
-    .bridge-cta { background: linear-gradient(135deg, rgba(186, 58, 184, 0.08), rgba(137, 20, 183, 0.06)); border: 1px solid rgba(186, 58, 184, 0.15); border-radius: 16px; padding: 32px; display: flex; align-items: center; gap: 24px; }
-    .bridge-icon { width: 56px; height: 56px; background: rgba(255,255,255,0.05); border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .bridge-text { flex: 1; }
-    .bridge-text h3 { margin: 0 0 6px; font-size: 18px; font-weight: 600; }
-    .bridge-text p { margin: 0; font-size: 14px; color: var(--text-dim); }
-    .bridge-btn { padding: 12px 24px; background: var(--accent); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 600; flex-shrink: 0; }
-    .bridge-btn:hover { background: #d040ce; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
   </style>
 
   <script>
     document.addEventListener('astro:page-load', () => {
+      const copyTimers = new Map();
+      const srAnnouncer = document.getElementById('sr-announcer');
+
       document.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', async (e) => {
           const target = e.target;
           const text = target.getAttribute('data-content');
           try {
             await navigator.clipboard.writeText(text);
-            const orig = target.textContent;
+            if (srAnnouncer) srAnnouncer.textContent = "Template copied to clipboard";
+            
+            const orig = target.getAttribute('data-orig') || target.textContent;
+            target.setAttribute('data-orig', orig);
             target.textContent = 'Copied!';
             target.classList.add('copied');
-            setTimeout(() => {
+            
+            if (copyTimers.has(target)) clearTimeout(copyTimers.get(target));
+
+            const timerId = setTimeout(() => {
               target.textContent = orig;
               target.classList.remove('copied');
+              copyTimers.delete(target);
             }, 2000);
+            
+            copyTimers.set(target, timerId);
           } catch (err) {
             console.error('Copy failed');
           }

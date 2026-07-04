@@ -208,6 +208,11 @@ h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
   color: var(--text); 
 }
 
+.nav-links a.active {
+  color: var(--accent-pink);
+  font-weight: 600;
+}
+
 .nav-cta { 
   background: rgba(255, 255, 255, 0.08); 
   color: var(--text); 

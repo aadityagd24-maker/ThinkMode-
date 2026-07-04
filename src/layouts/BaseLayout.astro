@@ -65,7 +65,7 @@ const ogImageUrl = `${siteUrl}${ogImage}`;
       </a>
       <div class="nav-links">
         <a href="/all-extensions" class="nav-ext-btn">All Extensions ✨</a>
-        <a href="/tools">Free Tools</a>
+        <a href="/tools" class={Astro.url.pathname.startsWith('/tools') ? 'active' : ''}>Free Tools</a>
         <a href="/#features">Features</a>
         <a href="/#pricing">Pricing</a>
         <a href="/#faq">FAQ</a>

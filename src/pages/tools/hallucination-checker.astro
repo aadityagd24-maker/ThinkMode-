@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ToolHero from '../../components/ToolHero.astro';
+import BridgeCTA from '../../components/BridgeCTA.astro';
 ---
 
 <BaseLayout
@@ -18,26 +20,34 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       "description": "Generate custom self-reflection prompts to stop AI hallucinations and verify facts.",
       "applicationCategory": "UtilityApplication"
     })} />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Fact-Check ChatGPT Outputs",
+      "description": "Use a self-reflection prompt to force ChatGPT to audit its own answers for hallucinations.",
+      "step": [
+        { "@type": "HowToStep", "name": "Paste the Claim", "text": "Paste the suspicious AI output into the Fact-Checker input field." },
+        { "@type": "HowToStep", "name": "Set Strictness", "text": "Choose whether you want a moderate review or a strict, highly skeptical audit." },
+        { "@type": "HowToStep", "name": "Generate & Copy", "text": "Generate the prompt and copy it back into your ChatGPT conversation." }
+      ]
+    })} />
   </Fragment>
 
   <div class="tool-page">
-    <div class="tool-hero">
-      <div class="tool-breadcrumb">
-        <a href="/">ThinkMode+</a>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-        <a href="/tools">Tools</a>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-        <a href="/tools/hallucination-checker">Fact Checker</a>
-      </div>
-      <h1>Stop AI Hallucinations with the Free Fact-Checker Prompt Builder</h1>
-      <p class="tool-subtitle">Build a powerful "self-reflection" prompt that forces ChatGPT to audit its own previous answer for factual inaccuracies and logical flaws.</p>
-    </div>
+    <ToolHero 
+      title="Stop AI Hallucinations with the Free Fact-Checker Prompt Builder"
+      subtitle="Build a powerful 'self-reflection' prompt that forces ChatGPT to audit its own previous answer for factual inaccuracies and logical flaws."
+      breadcrumbToolName="Fact Checker"
+      toolPath="/tools/hallucination-checker"
+    />
 
     <div class="checker-tool">
       <!-- Input Section -->
       <div class="checker-panel input-panel">
         <div class="panel-header">
           <h2>1. Configure the Audit</h2>
+          <button id="clear-btn" class="ghost-btn">Clear</button>
         </div>
         
         <div class="form-group">
@@ -64,6 +74,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <button id="copy-btn" class="copy-btn" disabled>Copy</button>
         </div>
         
+        <!-- ARIA Live region -->
+        <div aria-live="polite" class="sr-only" id="sr-announcer"></div>
+        
         <div class="output-box" id="output-box">
           <span class="placeholder-text">Configure the audit on the left to generate your prompt...</span>
         </div>
@@ -71,67 +84,62 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </div>
     </div>
 
-    <!-- Bridge CTA -->
-    <div class="bridge-cta">
-      <div class="bridge-content">
-        <div class="bridge-icon">
-          <img src="/logo.png" alt="ThinkMode+" width="40" height="40" style="object-fit: contain;" />
-        </div>
-        <div class="bridge-text">
-          <h3>Don't want to doubt your AI?</h3>
-          <p>ThinkMode+ includes a <strong>Precision Toggle</strong> that automatically forces the AI to verify factual claims before stating them. Stop hallucination before it happens.</p>
-        </div>
-        <a href="/" class="bridge-btn">Discover ThinkMode+</a>
-      </div>
-    </div>
+    <BridgeCTA 
+      heading="Don't want to doubt your AI?"
+      subtext="ThinkMode+ includes a Precision Toggle that automatically forces the AI to verify factual claims before stating them. Stop hallucination before it happens."
+      link="/#features"
+      btnText="Discover ThinkMode+"
+    />
   </div>
 
   <style>
     .tool-page { max-width: 960px; margin: 0 auto; padding: 32px 24px 80px; }
-    .tool-hero { margin-bottom: 48px; }
-    .tool-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-faint); margin-bottom: 20px; }
-    .tool-breadcrumb a { color: var(--text-dim); text-decoration: none; }
-    .tool-breadcrumb a:hover { color: var(--text); }
-    .tool-breadcrumb svg { opacity: 0.4; }
-    .tool-hero h1 { font-size: 36px; font-weight: 700; margin: 0 0 12px; }
-    .tool-subtitle { font-size: 17px; color: var(--text-dim); max-width: 640px; margin: 0; }
 
     .checker-tool { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 64px; }
     @media (max-width: 768px) { .checker-tool { grid-template-columns: 1fr; } }
 
     .checker-panel { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; }
-    .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    
+    .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 8px;}
     .panel-header h2 { font-size: 18px; font-weight: 600; margin: 0; }
+    
+    .ghost-btn { background: transparent; border: none; color: var(--text-dim); font-size: 13px; cursor: pointer; transition: color 0.2s; padding: 4px 8px; }
+    .ghost-btn:hover { color: var(--accent-pink); }
     
     .form-group { margin-bottom: 20px; }
     .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
     
-    #claim-input { width: 100%; min-height: 120px; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--border-hi); border-radius: 8px; color: var(--text); font-family: var(--display); font-size: 14px; resize: vertical; }
-    #claim-input:focus { outline: none; border-color: var(--accent); }
+    #claim-input { width: 100%; min-height: 120px; padding: 12px; background: var(--surface); border: 1px solid var(--border-hi); border-radius: 8px; color: var(--text); font-family: var(--display); font-size: 14px; resize: vertical; transition: border-color 0.3s, box-shadow 0.3s; }
+    #claim-input:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(186, 58, 184, 0.2); }
+    #claim-input.error { border-color: #ef4444; animation: shake 0.4s; }
     
-    select { width: 100%; padding: 10px 12px; background: var(--surface); border: 1px solid var(--border-hi); border-radius: 8px; color: var(--text); font-size: 14px; }
+    select { width: 100%; padding: 10px 12px; background: var(--surface); border: 1px solid var(--border-hi); border-radius: 8px; color: var(--text); font-size: 14px; transition: border-color 0.2s; }
+    select:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(186, 58, 184, 0.2); }
     
-    .action-btn { width: 100%; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: auto; }
-    .action-btn:hover { background: #d040ce; }
+    .action-btn { width: 100%; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); margin-top: auto; }
+    .action-btn:hover { background: #d040ce; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(186, 58, 184, 0.2); }
+    .action-btn:active { transform: scale(0.98); }
     
-    .output-box { flex: 1; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px; padding: 16px; font-family: var(--mono); font-size: 13px; color: var(--text); line-height: 1.6; white-space: pre-wrap; margin-bottom: 12px; min-height: 200px; }
+    .output-box { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; font-family: var(--mono); font-size: 13px; color: var(--text); line-height: 1.6; white-space: pre-wrap; margin-bottom: 12px; min-height: 200px; transition: background-color 0.3s; }
+    .output-box.updated { background-color: rgba(186, 58, 184, 0.1); }
     .placeholder-text { color: var(--text-faint); font-style: italic; }
     
     .output-hint { font-size: 13px; color: var(--text-dim); margin: 0; }
     
-    .copy-btn { padding: 6px 16px; background: var(--surface); border: 1px solid var(--border-hi); border-radius: 6px; color: var(--text); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-    .copy-btn:hover:not(:disabled) { background: var(--surface-2); }
+    .copy-btn { padding: 6px 16px; background: var(--surface-2); border: 1px solid var(--border-hi); border-radius: 6px; color: var(--text); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .copy-btn:hover:not(:disabled) { background: var(--border); }
+    .copy-btn:active:not(:disabled) { transform: scale(0.95); }
     .copy-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .copy-btn:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(186, 58, 184, 0.2); }
     .copy-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.4); }
 
-    /* Bridge CTA */
-    .bridge-cta { background: linear-gradient(135deg, rgba(186, 58, 184, 0.08), rgba(137, 20, 183, 0.06)); border: 1px solid rgba(186, 58, 184, 0.15); border-radius: 16px; padding: 32px; display: flex; align-items: center; gap: 24px; }
-    .bridge-icon { width: 56px; height: 56px; background: rgba(255,255,255,0.05); border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .bridge-text { flex: 1; }
-    .bridge-text h3 { margin: 0 0 6px; font-size: 18px; font-weight: 600; }
-    .bridge-text p { margin: 0; font-size: 14px; color: var(--text-dim); }
-    .bridge-btn { padding: 12px 24px; background: var(--accent); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 600; flex-shrink: 0; }
-    .bridge-btn:hover { background: #d040ce; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
   </style>
 
   <script>
@@ -141,13 +149,37 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       const strictnessSelect = document.getElementById('strictness-select');
       const outputBox = document.getElementById('output-box');
       const copyBtn = document.getElementById('copy-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const srAnnouncer = document.getElementById('sr-announcer');
 
       if (!generateBtn || !claimInput) return;
 
+      // Restore session storage
+      const savedClaim = sessionStorage.getItem('hc_claim_text');
+      if (savedClaim) claimInput.value = savedClaim;
+      claimInput.addEventListener('input', () => {
+        claimInput.classList.remove('error');
+        sessionStorage.setItem('hc_claim_text', claimInput.value);
+      });
+
+      clearBtn.addEventListener('click', () => {
+        claimInput.value = '';
+        sessionStorage.removeItem('hc_claim_text');
+        outputBox.innerHTML = '<span class="placeholder-text">Configure the audit on the left to generate your prompt...</span>';
+        copyBtn.disabled = true;
+        claimInput.focus();
+      });
+
       generateBtn.addEventListener('click', () => {
         const claim = claimInput.value.trim();
-        const strictness = strictnessSelect.value;
         
+        if (!claim) {
+          claimInput.classList.add('error');
+          claimInput.focus();
+          return;
+        }
+
+        const strictness = strictnessSelect.value;
         let instructions = '';
         if (strictness === 'moderate') {
           instructions = 'Please review the text below for any factual inaccuracies, logical inconsistencies, or hallucinations. If you find any errors, explicitly correct them.';
@@ -157,22 +189,43 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           instructions = 'Assume the text below contains AI hallucinations and factual errors. Your task is to play devil\'s advocate and actively try to debunk the claims made. Only accept claims that are demonstrably true, and aggressively highlight any fabricated information.';
         }
 
-        const promptText = `I want you to perform a self-reflection and fact-check on the following text.\n\n### Instructions\n${instructions}\n\n### Text to Audit\n"""\n${claim || '[Insert the output you want to fact-check here]'}\n"""`;
+        const promptText = `I want you to perform a self-reflection and fact-check on the following text.\n\n### Instructions\n${instructions}\n\n### Text to Audit\n"""\n${claim}\n"""`;
 
         outputBox.textContent = promptText;
         copyBtn.disabled = false;
+
+        // Flash interaction
+        outputBox.classList.add('updated');
+        setTimeout(() => outputBox.classList.remove('updated'), 300);
+
+        // Smart scroll mobile only
+        if (window.innerWidth < 768) {
+          const rect = outputBox.getBoundingClientRect();
+          if (rect.bottom > window.innerHeight || rect.top < 0) {
+            outputBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
       });
 
+      let copyTimerId = null;
       if (copyBtn) {
         copyBtn.addEventListener('click', async () => {
           if (copyBtn.disabled) return;
           try {
             await navigator.clipboard.writeText(outputBox.textContent);
+            if (srAnnouncer) srAnnouncer.textContent = 'Prompt copied to clipboard';
+            
+            const orig = copyBtn.getAttribute('data-orig') || copyBtn.textContent;
+            copyBtn.setAttribute('data-orig', orig);
             copyBtn.textContent = 'Copied!';
             copyBtn.classList.add('copied');
-            setTimeout(() => {
-              copyBtn.textContent = 'Copy';
+            
+            if (copyTimerId) clearTimeout(copyTimerId);
+            
+            copyTimerId = setTimeout(() => {
+              copyBtn.textContent = orig;
               copyBtn.classList.remove('copied');
+              copyTimerId = null;
             }, 2000);
           } catch (err) {
             console.error('Copy failed');

@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ToolHero from '../../components/ToolHero.astro';
+import BridgeCTA from '../../components/BridgeCTA.astro';
 ---
 
 <BaseLayout
@@ -8,879 +10,282 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   canonicalPath="/tools/prompt-optimizer"
 >
   <Fragment slot="head">
-    <meta name="keywords" content="chatgpt prompt optimizer, improve chatgpt prompt, make chatgpt smarter, chatgpt prompt enhancer, better chatgpt responses, ai prompt improver, optimize prompt for chatgpt, chatgpt prompt engineering tool, free prompt optimizer, how to write better prompts chatgpt">
+    <meta name="keywords" content="ai prompt generator, chatgpt prompt optimizer, improve chatgpt prompt, make chatgpt smarter, prompt enhancer">
 
-    <!-- WebApplication Schema -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "AI Prompt Optimizer",
+      "name": "ChatGPT Prompt Optimizer",
       "url": "https://thinkmodeplus.com/tools/prompt-optimizer",
-      "description": "Paste a weak prompt, get an optimized expert-level version instantly. Free AI prompt enhancer for ChatGPT, Claude, and Gemini.",
+      "description": "Instantly optimize and enhance ChatGPT prompts.",
       "applicationCategory": "UtilityApplication",
       "operatingSystem": "Any",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "ThinkMode+"
-      }
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
     })} />
 
-    <!-- FAQ Schema -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Why do my ChatGPT prompts get bad responses?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Most prompts fail because they're too vague, lack context, and don't tell the AI how to think or format its response. A prompt like 'write me a marketing email' gives ChatGPT no information about audience, tone, length, or goal. Our optimizer adds these missing elements automatically."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What does the prompt optimizer actually change?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The optimizer applies proven prompt engineering techniques: it adds an expert role definition, a step-by-step thinking instruction, specific output formatting rules, and context about what makes a good response. These techniques are backed by research from OpenAI and prompt engineering practitioners."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Does this work with Claude and Gemini too?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. The prompt engineering principles used by this optimizer are universal and work across all major AI models including ChatGPT (GPT-4, GPT-4o), Anthropic Claude, Google Gemini, and others. Better prompts produce better results on any model."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is prompt engineering really necessary?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Studies show that well-structured prompts can improve AI output quality by 50-80%. Simple techniques like adding 'Think step by step' or defining an expert role dramatically reduce hallucinations and increase accuracy. Our optimizer applies these techniques automatically so you don't have to learn them."
-          }
-        }
+      "@type": "HowTo",
+      "name": "How to Optimize a ChatGPT Prompt",
+      "description": "Use the free Prompt Optimizer to automatically inject roles, frameworks, and instructions into weak prompts.",
+      "step": [
+        { "@type": "HowToStep", "name": "Paste Weak Prompt", "text": "Paste your basic idea into the input box." },
+        { "@type": "HowToStep", "name": "Select Enhancement Level", "text": "Choose between Minimal, Standard, or Deep Thinking enhancement levels." },
+        { "@type": "HowToStep", "name": "Generate & Copy", "text": "Click Generate and copy the enhanced prompt." }
       ]
     })} />
   </Fragment>
 
   <div class="tool-page">
+    <ToolHero 
+      title="Free AI Prompt Generator & Optimizer"
+      subtitle="Paste your basic prompt and get an expert-level version instantly. Works with ChatGPT, Claude, and Gemini — free, no signup."
+      breadcrumbToolName="Prompt Optimizer"
+      toolPath="/tools/prompt-optimizer"
+    />
 
-    <!-- Hero -->
-    <div class="tool-hero">
-      <div class="tool-breadcrumb">
-        <a href="/">ThinkMode+</a>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-        <a href="/tools/prompt-optimizer">Tools</a>
-      </div>
-      <h1>Free AI Prompt Generator & Optimizer</h1>
-      <p class="tool-subtitle">Paste your basic prompt and get an expert-level version instantly. Works with ChatGPT, Claude, and Gemini — free, no signup.</p>
-    </div>
-
-    <!-- Optimizer -->
-    <div class="optimizer">
-
+    <div class="optimizer-tool">
       <!-- Input Side -->
-      <div class="opt-panel opt-input">
+      <div class="panel input-panel">
         <div class="panel-header">
-          <h2 class="panel-title">
-            <span class="panel-label">Your Prompt</span>
-            <span class="panel-badge badge-before">Before</span>
-          </h2>
+          <h2>Your Basic Prompt</h2>
+          <button id="clear-btn" class="ghost-btn">Clear</button>
         </div>
-        <textarea
-          id="input-prompt"
-          placeholder="Type or paste your prompt here...&#10;&#10;Example: write me a marketing email for my SaaS product"
-          spellcheck="false"
-        ></textarea>
-        <div class="panel-footer">
-          <div class="opt-settings">
-            <label for="enhance-level" class="sr-only">Enhancement level</label>
-            <select id="enhance-level">
-              <option value="standard">Standard Enhance</option>
-              <option value="deep">Deep Enhance (More Detail)</option>
-              <option value="minimal">Minimal (Light Touch)</option>
+        <textarea id="basic-prompt" placeholder="E.g., Write a blog post about marketing..."></textarea>
+        
+        <div class="controls">
+          <div class="control-group">
+            <label for="enhancement-level">Enhancement Level</label>
+            <select id="enhancement-level">
+              <option value="minimal">Minimal (Fix clarity & tone)</option>
+              <option value="standard" selected>Standard (Add role & structure)</option>
+              <option value="deep">Deep Thinking (Add logic frameworks)</option>
             </select>
           </div>
-          <button id="optimize-btn" class="optimize-btn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-            Optimize Prompt
-          </button>
+          <button id="optimize-btn" class="action-btn">Optimize Prompt</button>
         </div>
-      </div>
-
-      <!-- Arrow -->
-      <div class="opt-arrow">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </div>
-      <div class="opt-arrow-mobile">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       </div>
 
       <!-- Output Side -->
-      <div class="opt-panel opt-output">
+      <div class="panel output-panel">
         <div class="panel-header">
-          <h2 class="panel-title">
-            <span class="panel-label">Optimized Prompt</span>
-            <span class="panel-badge badge-after">After</span>
-          </h2>
-          <button id="copy-btn" class="copy-btn" aria-label="Copy optimized prompt">
-            <svg id="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            <svg id="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M20 6L9 17l-5-5"/></svg>
+          <div class="output-title">
+            <h2>Optimized Prompt</h2>
+            <div id="detected-role" class="role-badge" style="display: none;"></div>
+          </div>
+          <button id="copy-btn" class="action-btn secondary" disabled>
+            <svg id="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
             <span id="copy-text">Copy</span>
           </button>
         </div>
+
+        <div aria-live="polite" class="sr-only" id="sr-announcer"></div>
+
         <div class="output-box" id="output-box">
-          <span class="placeholder-text">Your optimized prompt will appear here.<br><br>Try pasting a prompt on the left and clicking "Optimize Prompt".</span>
+          <span class="placeholder-text">Enter your prompt on the left to see the optimized version here...</span>
         </div>
-        <div class="panel-footer">
-          <div class="enhancement-tags" id="enhancement-tags">
-            <!-- Tags appear here after optimization -->
-          </div>
+
+        <div class="enhancement-tags" id="enhancement-tags">
+          <!-- Tags injected by JS -->
         </div>
       </div>
     </div>
 
-    <!-- What This Tool Does -->
-    <div class="explain-section">
-      <h2>What the Optimizer Does</h2>
-      <div class="explain-grid">
-        <div class="explain-card">
-          <div class="explain-icon">🎯</div>
-          <h3>Adds Expert Role</h3>
-          <p>Assigns a relevant expert persona so the AI draws on specialized knowledge instead of generic responses.</p>
-        </div>
-        <div class="explain-card">
-          <div class="explain-icon">🧠</div>
-          <h3>Forces Deep Thinking</h3>
-          <p>Injects "think step-by-step" and reasoning instructions to reduce hallucinations and increase accuracy.</p>
-        </div>
-        <div class="explain-card">
-          <div class="explain-icon">📋</div>
-          <h3>Structures the Output</h3>
-          <p>Adds formatting rules (headers, bullets, tables) so you get organized, scannable responses every time.</p>
-        </div>
-        <div class="explain-card">
-          <div class="explain-icon">🚫</div>
-          <h3>Removes Fluff</h3>
-          <p>Tells the AI to skip filler phrases like "Certainly!" and "Great question!" — just the substance.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bridge CTA -->
-    <div class="bridge-cta">
-      <div class="bridge-content">
-        <div class="bridge-icon">
-          <img src="/logo.png" alt="ThinkMode+" width="40" height="40" style="object-fit: contain;" />
-        </div>
-        <div class="bridge-text">
-          <h3>Why optimize prompts manually every time?</h3>
-          <p>ThinkMode+ automatically forces ChatGPT, Claude, and Gemini into <strong>deep thinking mode</strong> on every single prompt you send. No copy-pasting, no manual edits — just install and go.</p>
-        </div>
-        <a href="/" class="bridge-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C8.21 0 4.831 1.757 2.632 4.476L6.5 11.178c.844-2.457 3.14-4.223 5.908-4.223h9.452C20.081 2.923 16.368 0 12 0z"/><path d="M22.951 14.153a8.163 8.163 0 00-1.464-3.642C19.782 8.01 17.149 6.22 14.075 5.86c-2.915-.341-5.748.868-7.794 2.872a9.231 9.231 0 00-2.614 4.545c1.378-.458 3.123-.612 4.606-.053.864.325 1.644.897 2.251 1.625.598.718 1.026 1.583 1.247 2.493a7.359 7.359 0 01.127 2.827c-.201 1.229-.691 2.378-1.392 3.391-.707 1.018-1.631 1.89-2.73 2.502 1.12.383 2.377.585 3.598.541a10.609 10.609 0 005.158-1.439c1.905-1.088 3.565-2.83 4.561-4.82a9.78 9.78 0 001.365-4.43c.036-.576.223-1.206.493-1.761z"/></svg>
-          Discover ThinkMode+
-        </a>
-      </div>
-    </div>
-
-    <!-- FAQ Section -->
-    <div class="faq-section">
-      <h2>Frequently Asked Questions</h2>
-      <div class="faq-list">
-        <details class="faq-item">
-          <summary>Why do my ChatGPT prompts get bad responses?</summary>
-          <p>Most prompts fail because they're too vague, lack context, and don't tell the AI how to think or format its response. A prompt like "write me a marketing email" gives ChatGPT no information about audience, tone, length, or goal. Our optimizer adds these missing elements automatically.</p>
-        </details>
-        <details class="faq-item">
-          <summary>What does the prompt optimizer actually change?</summary>
-          <p>The optimizer applies proven prompt engineering techniques: it adds an expert role definition, a step-by-step thinking instruction, specific output formatting rules, and context about what makes a good response. These techniques are backed by research from OpenAI and prompt engineering practitioners.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Does this work with Claude and Gemini too?</summary>
-          <p>Yes! The prompt engineering principles used by this optimizer are universal and work across all major AI models including ChatGPT (GPT-4, GPT-4o), Anthropic Claude, Google Gemini, and others. Better prompts produce better results on any model.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Is prompt engineering really necessary?</summary>
-          <p>Studies show that well-structured prompts can improve AI output quality by 50-80%. Simple techniques like adding "Think step by step" or defining an expert role dramatically reduce hallucinations and increase accuracy. Our optimizer applies these techniques automatically so you don't have to learn them.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Is my data stored or sent anywhere?</summary>
-          <p>No. Everything runs entirely in your browser using client-side JavaScript. Your prompts never leave your device — nothing is sent to any server. This tool is 100% private.</p>
-        </details>
-      </div>
-    </div>
-
+    <BridgeCTA 
+      heading="Why optimize prompts manually every time?"
+      subtext="ThinkMode+ automatically forces ChatGPT, Claude, and Gemini into deep thinking mode on every single prompt you send. No copy-pasting, no manual edits."
+      link="/#features"
+      btnText="Discover ThinkMode+"
+    />
   </div>
 
   <style>
-    /* ── Tool Page Layout ── */
-    .tool-page {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 32px 24px 80px;
-    }
+    .tool-page { max-width: 1000px; margin: 0 auto; padding: 32px 24px 80px; }
 
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0,0,0,0);
-      white-space: nowrap;
-      border: 0;
-    }
+    .optimizer-tool { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 64px; }
+    @media (max-width: 768px) { .optimizer-tool { grid-template-columns: 1fr; } }
 
-    /* ── Hero ── */
-    .tool-hero {
-      margin-bottom: 48px;
-    }
+    .panel { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; }
+    .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;}
+    .panel-header h2 { font-size: 18px; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 8px; }
+    
+    .ghost-btn { background: transparent; border: none; color: var(--text-dim); font-size: 13px; cursor: pointer; transition: color 0.2s; padding: 4px 8px; }
+    .ghost-btn:hover { color: var(--accent-pink); }
+    
+    #basic-prompt { width: 100%; min-height: 200px; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: var(--display); font-size: 15px; line-height: 1.6; resize: vertical; margin-bottom: 24px; transition: border-color 0.3s, box-shadow 0.3s; }
+    #basic-prompt:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(186, 58, 184, 0.2); }
+    #basic-prompt.error { border-color: #ef4444; animation: shake 0.4s; }
 
-    .tool-breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      color: var(--text-faint);
-      margin-bottom: 20px;
-    }
-    .tool-breadcrumb a {
-      color: var(--text-dim);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .tool-breadcrumb a:hover { color: var(--text); }
-    .tool-breadcrumb svg { opacity: 0.4; }
+    .controls { display: flex; flex-direction: column; gap: 16px; margin-top: auto; }
+    .control-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text-dim); margin-bottom: 6px; }
+    select { width: 100%; padding: 10px 12px; background: var(--surface); border: 1px solid var(--border-hi); border-radius: 8px; color: var(--text); font-size: 14px; transition: border-color 0.2s; }
+    select:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(186, 58, 184, 0.2); }
 
-    .tool-hero h1 {
-      font-size: 36px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin: 0 0 12px;
-      line-height: 1.2;
-    }
+    .action-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+    .action-btn:hover:not(:disabled) { background: #d040ce; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(186, 58, 184, 0.2); }
+    .action-btn:active:not(:disabled) { transform: scale(0.98); }
+    .action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    
+    .action-btn.secondary { background: var(--surface-2); border: 1px solid var(--border-hi); color: var(--text); padding: 8px 16px; font-size: 13px; }
+    .action-btn.secondary:hover:not(:disabled) { background: var(--border); box-shadow: none; }
+    .action-btn.secondary.copied { color: #22c55e; border-color: rgba(34,197,94,0.4); }
 
-    .tool-subtitle {
-      font-size: 17px;
-      color: var(--text-dim);
-      margin: 0;
-      line-height: 1.6;
-      max-width: 640px;
-    }
+    .output-box { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; font-family: var(--mono); font-size: 14px; color: var(--text); line-height: 1.6; white-space: pre-wrap; margin-bottom: 16px; min-height: 250px; overflow-y: auto; transition: background-color 0.3s; }
+    .output-box.updated { background-color: rgba(186, 58, 184, 0.1); }
+    .placeholder-text { color: var(--text-faint); font-style: italic; }
 
-    /* ── Optimizer Layout ── */
-    .optimizer {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 16px;
-      align-items: stretch;
-      margin-bottom: 64px;
-    }
+    .role-badge { background: rgba(186, 58, 184, 0.15); color: var(--accent-pink); border: 1px solid rgba(186, 58, 184, 0.3); padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.5px; }
+    .output-title { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 
-    @media (max-width: 800px) {
-      .optimizer {
-        grid-template-columns: 1fr;
-      }
-      .opt-arrow { display: none; }
-      .opt-arrow-mobile { display: flex !important; }
-    }
+    .enhancement-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .e-tag { font-size: 12px; padding: 4px 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; color: var(--text-dim); display: flex; align-items: center; gap: 4px; }
+    .e-tag.active { color: var(--text); background: rgba(255,255,255,0.1); border-color: var(--border-hi); }
+    .e-tag svg { width: 12px; height: 12px; color: #22c55e; }
 
-    .opt-arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-top: 60px;
-    }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
 
-    .opt-arrow-mobile {
-      display: none;
-      justify-content: center;
-      padding: 8px 0;
-    }
-
-    /* ── Panels ── */
-    .opt-panel {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 24px 0;
-    }
-
-    .panel-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0;
-    }
-
-    .panel-label {
-      font-size: 14px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-dim);
-    }
-
-    .panel-badge {
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 4px;
-      letter-spacing: 0.5px;
-    }
-
-    .badge-before {
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-faint);
-    }
-
-    .badge-after {
-      background: rgba(186, 58, 184, 0.15);
-      color: var(--accent-pink);
-    }
-
-    /* ── Input Textarea ── */
-    #input-prompt {
-      flex: 1;
-      min-height: 280px;
-      margin: 16px 24px;
-      padding: 16px;
-      background: rgba(0, 0, 0, 0.2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text);
-      font-family: var(--display);
-      font-size: 14px;
-      line-height: 1.7;
-      resize: none;
-      transition: border-color 0.2s;
-    }
-
-    #input-prompt::placeholder {
-      color: var(--text-faint);
-    }
-
-    #input-prompt:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(186, 58, 184, 0.1);
-    }
-
-    /* ── Panel Footer ── */
-    .panel-footer {
-      padding: 16px 24px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .opt-settings select {
-      padding: 8px 36px 8px 12px;
-      background: var(--surface);
-      border: 1px solid var(--border-hi);
-      border-radius: 8px;
-      color: var(--text-dim);
-      font-family: var(--display);
-      font-size: 13px;
-      cursor: pointer;
-      appearance: none;
-      -webkit-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23A1A1AA' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 10px center;
-    }
-
-    .opt-settings select:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
-    .optimize-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-family: var(--display);
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .optimize-btn:hover {
-      background: #d040ce;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(186, 58, 184, 0.3);
-    }
-
-    .optimize-btn:active {
-      transform: translateY(0);
-    }
-
-    /* ── Output Box ── */
-    .output-box {
-      flex: 1;
-      min-height: 280px;
-      margin: 16px 24px;
-      padding: 16px;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-family: var(--display);
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--text);
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      overflow-y: auto;
-    }
-
-    .placeholder-text {
-      color: var(--text-faint);
-      font-style: italic;
-    }
-
-    .copy-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      background: var(--surface);
-      border: 1px solid var(--border-hi);
-      border-radius: 8px;
-      color: var(--text-dim);
-      font-family: var(--display);
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .copy-btn:hover {
-      background: var(--surface-2);
-      color: var(--text);
-    }
-    .copy-btn.copied {
-      border-color: rgba(34, 197, 94, 0.4);
-      color: #22c55e;
-    }
-
-    /* ── Enhancement Tags ── */
-    .enhancement-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .enhance-tag {
-      font-size: 11px;
-      font-weight: 500;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: rgba(186, 58, 184, 0.1);
-      color: var(--accent-pink);
-      border: 1px solid rgba(186, 58, 184, 0.1);
-    }
-
-    /* ── Explain Section ── */
-    .explain-section {
-      margin-bottom: 64px;
-    }
-
-    .explain-section h2 {
-      font-size: 24px;
-      font-weight: 700;
-      margin: 0 0 28px;
-    }
-
-    .explain-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    @media (max-width: 800px) {
-      .explain-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    @media (max-width: 480px) {
-      .explain-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .explain-card {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-    }
-
-    .explain-icon {
-      font-size: 24px;
-      margin-bottom: 12px;
-    }
-
-    .explain-card h3 {
-      font-size: 15px;
-      font-weight: 600;
-      margin: 0 0 6px;
-    }
-
-    .explain-card p {
-      font-size: 13px;
-      color: var(--text-dim);
-      margin: 0;
-      line-height: 1.6;
-    }
-
-    /* ── Bridge CTA ── */
-    .bridge-cta {
-      background: linear-gradient(135deg, rgba(186, 58, 184, 0.08) 0%, rgba(137, 20, 183, 0.06) 100%);
-      border: 1px solid rgba(186, 58, 184, 0.15);
-      border-radius: 16px;
-      padding: 32px;
-      margin-bottom: 64px;
-    }
-
-    .bridge-content {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    @media (max-width: 768px) {
-      .bridge-content {
-        flex-direction: column;
-        text-align: center;
-      }
-    }
-
-    .bridge-icon {
-      flex-shrink: 0;
-      width: 56px;
-      height: 56px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .bridge-text {
-      flex: 1;
-    }
-
-    .bridge-text h3 {
-      font-size: 18px;
-      font-weight: 600;
-      margin: 0 0 6px;
-    }
-
-    .bridge-text p {
-      font-size: 14px;
-      color: var(--text-dim);
-      margin: 0;
-      line-height: 1.6;
-    }
-
-    .bridge-btn {
-      flex-shrink: 0;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 14px;
-      text-decoration: none;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-
-    .bridge-btn:hover {
-      background: #d040ce;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 20px rgba(186, 58, 184, 0.3);
-    }
-
-    /* ── FAQ ── */
-    .faq-section h2 {
-      font-size: 24px;
-      font-weight: 700;
-      margin: 0 0 28px;
-    }
-
-    .faq-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .faq-item {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .faq-item summary {
-      padding: 18px 24px;
-      font-weight: 600;
-      font-size: 15px;
-      cursor: pointer;
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: color 0.2s;
-    }
-
-    .faq-item summary::-webkit-details-marker { display: none; }
-
-    .faq-item summary::after {
-      content: '+';
-      font-size: 20px;
-      color: var(--text-faint);
-      font-weight: 300;
-      transition: transform 0.2s;
-    }
-
-    .faq-item[open] summary::after {
-      content: '−';
-    }
-
-    .faq-item summary:hover { color: var(--accent-pink); }
-
-    .faq-item p {
-      padding: 0 24px 18px;
-      margin: 0;
-      font-size: 14px;
-      color: var(--text-dim);
-      line-height: 1.7;
-    }
-
-    .faq-item a {
-      color: var(--accent-pink);
-      text-decoration: underline;
-      text-underline-offset: 2px;
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
     }
   </style>
 
   <script>
     document.addEventListener('astro:page-load', () => {
+      const basicInput = document.getElementById('basic-prompt');
+      const levelSelect = document.getElementById('enhancement-level');
+      const optimizeBtn = document.getElementById('optimize-btn');
+      const outputBox = document.getElementById('output-box');
+      const copyBtn = document.getElementById('copy-btn');
+      const detectedRoleBadge = document.getElementById('detected-role');
+      const tagsContainer = document.getElementById('enhancement-tags');
+      const clearBtn = document.getElementById('clear-btn');
+      const srAnnouncer = document.getElementById('sr-announcer');
 
-      // ── Keyword Detection for Role Assignment ──
+      if (!basicInput || !optimizeBtn) return;
+
+      const savedPrompt = sessionStorage.getItem('po_basic_prompt');
+      if (savedPrompt) basicInput.value = savedPrompt;
+      basicInput.addEventListener('input', () => {
+        basicInput.classList.remove('error');
+        sessionStorage.setItem('po_basic_prompt', basicInput.value);
+      });
+
+      clearBtn.addEventListener('click', () => {
+        basicInput.value = '';
+        sessionStorage.removeItem('po_basic_prompt');
+        outputBox.innerHTML = '<span class="placeholder-text">Enter your prompt on the left to see the optimized version here...</span>';
+        copyBtn.disabled = true;
+        detectedRoleBadge.style.display = 'none';
+        tagsContainer.innerHTML = '';
+        basicInput.focus();
+      });
+
       const roleKeywords = {
-        code: ['code', 'function', 'api', 'debug', 'javascript', 'python', 'react', 'css', 'html', 'sql', 'database', 'backend', 'frontend', 'deploy', 'server', 'git', 'algorithm', 'bug', 'error', 'build', 'test', 'component', 'app', 'software', 'developer', 'program'],
-        marketing: ['marketing', 'email', 'campaign', 'brand', 'conversion', 'landing page', 'ad', 'copy', 'headline', 'cta', 'engagement', 'funnel', 'growth', 'seo', 'content', 'social media', 'audience', 'lead'],
-        writing: ['write', 'blog', 'article', 'essay', 'story', 'script', 'creative', 'paragraph', 'description', 'rewrite', 'edit', 'draft', 'outline', 'book', 'novel', 'poem', 'chapter'],
-        business: ['business', 'strategy', 'revenue', 'startup', 'pitch', 'investor', 'market', 'competitive', 'pricing', 'product', 'customer', 'b2b', 'b2c', 'saas', 'kpi', 'roi', 'plan'],
-        data: ['data', 'analyze', 'analysis', 'chart', 'statistics', 'trend', 'metric', 'dashboard', 'report', 'excel', 'csv', 'visualization', 'graph', 'forecast'],
-        teaching: ['explain', 'teach', 'learn', 'understand', 'what is', 'how does', 'how do', 'beginner', 'tutorial', 'guide', 'introduction', 'basics', 'concept', 'simple terms'],
-        design: ['design', 'ui', 'ux', 'wireframe', 'prototype', 'layout', 'color', 'typography', 'user experience', 'interface', 'figma', 'mockup', 'responsive']
+        'Software Engineer': ['code', 'script', 'debug', 'api', 'react', 'python', 'javascript', 'html', 'css', 'sql', 'database'],
+        'Marketer': ['marketing', 'seo', 'blog', 'ad copy', 'campaign', 'social media', 'tweet', 'linkedin'],
+        'Copywriter': ['write', 'essay', 'article', 'newsletter', 'email', 'rewrite', 'grammar'],
+        'Data Analyst': ['data', 'excel', 'csv', 'analyze', 'statistics', 'chart', 'plot', 'pandas'],
+        'Tutor': ['explain', 'learn', 'understand', 'concept', 'what is', 'how does', 'tutorial']
       };
 
-      const roleTemplates = {
-        code: {
-          name: 'Senior Software Engineer',
-          prefix: 'You are a senior software engineer with 15+ years of experience. You write clean, production-ready code with proper error handling, types, and comments.',
-          tags: ['Expert Role', 'Code Quality', 'Error Handling']
-        },
-        marketing: {
-          name: 'Marketing Strategist',
-          prefix: 'You are an expert marketing strategist and conversion-focused copywriter. You understand audience psychology, persuasion frameworks, and data-driven marketing.',
-          tags: ['Expert Role', 'Conversion Focus', 'Audience Analysis']
-        },
-        writing: {
-          name: 'Professional Writer',
-          prefix: 'You are a skilled professional writer with expertise in clear, engaging, and well-structured prose. You understand narrative flow, audience engagement, and editing best practices.',
-          tags: ['Expert Role', 'Writing Quality', 'Structure']
-        },
-        business: {
-          name: 'Business Consultant',
-          prefix: 'You are a top-tier business consultant with expertise in strategy, market analysis, and operational excellence. You think in structured frameworks and prioritize by impact.',
-          tags: ['Expert Role', 'Strategic Thinking', 'Frameworks']
-        },
-        data: {
-          name: 'Data Analyst',
-          prefix: 'You are a senior data analyst with expertise in statistical analysis, data interpretation, and actionable insights. You approach problems methodically and back conclusions with evidence.',
-          tags: ['Expert Role', 'Data-Driven', 'Evidence-Based']
-        },
-        teaching: {
-          name: 'Expert Educator',
-          prefix: 'You are a patient, experienced educator who excels at breaking down complex topics. You use analogies, examples, and progressive complexity to build understanding.',
-          tags: ['Expert Role', 'Clear Explanations', 'Examples']
-        },
-        design: {
-          name: 'UX/UI Designer',
-          prefix: 'You are an experienced UX/UI designer with deep knowledge of user-centered design, accessibility, and modern design systems. You think about user flows before aesthetics.',
-          tags: ['Expert Role', 'User-Centered', 'Accessibility']
-        },
-        general: {
-          name: 'Expert Assistant',
-          prefix: 'You are a knowledgeable expert assistant. You provide accurate, well-reasoned, and thorough responses.',
-          tags: ['Expert Role', 'Accuracy']
-        }
-      };
-
-      function detectRole(text) {
-        const lower = text.toLowerCase();
-        let bestRole = 'general';
-        let bestScore = 0;
-
+      function detectRole(prompt) {
+        const p = prompt.toLowerCase();
         for (const [role, keywords] of Object.entries(roleKeywords)) {
-          let score = 0;
-          for (const keyword of keywords) {
-            if (lower.includes(keyword)) score++;
-          }
-          if (score > bestScore) {
-            bestScore = score;
-            bestRole = role;
-          }
+          if (keywords.some(kw => p.includes(kw))) return role;
         }
-        return roleTemplates[bestRole];
+        return 'Expert Assistant';
       }
 
-      function optimizePrompt(input, level) {
-        const trimmed = input.trim();
-        if (!trimmed) return { text: '', tags: [] };
+      function updateTags(level, hasRole) {
+        tagsContainer.innerHTML = '';
+        const tags = [
+          { id: 'clarity', label: 'Clarity & Formatting', active: true },
+          { id: 'role', label: 'Expert Persona', active: level === 'standard' || level === 'deep' },
+          { id: 'constraints', label: 'Strict Constraints', active: level === 'standard' || level === 'deep' },
+          { id: 'logic', label: 'Chain of Thought', active: level === 'deep' },
+          { id: 'edge', label: 'Edge Case Analysis', active: level === 'deep' }
+        ];
 
-        const role = detectRole(trimmed);
-        const tags = [...role.tags];
+        tags.forEach(tag => {
+          const el = document.createElement('div');
+          el.className = `e-tag ${tag.active ? 'active' : ''}`;
+          el.innerHTML = tag.active 
+            ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> ${tag.label}`
+            : tag.label;
+          tagsContainer.appendChild(el);
+        });
+      }
 
-        let thinkingRule, formatRule, fluffRule, constraintRule;
+      optimizeBtn.addEventListener('click', () => {
+        const raw = basicInput.value.trim();
+        if (!raw) {
+          basicInput.classList.add('error');
+          basicInput.focus();
+          return;
+        }
+
+        const level = levelSelect.value;
+        const role = detectRole(raw);
+        
+        let optimized = "";
 
         if (level === 'minimal') {
-          thinkingRule = 'Think through your answer before responding.';
-          formatRule = 'Be clear and well-organized in your response.';
-          fluffRule = '';
-          constraintRule = '';
-          tags.push('Step-by-Step');
-        } else if (level === 'deep') {
-          thinkingRule = 'Think step-by-step. Break down the problem into components, analyze each one, consider edge cases and trade-offs, then synthesize your findings into a comprehensive answer. Show your reasoning process.';
-          formatRule = 'Structure your response with clear headings (##), bullet points for key items, and bold for important terms. Include a brief summary at the end. Use tables for comparisons when relevant.';
-          fluffRule = '\n\nDo NOT start with "Certainly!", "Of course!", "Great question!" or any filler. Get straight to the substance.';
-          constraintRule = '\n\nIf any part of the request is ambiguous, state your assumptions clearly before proceeding. If you are unsure about a fact, say so explicitly rather than guessing.';
-          tags.push('Deep Reasoning', 'Structured Output', 'No Fluff', 'Assumption Check');
-        } else {
-          thinkingRule = 'Think step-by-step before responding. Consider the key aspects of this request carefully.';
-          formatRule = 'Structure your response with clear headings and bullet points where appropriate. Be thorough but concise.';
-          fluffRule = '\n\nSkip filler phrases — get straight to the answer.';
-          constraintRule = '';
-          tags.push('Step-by-Step', 'Structured Output', 'No Fluff');
+          optimized = `Please act as a helpful AI assistant and fulfill the following request clearly and concisely. Format the output with headers and bullet points where appropriate.\n\n### Request\n${raw}`;
+        } 
+        else if (level === 'standard') {
+          optimized = `Act as an expert ${role}. I need you to complete a task for me. Follow these constraints strictly:\n- Provide a direct, highly-actionable response.\n- Do not include conversational filler ("Here is your answer").\n- Structure the output for maximum readability.\n\n### Task\n${raw}`;
+        }
+        else if (level === 'deep') {
+          optimized = `Act as a senior ${role} with decades of experience. I have a complex task for you.\n\n### Task\n${raw}\n\n### Execution Framework\nBefore providing the final answer, please use a <thinking> block to map out your logic step-by-step. Consider:\n1. The core goal of the request.\n2. Potential edge cases or common pitfalls.\n3. The optimal structure for the final output.\n\nAfter your thinking process, provide the final answer under a "### Final Solution" header. Ensure the response is authoritative, highly structured, and skips all conversational pleasantries.`;
         }
 
-        const optimized =
-`${role.prefix}
+        outputBox.textContent = optimized;
+        copyBtn.disabled = false;
+        
+        detectedRoleBadge.textContent = role;
+        detectedRoleBadge.style.display = 'block';
+        
+        updateTags(level, true);
 
-## Task
-${trimmed}
+        // Flash interaction
+        outputBox.classList.add('updated');
+        setTimeout(() => outputBox.classList.remove('updated'), 300);
 
-## Instructions
-- ${thinkingRule}
-- ${formatRule}${fluffRule}${constraintRule}`;
-
-        return { text: optimized, tags };
-      }
-
-      // Wire up the optimize button
-      const optimizeBtn = document.getElementById('optimize-btn');
-      const inputEl = document.getElementById('input-prompt');
-      const outputEl = document.getElementById('output-box');
-      const tagsEl = document.getElementById('enhancement-tags');
-      const levelEl = document.getElementById('enhance-level');
-
-      if (optimizeBtn && inputEl && outputEl) {
-        optimizeBtn.addEventListener('click', () => {
-          const input = inputEl.value;
-          if (!input.trim()) {
-            outputEl.innerHTML = '<span class="placeholder-text">Please enter a prompt first.</span>';
-            if (tagsEl) tagsEl.innerHTML = '';
-            return;
+        // Smart scroll mobile only
+        if (window.innerWidth < 768) {
+          const rect = outputBox.getBoundingClientRect();
+          if (rect.bottom > window.innerHeight || rect.top < 0) {
+            outputBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
+        }
+      });
 
-          const level = levelEl ? levelEl.value : 'standard';
-          const result = optimizePrompt(input, level);
-          outputEl.textContent = result.text;
-
-          // Render tags
-          if (tagsEl) {
-            tagsEl.innerHTML = result.tags.map(tag =>
-              `<span class="enhance-tag">${tag}</span>`
-            ).join('');
-          }
-        });
-      }
-
-      // Copy button
-      const copyBtn = document.getElementById('copy-btn');
+      let copyTimerId = null;
       if (copyBtn) {
         copyBtn.addEventListener('click', async () => {
-          const text = outputEl.textContent;
-          if (!text || outputEl.querySelector('.placeholder-text')) return;
-
+          if (copyBtn.disabled) return;
           try {
-            await navigator.clipboard.writeText(text);
-            const copyIcon = document.getElementById('copy-icon');
-            const checkIcon = document.getElementById('check-icon');
+            await navigator.clipboard.writeText(outputBox.textContent);
+            if (srAnnouncer) srAnnouncer.textContent = 'Optimized prompt copied to clipboard';
+            
             const copyText = document.getElementById('copy-text');
-
-            copyIcon.style.display = 'none';
-            checkIcon.style.display = 'block';
+            const orig = copyBtn.getAttribute('data-orig') || copyText.textContent;
+            copyBtn.setAttribute('data-orig', orig);
+            
             copyText.textContent = 'Copied!';
             copyBtn.classList.add('copied');
-
-            setTimeout(() => {
-              copyIcon.style.display = 'block';
-              checkIcon.style.display = 'none';
-              copyText.textContent = 'Copy';
+            
+            if (copyTimerId) clearTimeout(copyTimerId);
+            
+            copyTimerId = setTimeout(() => {
+              copyText.textContent = orig;
               copyBtn.classList.remove('copied');
+              copyTimerId = null;
             }, 2000);
           } catch (err) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-          }
-        });
-      }
-
-      // Auto-optimize on Enter key (with Ctrl/Cmd)
-      if (inputEl) {
-        inputEl.addEventListener('keydown', (e) => {
-          if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-            e.preventDefault();
-            optimizeBtn?.click();
+            console.error('Copy failed');
           }
         });
       }

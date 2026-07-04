@@ -1,0 +1,84 @@
+---
+export interface Props {
+  heading?: string;
+  subtext?: string;
+  link?: string;
+  btnText?: string;
+}
+
+const { 
+  heading = "Now that your data is loaded...", 
+  subtext = "ThinkMode+ injects a persistent formatting bar into ChatGPT...", 
+  link = "/#features", 
+  btnText = "Discover ThinkMode+" 
+} = Astro.props;
+---
+
+<div class="bridge-cta">
+  <div class="bridge-content">
+    <div class="bridge-icon">
+      <img src="/logo.png" alt="ThinkMode+" width="40" height="40" style="object-fit: contain;" />
+    </div>
+    <div class="bridge-text">
+      <h3>{heading}</h3>
+      <p>{subtext}</p>
+    </div>
+    <a href={link} class="bridge-btn">{btnText}</a>
+  </div>
+</div>
+
+<style>
+  .bridge-cta { 
+    background: linear-gradient(135deg, rgba(186, 58, 184, 0.08), rgba(137, 20, 183, 0.06)); 
+    border: 1px solid rgba(186, 58, 184, 0.15); 
+    border-radius: 16px; 
+    padding: 32px; 
+  }
+  .bridge-content {
+    display: flex; 
+    align-items: center; 
+    gap: 24px;
+  }
+  .bridge-icon { 
+    width: 56px; 
+    height: 56px; 
+    background: rgba(255,255,255,0.05); 
+    border-radius: 14px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    flex-shrink: 0; 
+  }
+  .bridge-text { flex: 1; }
+  .bridge-text h3 { margin: 0 0 6px; font-size: 18px; font-weight: 600; }
+  .bridge-text p { margin: 0; font-size: 14px; color: var(--text-dim); line-height: 1.5; }
+  .bridge-btn { 
+    padding: 12px 24px; 
+    background: var(--accent); 
+    color: #fff; 
+    border-radius: 10px; 
+    text-decoration: none; 
+    font-weight: 600; 
+    flex-shrink: 0; 
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .bridge-btn:hover { 
+    background: #d040ce; 
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(186, 58, 184, 0.2);
+  }
+  .bridge-btn:active {
+    transform: scale(0.98);
+  }
+
+  @media (max-width: 768px) {
+    .bridge-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 16px;
+    }
+    .bridge-btn {
+      width: 100%;
+    }
+  }
+</style>
