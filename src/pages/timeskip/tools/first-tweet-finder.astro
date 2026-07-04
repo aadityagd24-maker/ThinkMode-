@@ -1,211 +1,25 @@
 ---
 import TimeSkipLayout from '../../../layouts/TimeSkipLayout.astro';
+import '../../../styles/tools.css';
 
 const title = "Find First Tweet - Free X/Twitter Oldest Post Finder";
 const description = "Instantly find the first tweet of any user on X (formerly Twitter) with our free tool. No login required. Enter a username to see their oldest posts.";
-const canonicalPath = "/tools/first-tweet-finder";
+const canonicalPath = "/timeskip/tools/first-tweet-finder";
 ---
 
 <TimeSkipLayout title={title} description={description} canonicalPath={canonicalPath}>
-  <Fragment slot="head">
-    <style>
-      /* Minimal, accessible, non-flashy design specifically for this utility tool */
-      .tool-page {
-        background-color: #f9fafb;
-        min-height: calc(100vh - 140px);
-        padding: 80px 20px;
-        font-family: 'Inter', sans-serif;
-        color: #111827;
-      }
-      .tool-container {
-        max-width: 600px;
-        margin: 0 auto;
-      }
-      .tool-card {
-        background: #ffffff;
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        padding: 40px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-        text-align: center;
-      }
-      .tool-title {
-        font-size: 28px;
-        font-weight: 700;
-        margin-bottom: 12px;
-        letter-spacing: -0.5px;
-        color: #111827;
-      }
-      .tool-subtitle {
-        font-size: 16px;
-        color: #4b5563;
-        margin-bottom: 32px;
-        line-height: 1.5;
-      }
-      .input-group {
-        display: flex;
-        align-items: center;
-        background: #f3f4f6;
-        border: 2px solid #e5e7eb;
-        border-radius: 8px;
-        padding: 0 16px;
-        transition: border-color 0.2s;
-        margin-bottom: 24px;
-      }
-      .input-group:focus-within {
-        border-color: #0f1419;
-        background: #ffffff;
-      }
-      .input-prefix {
-        color: #6b7280;
-        font-size: 20px;
-        font-weight: 500;
-        user-select: none;
-      }
-      .tool-input {
-        flex: 1;
-        background: transparent;
-        border: none;
-        padding: 16px 12px;
-        font-size: 20px;
-        font-weight: 500;
-        color: #111827;
-        outline: none;
-      }
-      .tool-input::placeholder {
-        color: #9ca3af;
-      }
-      .tool-btn {
-        display: block;
-        width: 100%;
-        background-color: #0f1419;
-        color: #ffffff;
-        border: none;
-        border-radius: 8px;
-        padding: 18px;
-        font-size: 18px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.2s;
-        text-decoration: none;
-      }
-      .tool-btn:hover {
-        background-color: #272c30;
-      }
-      .tool-btn:disabled {
-        background-color: #d1d5db;
-        cursor: not-allowed;
-      }
-      .error-msg {
-        color: #dc2626;
-        font-size: 14px;
-        margin-top: -16px;
-        margin-bottom: 16px;
-        display: none;
-        text-align: left;
-      }
-      
-      /* CTA Bridge */
-      .bridge-cta {
-        margin-top: 32px;
-        padding: 24px;
-        background: #eff6ff;
-        border: 1px solid #bfdbfe;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        text-align: left;
-      }
-      .bridge-content h3 {
-        font-size: 16px;
-        font-weight: 600;
-        color: #1e3a8a;
-        margin-bottom: 4px;
-      }
-      .bridge-content p {
-        font-size: 14px;
-        color: #1e40af;
-        margin: 0;
-      }
-      .bridge-btn {
-        background: #2563eb;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 600;
-        white-space: nowrap;
-      }
-      .bridge-btn:hover {
-        background: #1d4ed8;
-      }
-
-      /* SEO Content */
-      .seo-content {
-        margin-top: 64px;
-        padding-top: 48px;
-        border-top: 1px solid #e5e7eb;
-      }
-      .seo-content h2 {
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 16px;
-        margin-top: 32px;
-        color: #111827;
-      }
-      .seo-content p {
-        font-size: 16px;
-        line-height: 1.7;
-        color: #4b5563;
-        margin-bottom: 16px;
-      }
-      .seo-content ul {
-        list-style-type: disc;
-        padding-left: 24px;
-        margin-bottom: 24px;
-        color: #4b5563;
-      }
-      .seo-content li {
-        margin-bottom: 8px;
-        line-height: 1.6;
-      }
-      .seo-content code {
-        background: #f3f4f6;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 14px;
-      }
-
-      @media (max-width: 640px) {
-        .tool-card {
-          padding: 24px;
-        }
-        .bridge-cta {
-          flex-direction: column;
-          text-align: center;
-        }
-        .bridge-btn {
-          width: 100%;
-          text-align: center;
-        }
-      }
-    </style>
-  </Fragment>
-
   <main class="tool-page">
     <div class="tool-container">
       
+      <a href="/timeskip/tools" class="back-link">← Back to all free tools</a>
+
       <!-- Interactive Tool -->
-      <div class="tool-card">
+      <div class="tool-card center-text">
         <h1 class="tool-title">Find First Tweet</h1>
         <p class="tool-subtitle">Instantly find the oldest tweets of any public X/Twitter account. No login required.</p>
         
         <form id="findForm">
-          <div class="input-group">
+          <div class="input-group flex-group">
             <span class="input-prefix">@</span>
             <input 
               type="text" 
@@ -219,6 +33,12 @@ const canonicalPath = "/tools/first-tweet-finder";
           </div>
           <div class="error-msg" id="errorMsg">Please enter a valid username (letters, numbers, underscores).</div>
           
+          <div class="input-group" style="text-align: left;">
+            <label class="input-label" for="joinYear">Estimated Join Year (Optional)</label>
+            <input type="number" id="joinYear" class="tool-input" placeholder="e.g. 2009" min="2006" max="2025" style="font-size: 16px; padding: 12px;" />
+            <small style="color: #6b7280; font-size: 12px; display: block; margin-top: 4px;">Helps if the account was created after 2012.</small>
+          </div>
+
           <button type="submit" class="tool-btn" id="submitBtn">
             Find First Tweet
           </button>
@@ -259,10 +79,10 @@ const canonicalPath = "/tools/first-tweet-finder";
 
   <Fragment slot="scripts">
     <script>
-      // Client-side logic for the utility tool
       document.addEventListener('DOMContentLoaded', () => {
         const form = document.getElementById('findForm');
         const input = document.getElementById('usernameInput');
+        const joinYearInput = document.getElementById('joinYear');
         const errorMsg = document.getElementById('errorMsg');
         const submitBtn = document.getElementById('submitBtn');
 
@@ -270,10 +90,7 @@ const canonicalPath = "/tools/first-tweet-finder";
           e.preventDefault();
           const rawValue = input.value.trim();
           
-          // Remove any @ symbol the user might have pasted
           const username = rawValue.replace(/^@/, '');
-
-          // Basic validation (letters, numbers, underscores, max 15 chars)
           const validRegex = /^[a-zA-Z0-9_]{1,15}$/;
           
           if (!validRegex.test(username)) {
@@ -285,19 +102,20 @@ const canonicalPath = "/tools/first-tweet-finder";
           errorMsg.style.display = 'none';
           input.parentElement.style.borderColor = '#0f1419';
 
-          // As a generic stateless tool, we use a broad 6-year window from Twitter's inception.
-          // This will capture most OG users' first tweets without needing an exact join date.
-          // For newer users, X will still return results if we use f=live.
-          // However, the best generic trick is `until:2010` for old accounts.
-          // Since we want them to upgrade to TimeSkip for accuracy, this is a perfect "teaser".
-          const query = \`from:\${username} since:2006-03-21 until:2012-01-01\`;
+          const joinYear = joinYearInput.value;
+          let query = '';
+          
+          if (joinYear) {
+            query = \`from:\${username} since:\${joinYear}-01-01 until:\${parseInt(joinYear)+2}-01-01\`;
+          } else {
+            query = \`from:\${username} since:2006-03-21 until:2012-01-01\`;
+          }
+
           const xUrl = \`https://x.com/search?q=\${encodeURIComponent(query)}&src=typed_query&f=live\`;
           
-          // Change button state
           submitBtn.textContent = 'Redirecting to X...';
           submitBtn.style.opacity = '0.8';
 
-          // Redirect
           setTimeout(() => {
             window.open(xUrl, '_blank');
             submitBtn.textContent = 'Find First Tweet';
@@ -305,7 +123,6 @@ const canonicalPath = "/tools/first-tweet-finder";
           }, 600);
         });
 
-        // Clear error on input
         input.addEventListener('input', () => {
           errorMsg.style.display = 'none';
           input.parentElement.style.borderColor = '#e5e7eb';
