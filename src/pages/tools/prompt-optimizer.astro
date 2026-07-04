@@ -151,9 +151,9 @@ import RelatedTools from '../../components/RelatedTools.astro';
     .output-title { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 
     .enhancement-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .e-tag { font-size: 12px; padding: 4px 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; color: var(--text-dim); display: flex; align-items: center; gap: 4px; }
-    .e-tag.active { color: var(--text); background: rgba(255,255,255,0.1); border-color: var(--border-hi); }
-    .e-tag svg { width: 12px; height: 12px; color: #22c55e; }
+    :global(.e-tag) { font-size: 12px; padding: 4px 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; color: var(--text-dim); display: flex; align-items: center; gap: 4px; }
+    :global(.e-tag.active) { color: var(--text); background: rgba(255,255,255,0.1); border-color: var(--border-hi); }
+    :global(.e-tag svg) { width: 12px; height: 12px; color: #22c55e; flex-shrink: 0; }
 
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
 
@@ -208,7 +208,7 @@ import RelatedTools from '../../components/RelatedTools.astro';
         for (const [role, keywords] of Object.entries(roleKeywords)) {
           if (keywords.some(kw => p.includes(kw))) return role;
         }
-        return 'Expert Assistant';
+        return 'AI Assistant';
       }
 
       function updateTags(level, hasRole) {
