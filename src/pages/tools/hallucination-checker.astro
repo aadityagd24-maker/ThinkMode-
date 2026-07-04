@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Free AI Hallucination Fact-Checker Prompt Builder"
+  description="Stop ChatGPT from making things up. Use our free AI Hallucination Fact-Checker Prompt Builder to generate prompts that verify facts and reduce AI errors."
+  canonicalPath="/tools/hallucination-checker"
+>
+  <Fragment slot="head">
+    <meta name="keywords" content="ChatGPT fact checker prompt, Reduce AI hallucination prompt, AI hallucination fact-checker prompt builder, Fact check prompt generator, How to stop ChatGPT from hallucinating, ChatGPT self reflection prompt">
+    
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "AI Hallucination Fact-Checker Prompt Builder",
+      "url": "https://thinkmodeplus.com/tools/hallucination-checker",
+      "description": "Generate custom self-reflection prompts to stop AI hallucinations and verify facts.",
+      "applicationCategory": "UtilityApplication"
+    })} />
+  </Fragment>
+
+  <div class="tool-page">
+    <div class="tool-hero">
+      <div class="tool-breadcrumb">
+        <a href="/">ThinkMode+</a>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <a href="/tools">Tools</a>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <a href="/tools/hallucination-checker">Fact Checker</a>
+      </div>
+      <h1>Stop AI Hallucinations with the Free Fact-Checker Prompt Builder</h1>
+      <p class="tool-subtitle">Build a powerful "self-reflection" prompt that forces ChatGPT to audit its own previous answer for factual inaccuracies and logical flaws.</p>
+    </div>
+
+    <div class="checker-tool">
+      <!-- Input Section -->
+      <div class="checker-panel input-panel">
+        <div class="panel-header">
+          <h2>1. Configure the Audit</h2>
+        </div>
+        
+        <div class="form-group">
+          <label for="claim-input">What did the AI just tell you?</label>
+          <textarea id="claim-input" placeholder="Paste the AI's previous output or specific claim here..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="strictness-select">Fact-Check Strictness</label>
+          <select id="strictness-select">
+            <option value="moderate">Moderate (Find obvious errors)</option>
+            <option value="strict">Strict (Demand citations and sources)</option>
+            <option value="skeptical">Skeptical (Assume it's wrong, prove it's right)</option>
+          </select>
+        </div>
+
+        <button id="generate-btn" class="action-btn">Generate Fact-Check Prompt</button>
+      </div>
+
+      <!-- Output Section -->
+      <div class="checker-panel output-panel">
+        <div class="panel-header">
+          <h2>2. Your Fact-Check Prompt</h2>
+          <button id="copy-btn" class="copy-btn" disabled>Copy</button>
+        </div>
+        
+        <div class="output-box" id="output-box">
+          <span class="placeholder-text">Configure the audit on the left to generate your prompt...</span>
+        </div>
+        <p class="output-hint">Paste this back into your chat to force the AI to check its work.</p>
+      </div>
+    </div>
+
+    <!-- Bridge CTA -->
+    <div class="bridge-cta">
+      <div class="bridge-content">
+        <div class="bridge-icon">
+          <img src="/logo.png" alt="ThinkMode+" width="40" height="40" style="object-fit: contain;" />
+        </div>
+        <div class="bridge-text">
+          <h3>Don't want to doubt your AI?</h3>
+          <p>ThinkMode+ includes a <strong>Precision Toggle</strong> that automatically forces the AI to verify factual claims before stating them. Stop hallucination before it happens.</p>
+        </div>
+        <a href="/" class="bridge-btn">Discover ThinkMode+</a>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .tool-page { max-width: 960px; margin: 0 auto; padding: 32px 24px 80px; }
+    .tool-hero { margin-bottom: 48px; }
+    .tool-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-faint); margin-bottom: 20px; }
+    .tool-breadcrumb a { color: var(--text-dim); text-decoration: none; }
+    .tool-breadcrumb a:hover { color: var(--text); }
+    .tool-breadcrumb svg { opacity: 0.4; }
+    .tool-hero h1 { font-size: 36px; font-weight: 700; margin: 0 0 12px; }
+    .tool-subtitle { font-size: 17px; color: var(--text-dim); max-width: 640px; margin: 0; }
+
+    .checker-tool { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 64px; }
+    @media (max-width: 768px) { .checker-tool { grid-template-columns: 1fr; } }
+
+    .checker-panel { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; }
+    .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .panel-header h2 { font-size: 18px; font-weight: 600; margin: 0; }
+    
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+    
+    #claim-input { width: 100%; min-height: 120px; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--border-hi); border-radius: 8px; color: var(--text); font-family: var(--display); font-size: 14px; resize: vertical; }
+    #claim-input:focus { outline: none; border-color: var(--accent); }
+    
+    select { width: 100%; padding: 10px 12px; background: var(--surface); border: 1px solid var(--border-hi); border-radius: 8px; color: var(--text); font-size: 14px; }
+    
+    .action-btn { width: 100%; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: auto; }
+    .action-btn:hover { background: #d040ce; }
+    
+    .output-box { flex: 1; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px; padding: 16px; font-family: var(--mono); font-size: 13px; color: var(--text); line-height: 1.6; white-space: pre-wrap; margin-bottom: 12px; min-height: 200px; }
+    .placeholder-text { color: var(--text-faint); font-style: italic; }
+    
+    .output-hint { font-size: 13px; color: var(--text-dim); margin: 0; }
+    
+    .copy-btn { padding: 6px 16px; background: var(--surface); border: 1px solid var(--border-hi); border-radius: 6px; color: var(--text); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .copy-btn:hover:not(:disabled) { background: var(--surface-2); }
+    .copy-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .copy-btn.copied { color: #22c55e; border-color: rgba(34,197,94,0.4); }
+
+    /* Bridge CTA */
+    .bridge-cta { background: linear-gradient(135deg, rgba(186, 58, 184, 0.08), rgba(137, 20, 183, 0.06)); border: 1px solid rgba(186, 58, 184, 0.15); border-radius: 16px; padding: 32px; display: flex; align-items: center; gap: 24px; }
+    .bridge-icon { width: 56px; height: 56px; background: rgba(255,255,255,0.05); border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .bridge-text { flex: 1; }
+    .bridge-text h3 { margin: 0 0 6px; font-size: 18px; font-weight: 600; }
+    .bridge-text p { margin: 0; font-size: 14px; color: var(--text-dim); }
+    .bridge-btn { padding: 12px 24px; background: var(--accent); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 600; flex-shrink: 0; }
+    .bridge-btn:hover { background: #d040ce; }
+  </style>
+
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      const generateBtn = document.getElementById('generate-btn');
+      const claimInput = document.getElementById('claim-input');
+      const strictnessSelect = document.getElementById('strictness-select');
+      const outputBox = document.getElementById('output-box');
+      const copyBtn = document.getElementById('copy-btn');
+
+      if (!generateBtn || !claimInput) return;
+
+      generateBtn.addEventListener('click', () => {
+        const claim = claimInput.value.trim();
+        const strictness = strictnessSelect.value;
+        
+        let instructions = '';
+        if (strictness === 'moderate') {
+          instructions = 'Please review the text below for any factual inaccuracies, logical inconsistencies, or hallucinations. If you find any errors, explicitly correct them.';
+        } else if (strictness === 'strict') {
+          instructions = 'Critically audit the text below for factual correctness. For every factual claim made, provide a reliable citation or source to back it up. If a claim cannot be verified, explicitly state that it is unverified or potentially a hallucination.';
+        } else if (strictness === 'skeptical') {
+          instructions = 'Assume the text below contains AI hallucinations and factual errors. Your task is to play devil\'s advocate and actively try to debunk the claims made. Only accept claims that are demonstrably true, and aggressively highlight any fabricated information.';
+        }
+
+        const promptText = `I want you to perform a self-reflection and fact-check on the following text.\n\n### Instructions\n${instructions}\n\n### Text to Audit\n"""\n${claim || '[Insert the output you want to fact-check here]'}\n"""`;
+
+        outputBox.textContent = promptText;
+        copyBtn.disabled = false;
+      });
+
+      if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+          if (copyBtn.disabled) return;
+          try {
+            await navigator.clipboard.writeText(outputBox.textContent);
+            copyBtn.textContent = 'Copied!';
+            copyBtn.classList.add('copied');
+            setTimeout(() => {
+              copyBtn.textContent = 'Copy';
+              copyBtn.classList.remove('copied');
+            }, 2000);
+          } catch (err) {
+            console.error('Copy failed');
+          }
+        });
+      }
+    });
+  </script>
+</BaseLayout>
