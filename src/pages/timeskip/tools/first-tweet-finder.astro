@@ -106,12 +106,12 @@ const canonicalPath = "/timeskip/tools/first-tweet-finder";
           let query = '';
           
           if (joinYear) {
-            query = \`from:\${username} since:\${joinYear}-01-01 until:\${parseInt(joinYear)+2}-01-01\`;
+            query = `from:${username} since:${joinYear}-01-01 until:${parseInt(joinYear)+2}-01-01`;
           } else {
-            query = \`from:\${username} since:2006-03-21 until:2012-01-01\`;
+            query = `from:${username} since:2006-03-21 until:2012-01-01`;
           }
 
-          const xUrl = \`https://x.com/search?q=\${encodeURIComponent(query)}&src=typed_query&f=live\`;
+          const xUrl = `https://x.com/search?q=${encodeURIComponent(query)}&src=typed_query&f=live`;
           
           submitBtn.textContent = 'Redirecting to X...';
           submitBtn.style.opacity = '0.8';
@@ -131,3 +131,4 @@ const canonicalPath = "/timeskip/tools/first-tweet-finder";
     </script>
   </Fragment>
 </TimeSkipLayout>
+

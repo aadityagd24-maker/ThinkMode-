@@ -68,8 +68,8 @@ const canonicalPath = "/timeskip/tools/relationship-explorer";
 
           if (!userA || !userB) return;
 
-          const query = \`(from:\${userA} to:\${userB}) OR (from:\${userB} to:\${userA})\`;
-          const xUrl = \`https://x.com/search?q=\${encodeURIComponent(query)}&src=typed_query&f=live\`;
+          const query = `(from:${userA} to:${userB}) OR (from:${userB} to:${userA})`;
+          const xUrl = `https://x.com/search?q=${encodeURIComponent(query)}&src=typed_query&f=live`;
           
           submitBtn.textContent = 'Redirecting to X...';
           submitBtn.style.opacity = '0.8';
@@ -84,3 +84,4 @@ const canonicalPath = "/timeskip/tools/relationship-explorer";
     </script>
   </Fragment>
 </TimeSkipLayout>
+

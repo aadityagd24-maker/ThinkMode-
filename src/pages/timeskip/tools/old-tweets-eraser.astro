@@ -75,8 +75,8 @@ const canonicalPath = "/timeskip/tools/old-tweets-eraser";
 
           if (!username || !startYear || !endYear) return;
 
-          const query = \`from:\${username} since:\${startYear}-01-01 until:\${parseInt(endYear)+1}-01-01\`;
-          const xUrl = \`https://x.com/search?q=\${encodeURIComponent(query)}&src=typed_query&f=live\`;
+          const query = `from:${username} since:${startYear}-01-01 until:${parseInt(endYear)+1}-01-01`;
+          const xUrl = `https://x.com/search?q=${encodeURIComponent(query)}&src=typed_query&f=live`;
           
           submitBtn.textContent = 'Redirecting to X...';
           submitBtn.style.opacity = '0.8';
@@ -91,3 +91,4 @@ const canonicalPath = "/timeskip/tools/old-tweets-eraser";
     </script>
   </Fragment>
 </TimeSkipLayout>
+

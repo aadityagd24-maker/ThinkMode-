@@ -97,11 +97,11 @@ const canonicalPath = "/timeskip/tools/advanced-search";
           const untilDate = document.getElementById('untilDate').value;
           const minLikes = document.getElementById('minLikes').value.trim();
 
-          if (username) queryParts.push(\`from:\${username}\`);
+          if (username) queryParts.push(`from:${username}`);
           if (keywords) queryParts.push(keywords);
-          if (sinceDate) queryParts.push(\`since:\${sinceDate}\`);
-          if (untilDate) queryParts.push(\`until:\${untilDate}\`);
-          if (minLikes) queryParts.push(\`min_faves:\${minLikes}\`);
+          if (sinceDate) queryParts.push(`since:${sinceDate}`);
+          if (untilDate) queryParts.push(`until:${untilDate}`);
+          if (minLikes) queryParts.push(`min_faves:${minLikes}`);
 
           const finalQuery = queryParts.join(' ');
           
@@ -110,7 +110,7 @@ const canonicalPath = "/timeskip/tools/advanced-search";
             return;
           }
 
-          const xUrl = \`https://x.com/search?q=\${encodeURIComponent(finalQuery)}&src=typed_query&f=live\`;
+          const xUrl = `https://x.com/search?q=${encodeURIComponent(finalQuery)}&src=typed_query&f=live`;
           
           submitBtn.textContent = 'Redirecting to X...';
           submitBtn.style.opacity = '0.8';
@@ -125,3 +125,5 @@ const canonicalPath = "/timeskip/tools/advanced-search";
     </script>
   </Fragment>
 </TimeSkipLayout>
+
+

@@ -75,9 +75,9 @@ const canonicalPath = "/timeskip/tools/on-this-day";
           
           const nextDayStr = nextDayObj.toISOString().split('T')[0];
 
-          const query = \`from:\${username} since:\${targetDateStr} until:\${nextDayStr}\`;
+          const query = `from:${username} since:${targetDateStr} until:${nextDayStr}`;
           
-          const xUrl = \`https://x.com/search?q=\${encodeURIComponent(query)}&src=typed_query&f=live\`;
+          const xUrl = `https://x.com/search?q=${encodeURIComponent(query)}&src=typed_query&f=live`;
           
           submitBtn.textContent = 'Redirecting to X...';
           submitBtn.style.opacity = '0.8';
@@ -92,3 +92,4 @@ const canonicalPath = "/timeskip/tools/on-this-day";
     </script>
   </Fragment>
 </TimeSkipLayout>
+
