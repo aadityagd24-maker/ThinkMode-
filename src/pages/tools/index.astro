@@ -1,0 +1,197 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Free AI Tools for ChatGPT, Claude & Gemini | ThinkMode+"
+  description="A collection of free, no-signup tools to help you get more out of AI. Generate custom instructions, optimize prompts, and more."
+  canonicalPath="/tools"
+>
+  <div class="tools-page wrap">
+    <div class="tools-header">
+      <h1>Free AI Tools</h1>
+      <p>Simple, powerful utilities to help you get the most out of ChatGPT, Claude, and Gemini. 100% free, no signup required.</p>
+    </div>
+
+    <div class="tools-grid">
+      <!-- Tool 1 -->
+      <a href="/tools/custom-instructions-generator" class="tool-card">
+        <div class="tool-icon">🤖</div>
+        <div class="tool-content">
+          <h2>Custom Instructions Generator</h2>
+          <p>Create the perfect system prompt. Pick an expert role, tone, and format to instantly generate instructions for ChatGPT.</p>
+          <span class="tool-link">Try Tool &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Tool 2 -->
+      <a href="/tools/prompt-optimizer" class="tool-card">
+        <div class="tool-icon">⚡</div>
+        <div class="tool-content">
+          <h2>AI Prompt Optimizer</h2>
+          <p>Paste a weak prompt and get an expert-level version instantly. Adds thinking frameworks and expert personas automatically.</p>
+          <span class="tool-link">Try Tool &rarr;</span>
+        </div>
+      </a>
+      
+      <!-- Future Tools Placeholders -->
+      <div class="tool-card disabled">
+        <div class="tool-icon">✂️</div>
+        <div class="tool-content">
+          <h2>AI Text Splitter</h2>
+          <p>Split massive documents into perfect, prompt-ready chunks to bypass ChatGPT's character limits.</p>
+          <span class="tool-badge">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="tool-card disabled">
+        <div class="tool-icon">🔍</div>
+        <div class="tool-content">
+          <h2>Hallucination Checker</h2>
+          <p>Build a self-reflection prompt designed to make ChatGPT audit its own previous answer for factual inaccuracies.</p>
+          <span class="tool-badge">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .tools-page {
+      padding: 64px 24px 120px;
+    }
+
+    .tools-header {
+      text-align: center;
+      margin-bottom: 64px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tools-header h1 {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 0 0 16px;
+      background: linear-gradient(135deg, #fff, #a1a1aa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tools-header p {
+      font-size: 18px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .tool-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tool-card:not(.disabled):hover {
+      transform: translateY(-4px);
+      border-color: rgba(186, 58, 184, 0.4);
+      box-shadow: 0 12px 40px rgba(186, 58, 184, 0.1);
+      background: var(--surface);
+    }
+
+    .tool-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-pink));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tool-card:not(.disabled):hover::before {
+      opacity: 1;
+    }
+
+    .tool-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      transition: transform 0.3s;
+    }
+
+    .tool-card:not(.disabled):hover .tool-icon {
+      transform: scale(1.1) rotate(5deg);
+      background: rgba(186, 58, 184, 0.1);
+    }
+
+    .tool-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tool-content h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 12px;
+    }
+
+    .tool-content p {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin: 0 0 24px;
+      flex: 1;
+    }
+
+    .tool-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-pink);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Disabled / Coming Soon */
+    .tool-card.disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      border-style: dashed;
+    }
+
+    .tool-badge {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 4px 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-faint);
+    }
+  </style>
+</BaseLayout>
