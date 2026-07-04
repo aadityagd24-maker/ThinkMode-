@@ -66,6 +66,7 @@ const ogImageUrl = `${siteUrl}${ogImage}`;
         <a href="/timeskip/#features">Features</a>
         <a href="/timeskip/#pricing">Pricing</a>
         <a href="/timeskip/#faq">FAQ</a>
+        <a href="/timeskip/tools" class={Astro.url.pathname.startsWith('/timeskip/tools') ? 'active' : ''}>Free Tools</a>
         <a href="/timeskip/support">Support</a>
         <a href="/timeskip/#pricing" class="ts-nav-cta">Get TimeSkip &rarr;</a>
       </div>
@@ -95,5 +96,37 @@ const ogImageUrl = `${siteUrl}${ogImage}`;
   </footer>
 
   <slot name="scripts" />
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      // Hide/Show Nav on scroll
+      let lastScrollY = window.scrollY;
+      let scrollUpDistance = 0;
+      const SCROLL_UP_THRESHOLD = 80;
+      const nav = document.querySelector('.ts-nav');
+
+      if (nav) {
+        window.addEventListener('scroll', () => {
+          const currentScrollY = window.scrollY;
+          
+          if (currentScrollY <= 0) {
+            nav.classList.remove('nav-hidden');
+            scrollUpDistance = 0;
+          } else if (currentScrollY > lastScrollY) {
+            // Scrolling down
+            nav.classList.add('nav-hidden');
+            scrollUpDistance = 0;
+          } else {
+            // Scrolling up
+            scrollUpDistance += (lastScrollY - currentScrollY);
+            if (scrollUpDistance > SCROLL_UP_THRESHOLD) {
+              nav.classList.remove('nav-hidden');
+            }
+          }
+          
+          lastScrollY = currentScrollY;
+        }, { passive: true });
+      }
+    });
+  </script>
 </body>
 </html>

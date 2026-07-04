@@ -89,6 +89,7 @@
 
 /* ── Navbar ───────────────────────────────────────── */
 .ts-nav {
+    transition: transform 0.3s ease;
   position: fixed;
   top: 16px;
   left: 50%;
@@ -828,3 +829,8 @@
 .ts-animate-d3 { animation-delay: 0.3s; }
 .ts-animate-d4 { animation-delay: 0.4s; }
 .ts-animate-d5 { animation-delay: 0.5s; }
+
+.ts-nav.nav-hidden {
+    transform: translate(-50%, -150%);
+}
+
