@@ -112,6 +112,35 @@ const ogImageUrl = `${siteUrl}${ogImage}`;
           authBtn.href = '/dashboard';
         }
       }
+
+      // Hide/Show Nav on scroll
+      let lastScrollY = window.scrollY;
+      let scrollUpDistance = 0;
+      const SCROLL_UP_THRESHOLD = 80;
+      const nav = document.querySelector('.nav');
+
+      if (nav) {
+        window.addEventListener('scroll', () => {
+          const currentScrollY = window.scrollY;
+          
+          if (currentScrollY <= 0) {
+            nav.classList.remove('nav-hidden');
+            scrollUpDistance = 0;
+          } else if (currentScrollY > lastScrollY) {
+            // Scrolling down
+            nav.classList.add('nav-hidden');
+            scrollUpDistance = 0;
+          } else {
+            // Scrolling up
+            scrollUpDistance += (lastScrollY - currentScrollY);
+            if (scrollUpDistance > SCROLL_UP_THRESHOLD) {
+              nav.classList.remove('nav-hidden');
+            }
+          }
+          
+          lastScrollY = currentScrollY;
+        }, { passive: true });
+      }
     });
   </script>
 </body>
