@@ -1,0 +1,51 @@
+---
+import '../styles/blockoff.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalPath = '/blockoff'
+} = Astro.props;
+
+const siteUrl = 'https://thinkmodeplus.com';
+const canonicalUrl = `${siteUrl}${canonicalPath}`;
+const ogImageUrl = `${siteUrl}/blockoff/block-off-logo.png`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="AI comment moderation tool, YouTube comment moderation, Instagram comment moderation, auto hide negative comments, YouTube spam blocker, Instagram spam blocker, social media comment moderation, hide toxic comments, creator comment protection"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:site_name" content="Block OFF" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <link rel="icon" href="/blockoff/block-off-logo.png" />
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+    <script src="/blockoff/blockoff.js" is:inline></script>
+  </body>
+</html>

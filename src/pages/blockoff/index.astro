@@ -1,0 +1,390 @@
+---
+import BlockOffLayout from '../../layouts/BlockOffLayout.astro';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Block OFF',
+  operatingSystem: 'Web, Chrome, Edge',
+  applicationCategory: 'BusinessApplication',
+  offers: {
+    '@type': 'Offer',
+    price: '19',
+    priceCurrency: 'USD'
+  },
+  description:
+    'Block OFF is an AI comment moderation tool that helps creators automatically scan, hide, and review toxic, scam, hateful, and negative comments on YouTube and Instagram.'
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is Block OFF?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Block OFF is an AI comment moderation tool for creators and teams that scans YouTube and Instagram comments, detects toxic or scam content, and helps hide or review comments from a dashboard.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Does Block OFF work with YouTube comments?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. The MVP is designed for YouTube comment moderation, including scanning comments and helping creators hide comments that match toxicity, scam, spam, or custom rule signals.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Does Block OFF work with Instagram comments?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Block OFF is planned for Instagram comment moderation for eligible creator or business accounts, with tools to detect spam, harassment, scam links, and harmful replies.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Can Block OFF automatically hide negative comments?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Block OFF is being built to automatically hide comments that cross your moderation rules, while keeping a review and restore flow so creators remain in control.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Is Block OFF a Chrome extension or a web app?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The first version is planned as a web app with a dashboard and background scanning. A browser extension can be added later where platform APIs require browser-side workflows.'
+      }
+    }
+  ]
+};
+---
+
+<BlockOffLayout
+  title="Block OFF | AI Comment Moderation for YouTube & Instagram"
+  description="Block OFF is an AI comment moderation tool that scans YouTube and Instagram comments, hides toxic or scam comments, and gives creators a review dashboard."
+  canonicalPath="/blockoff"
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="ticker" aria-label="Product highlights">
+    <div class="ticker-track">
+      <span>Scan YouTube comments</span>
+      <span>Hide Instagram spam</span>
+      <span>Review before delete</span>
+      <span>Protect creator energy</span>
+      <span>Built for first launch</span>
+      <span>Scan YouTube comments</span>
+      <span>Hide Instagram spam</span>
+      <span>Review before delete</span>
+      <span>Protect creator energy</span>
+      <span>Built for first launch</span>
+    </div>
+  </div>
+
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="/blockoff" aria-label="Block OFF home">
+      <img src="/blockoff/block-off-logo.png" alt="" />
+      <span>Block OFF</span>
+    </a>
+
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a href="/blockoff/#product">Product</a>
+      <a href="/blockoff/#how">How it works</a>
+      <a href="/blockoff/#dashboard">Dashboard</a>
+      <a href="/blockoff/#pricing">Pricing</a>
+    </nav>
+
+    <a class="header-cta" href="#waitlist" data-open-waitlist data-intent="waitlist">Join waitlist</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <h1 class="reveal delay-1">
+          Auto-hide the comments that should
+          <span>Block OFF.</span>
+        </h1>
+
+        <p class="hero-text reveal delay-2">
+          AI comment protection for creators who are tired of scams, hate, spam,
+          and drama taking over their community.
+        </p>
+
+        <div class="hero-actions reveal delay-3">
+          <a class="button primary" href="#waitlist" data-open-waitlist data-intent="early_access">Get early access</a>
+          <a class="button secondary" href="#how">See how it works</a>
+        </div>
+
+        <dl class="hero-stats reveal delay-4" aria-label="Product stats">
+          <div>
+            <dt>24/7</dt>
+            <dd>background scans</dd>
+          </div>
+          <div>
+            <dt>2</dt>
+            <dd>launch platforms</dd>
+          </div>
+          <div>
+            <dt>1 click</dt>
+            <dd>restore control</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hero-visual reveal delay-2" id="product" aria-label="Block OFF dashboard preview">
+        <div class="poster-stack" aria-hidden="true">
+          <div class="poster back"></div>
+          <div class="poster middle"></div>
+          <div class="poster front">
+            <div class="poster-top">
+              <img src="/blockoff/block-off-logo.png" alt="" />
+              <span>LIVE SHIELD</span>
+            </div>
+            <div class="poster-title">
+              <span>COMMENTS</span>
+              <strong>BLOCKED</strong>
+            </div>
+            <div class="radar">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="poster-card">
+              <b>Today</b>
+              <span>1,842 scanned</span>
+              <span>93 hidden</span>
+              <span>12 need review</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="floating-panel">
+          <div class="panel-header">
+            <span class="status-dot"></span>
+            <b>Auto-hide active</b>
+          </div>
+          <div class="comment-row danger comment-a">
+            <span>Scam link detected</span>
+            <b>Hidden</b>
+          </div>
+          <div class="comment-row comment-b">
+            <span>Harassment score high</span>
+            <b>Review</b>
+          </div>
+          <div class="comment-row clean comment-c">
+            <span>Fan comment</span>
+            <b>Allowed</b>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="flow-strip" aria-label="User flow">
+      <div class="flow-item reveal">
+        <span>1</span>
+        <b>Connect</b>
+        <p>YouTube or Instagram</p>
+      </div>
+      <div class="flow-line"></div>
+      <div class="flow-item reveal delay-1">
+        <span>2</span>
+        <b>Choose mode</b>
+        <p>Review or auto-hide</p>
+      </div>
+      <div class="flow-line"></div>
+      <div class="flow-item reveal delay-2">
+        <span>3</span>
+        <b>Run shield</b>
+        <p>Scan, hide, restore</p>
+      </div>
+    </section>
+
+    <section class="strip reveal" id="how">
+      <div>
+        <span class="section-kicker">How it operates</span>
+        <h2>Connect accounts. Set rules. Let the shield run.</h2>
+      </div>
+      <p>
+        Block OFF scans new YouTube and Instagram comments, flags toxic or scammy
+        content, hides what crosses your rules, and keeps everything visible in a
+        review dashboard.
+      </p>
+    </section>
+
+    <section class="cards" id="dashboard">
+      <article class="feature-card yellow-card reveal">
+        <span class="card-tag">01</span>
+        <h3>Scan everything</h3>
+        <p>Pull new comments from connected channels and posts on a schedule. Creators do not need to keep a browser open.</p>
+      </article>
+
+      <article class="feature-card peach-card reveal delay-1">
+        <span class="card-tag">02</span>
+        <h3>Hide the bad stuff</h3>
+        <p>Use AI moderation, scam keywords, blocklists, and custom rules before taking action on comments.</p>
+      </article>
+
+      <article class="feature-card purple-card reveal delay-2">
+        <span class="card-tag">03</span>
+        <h3>Review and restore</h3>
+        <p>Every hidden comment lands in quarantine with reason, platform, score, and one-click restore.</p>
+      </article>
+    </section>
+
+    <section class="dashboard-preview reveal">
+      <div class="dashboard-copy">
+        <span class="section-kicker">Dashboard first</span>
+        <h2>Analytics that prove the tool is actually working.</h2>
+        <p>
+          The dashboard will show comments scanned, hidden, restored, time saved,
+          platform health, and the exact rule that triggered each action.
+        </p>
+      </div>
+
+      <div class="mini-dashboard" role="img" aria-label="Dashboard analytics preview">
+        <div class="mini-top">
+          <b>Protection report</b>
+          <span>Last 7 days</span>
+        </div>
+        <div class="metric-grid">
+          <div><span>Scanned</span><b>18.4k</b></div>
+          <div><span>Hidden</span><b>731</b></div>
+          <div><span>Restored</span><b>14</b></div>
+        </div>
+        <div class="bars">
+          <span style="height: 38%"></span>
+          <span style="height: 72%"></span>
+          <span style="height: 50%"></span>
+          <span style="height: 88%"></span>
+          <span style="height: 64%"></span>
+          <span style="height: 92%"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing reveal" id="pricing">
+      <div class="pricing-copy">
+        <span class="section-kicker">Launch offer</span>
+        <h2>Validate Block OFF with founding creator access.</h2>
+        <p>
+          For the first launch, people can buy 3 months of Block OFF for the
+          price of 1 month. This gives us real demand before we overbuild.
+        </p>
+      </div>
+      <div class="price-card launch-card">
+        <div class="offer-ribbon">Founding creator deal</div>
+        <div class="price-head">
+          <span>Early access pass</span>
+          <b>$19</b>
+          <p>Get 3 months for the price of 1 month.</p>
+        </div>
+        <div class="offer-math" aria-label="Launch offer value">
+          <div><span>Normal value</span><strong>$57</strong></div>
+          <div><span>You pay today</span><strong>$19</strong></div>
+          <div><span>You save</span><strong>$38</strong></div>
+        </div>
+        <ul class="offer-list">
+          <li>First access when the MVP opens</li>
+          <li>1 YouTube or Instagram profile included</li>
+          <li>Unlimited scans during the launch period</li>
+          <li>Review dashboard and one-click restore</li>
+        </ul>
+        <a
+          class="button primary offer-button"
+          href="https://checkout.dodopayments.com/buy/pdt_0NifiEEyfRrWecyWA1Zvb?quantity=1"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Claim launch offer
+        </a>
+      </div>
+    </section>
+
+    <section class="seo-story reveal" aria-labelledby="seo-heading">
+      <span class="section-kicker">AI moderation SEO brief</span>
+      <h2 id="seo-heading">A calmer comment section for creators who cannot watch every reply.</h2>
+      <div class="seo-columns">
+        <p>Block OFF is an AI comment moderation tool for creators, founders, developers, agencies, and brand teams who publish on YouTube and Instagram but do not want their comments to become a full-time job. Every new video, reel, launch, or controversial post can attract scam links, hateful replies, harassment, impersonators, spam bots, and negative comments that damage the community before the creator even sees them.</p>
+        <p>The problem is simple: creators need a reliable YouTube comment moderation and Instagram comment moderation workflow that runs in the background. Without AI moderation, harmful comments stay public for too long, fans get pulled into arguments, and the creator has to choose between protecting their mental health and staying engaged with the audience.</p>
+        <p>For the first launch, Block OFF focuses on YouTube and Instagram because those are the platforms where creators most urgently need comment protection. The tool is designed to work silently in the background, with no prompt editing, no manual copy-paste moderation, and no need to keep a browser window open.</p>
+        <p>US-based professionals, solo founders, YouTubers, Instagram creators, podcasters, coaches, and power social media users can use Block OFF as a lightweight brand safety layer. Instead of hiring a moderator before revenue supports it, they can validate demand with automated comment scanning, negative comment filtering, and a quarantine workflow.</p>
+        <p>Block OFF is not meant to remove criticism blindly. Good moderation should separate useful feedback from abuse, spam, and manipulation. That is why the product direction includes review-first mode, auto-hide mode, comment restoration, activity logs, and analytics.</p>
+        <p>If you are looking for an AI comment moderation tool, a YouTube spam blocker, an Instagram spam comment blocker, or a way to auto-hide negative comments before they derail your audience, Block OFF is being built for exactly that job.</p>
+        <p>The long-term product can expand into a browser extension for edge cases where platform APIs are limited, but the strongest first version is a web dashboard that keeps working while the creator sleeps.</p>
+        <p>The aim is practical protection: fewer scam links under videos, fewer abusive replies under Instagram posts, cleaner launch conversations, better brand safety, and more time spent creating instead of cleaning up comment sections by hand.</p>
+      </div>
+    </section>
+
+    <section class="faq-section reveal" aria-labelledby="faq-heading">
+      <span class="section-kicker">FAQ</span>
+      <h2 id="faq-heading">Questions creators ask before handing comments to AI.</h2>
+      <div class="faq-grid">
+        <details><summary>What is AI comment moderation?</summary><p>AI comment moderation uses machine learning and rules to detect toxic, hateful, scammy, spammy, or unsafe comments so creators can hide or review them faster.</p></details>
+        <details><summary>Can Block OFF hide YouTube comments automatically?</summary><p>That is the planned MVP workflow. Block OFF scans new comments, scores risk, and can hide comments that cross your moderation settings.</p></details>
+        <details><summary>Does Block OFF support Instagram?</summary><p>Yes. Instagram support is part of the MVP direction for eligible creator and business accounts.</p></details>
+        <details><summary>Will Block OFF delete comments permanently?</summary><p>The safer default is to hide and quarantine comments first, then let the creator restore or confirm actions from the dashboard.</p></details>
+        <details><summary>Is Block OFF free?</summary><p>The launch offer is planned as early access: three months of Block OFF for the price of one month.</p></details>
+        <details><summary>Who is Block OFF for?</summary><p>Block OFF is for creators, founders, agencies, social media managers, and teams that need cleaner YouTube and Instagram communities.</p></details>
+        <details><summary>Will Block OFF work as a browser extension?</summary><p>The first version is planned as a web dashboard. A Chrome or Edge extension may be added later if it helps support moderation workflows that APIs do not cover.</p></details>
+        <details><summary>Why should creators auto-hide toxic comments?</summary><p>Auto-hiding helps reduce visible harm quickly, especially during launches, viral posts, and high-volume moments when manual moderation is too slow.</p></details>
+        <details><summary>Can I restore comments Block OFF hides?</summary><p>Yes. The product direction includes a quarantine dashboard where hidden comments can be reviewed and restored.</p></details>
+        <details><summary>Does Block OFF replace a human moderator?</summary><p>Block OFF is meant to handle the repetitive first pass. Human judgment is still important for edge cases, brand tone, and sensitive community decisions.</p></details>
+      </div>
+    </section>
+
+    <section class="waitlist reveal" id="waitlist">
+      <h2>Ready to build the first shield?</h2>
+      <p>Claim the launch offer or join the list before the MVP opens.</p>
+      <a class="button primary" href="#waitlist" data-open-waitlist data-intent="waitlist">Join waitlist</a>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" data-waitlist-modal hidden>
+    <section class="waitlist-modal" role="dialog" aria-modal="true" aria-labelledby="waitlist-title">
+      <button class="modal-close" type="button" data-close-waitlist aria-label="Close waitlist form">x</button>
+      <span class="section-kicker">Early access</span>
+      <h2 id="waitlist-title">Join the Block OFF launch list.</h2>
+      <p>Drop your details and we will invite you when the YouTube and Instagram moderation MVP is ready.</p>
+      <form class="waitlist-form" data-waitlist-form>
+        <input type="hidden" name="intent" value="waitlist" />
+        <label>
+          <span>Name</span>
+          <input name="name" type="text" autocomplete="name" required placeholder="Your name" />
+        </label>
+        <label>
+          <span>Email</span>
+          <input name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+        </label>
+        <label>
+          <span>Social media handle <small>optional</small></span>
+          <input name="social_handle" type="text" autocomplete="off" placeholder="@yourhandle" />
+        </label>
+        <button class="button primary" type="submit">Save my spot</button>
+        <p class="form-status" data-form-status role="status"></p>
+      </form>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="/blockoff" aria-label="Block OFF home">
+      <img src="/blockoff/block-off-logo.png" alt="" />
+      <span>Block OFF</span>
+    </a>
+    <nav aria-label="Footer navigation">
+      <a href="/blockoff/privacy">Privacy Policy</a>
+      <a href="/blockoff/terms">Terms & Conditions</a>
+      <a href="/blockoff/about">About Us</a>
+      <a href="/blockoff/contact">Contact Us</a>
+      <a href="/blockoff/support">Support</a>
+      <a href="/blockoff/changelog">Changelog</a>
+    </nav>
+  </footer>
+</BlockOffLayout>
