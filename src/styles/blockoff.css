@@ -3043,7 +3043,7 @@ main,
 .bo-password-toggle {
   position: absolute;
   top: 50%;
-  right: 6px;
+  right: 8px;
   width: 36px;
   height: 34px;
   display: grid;
@@ -3065,14 +3065,17 @@ main,
   height: 14px;
   display: block;
   border: 2px solid currentColor;
-  border-radius: 70% 35%;
-  transform: rotate(45deg);
+  border-radius: 50% / 65%;
+  transform: none;
 }
 
 .bo-eye-icon::after {
   content: "";
   position: absolute;
-  inset: 3px;
+  top: 3px;
+  left: 7px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: currentColor;
 }
@@ -3086,7 +3089,7 @@ main,
   width: 28px;
   height: 2px;
   background: var(--red);
-  transform: rotate(-45deg);
+  transform: rotate(32deg);
 }
 
 .bo-auth-grid {
