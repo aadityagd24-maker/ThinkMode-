@@ -1,0 +1,283 @@
+---
+import BlockOffLayout from '../../layouts/BlockOffLayout.astro';
+---
+
+<BlockOffLayout
+  title="Block OFF App | Creator Comment Shield"
+  description="The Block OFF dashboard helps creators scan, rank, review, hide, and block harmful YouTube and Instagram comments."
+  canonicalPath="/blockoff/app"
+>
+  <main class="bo-product-app" data-blockoff-app>
+    <section class="bo-dashboard is-locked" data-dashboard aria-busy="true">
+      <aside class="bo-nav-rail">
+        <a class="bo-rail-brand" href="/blockoff">
+          <img src="/blockoff/block-off-logo.png" alt="" />
+          <span>Block OFF</span>
+        </a>
+        <nav aria-label="Block OFF dashboard">
+          <button class="active" type="button" data-view="overview">Overview</button>
+          <button type="button" data-view="youtube">YouTube</button>
+          <button type="button" data-view="instagram">Instagram</button>
+          <button type="button" data-view="queue">Review Queue</button>
+          <button type="button" data-view="settings">Settings</button>
+        </nav>
+        <div class="bo-rail-card">
+          <span>Protection mode</span>
+          <strong data-protection-mode>Review first</strong>
+          <small>High confidence actions only.</small>
+        </div>
+      </aside>
+
+      <section class="bo-main-workspace">
+        <header class="bo-command-bar">
+          <div>
+            <span class="bo-mini-kicker">Live workspace</span>
+            <h1>Comment shield</h1>
+          </div>
+          <div class="bo-command-actions">
+            <button class="bo-auto-scan-toggle" type="button" data-auto-scan-toggle aria-pressed="false">
+              <span data-auto-scan-dot></span>
+              <strong data-auto-scan-label>Auto scans off</strong>
+            </button>
+            <span class="bo-pill" data-session-email>Loading...</span>
+            <button class="bo-action bo-action-ghost" type="button" data-logout>Log out</button>
+            <button class="bo-action bo-action-red" type="button" data-quick-scan>Run quick scan</button>
+          </div>
+        </header>
+
+        <section class="bo-alert" data-route-message hidden></section>
+
+        <section class="bo-overview-shell" data-view-panel="overview">
+          <div class="bo-overview-intro">
+            <div><span class="bo-mini-kicker">Community health</span><h2>Your comment section at a glance.</h2><p>See what Block OFF found, what it handled, and where you need to step in.</p></div>
+            <div class="bo-health-score"><strong data-health-score>100</strong><span>Health score</span></div>
+          </div>
+          <div class="bo-overview-grid">
+          <article class="bo-stat-card">
+            <span>Scanned</span>
+            <strong data-stat-scanned>0</strong>
+            <small>Cached + latest comments</small>
+          </article>
+          <article class="bo-stat-card hot">
+            <span>Needs review</span>
+            <strong data-stat-review>0</strong>
+            <small>Ranked by priority</small>
+          </article>
+          <article class="bo-stat-card">
+            <span>Hidden</span>
+            <strong data-stat-hidden>0</strong>
+            <small>Platform actions</small>
+          </article>
+          <article class="bo-stat-card">
+            <span>Protected</span>
+            <strong data-stat-protected>0%</strong>
+            <small>Flagged comments handled</small>
+          </article>
+          </div>
+          <div class="bo-overview-lower">
+            <article class="bo-work-panel bo-insight-panel"><div class="bo-section-head"><div><span class="bo-mini-kicker">Risk mix</span><h3>What Block OFF is catching</h3></div></div><div class="bo-risk-chart" data-risk-chart></div></article>
+            <article class="bo-work-panel bo-attention-panel"><div class="bo-section-head"><div><span class="bo-mini-kicker">Needs attention</span><h3>Your next best action</h3></div></div><div data-overview-attention></div></article>
+            <article class="bo-work-panel bo-recent-panel"><div class="bo-section-head"><div><span class="bo-mini-kicker">Recent activity</span><h3>Latest protection</h3></div></div><ol class="bo-activity-list" data-activity-list></ol></article>
+          </div>
+        </section>
+
+        <section class="bo-platform-layout" data-view-panel="youtube" hidden>
+          <div class="bo-work-panel">
+            <div class="bo-section-head">
+              <div>
+                <span class="bo-mini-kicker">YouTube</span>
+                <h2>Pick videos, preview risk, then scan.</h2>
+              </div>
+              <div class="bo-inline-actions">
+                <button class="bo-action" type="button" data-connect-platform="youtube">Connect YouTube</button>
+                <button class="bo-action bo-action-ghost" type="button" data-refresh-content="youtube">Refresh videos</button>
+                <button class="bo-action bo-action-red" type="button" data-run-selected-scan hidden>Run selected scan</button>
+              </div>
+            </div>
+            <div class="bo-table-tools">
+              <input type="search" data-content-search="youtube" placeholder="Search videos or comments" />
+              <select data-date-filter="youtube" aria-label="Date filter">
+                <option value="all">All dates</option>
+                <option value="7">Last 7 days</option>
+                <option value="30">Last 30 days</option>
+                <option value="month:2026-06">June 2026 - paid</option>
+                <option value="month:2026-05">May 2026 - paid</option>
+                <option value="month:2026-04">April 2026 - paid</option>
+                <option value="month:2026-03">March 2026 - paid</option>
+                <option value="year:2025">2025 - paid</option>
+                <option value="year:2024">2024 - paid</option>
+                <option value="year:2023">2023 - paid</option>
+              </select>
+            </div>
+            <div class="bo-content-list" data-content-list="youtube"></div>
+          </div>
+          <aside class="bo-detail-panel" data-detail-panel="youtube"></aside>
+        </section>
+
+        <section class="bo-platform-layout" data-view-panel="instagram" hidden>
+          <div class="bo-work-panel">
+            <div class="bo-section-head">
+              <div>
+                <span class="bo-mini-kicker">Instagram</span>
+                <h2>Business/Creator posts in review-first mode.</h2>
+              </div>
+              <div class="bo-inline-actions">
+                <button class="bo-action" type="button" data-connect-platform="instagram">Connect Instagram</button>
+                <button class="bo-action bo-action-ghost" type="button" data-refresh-content="instagram">Refresh posts</button>
+                <button class="bo-action bo-action-red" type="button" data-run-selected-scan hidden>Run selected scan</button>
+              </div>
+            </div>
+            <div class="bo-setup-note">
+              Instagram requires a Business or Creator account. Personal accounts cannot grant comment-management access.
+            </div>
+            <div class="bo-table-tools">
+              <input type="search" data-content-search="instagram" placeholder="Search posts or comments" />
+              <select data-date-filter="instagram" aria-label="Date filter">
+                <option value="all">All dates</option>
+                <option value="7">Last 7 days</option>
+                <option value="30">Last 30 days</option>
+                <option value="month:2026-06">June 2026 - paid</option>
+                <option value="month:2026-05">May 2026 - paid</option>
+                <option value="month:2026-04">April 2026 - paid</option>
+                <option value="month:2026-03">March 2026 - paid</option>
+                <option value="year:2025">2025 - paid</option>
+                <option value="year:2024">2024 - paid</option>
+                <option value="year:2023">2023 - paid</option>
+              </select>
+            </div>
+            <div class="bo-content-list" data-content-list="instagram"></div>
+          </div>
+          <aside class="bo-detail-panel" data-detail-panel="instagram"></aside>
+        </section>
+
+        <section class="bo-work-panel" data-view-panel="queue" hidden>
+          <div class="bo-section-head">
+            <div>
+              <span class="bo-mini-kicker">Review queue</span>
+              <h2>Risky comments, sorted by damage potential.</h2>
+            </div>
+            <div class="bo-filter-row" data-filter-row>
+              <button class="active" type="button" data-comment-filter="all">All</button>
+              <button type="button" data-comment-filter="scam">Scam</button>
+              <button type="button" data-comment-filter="abuse">Abuse</button>
+              <button type="button" data-comment-filter="brand">Brand risk</button>
+              <button type="button" data-comment-filter="review">Needs judgment</button>
+            </div>
+          </div>
+          <div class="bo-table-tools">
+            <input type="search" data-comment-search placeholder="Search comments across YouTube and Instagram" />
+            <select data-platform-filter aria-label="Platform filter">
+              <option value="all">All platforms</option>
+              <option value="youtube">YouTube</option>
+              <option value="instagram">Instagram</option>
+            </select>
+          </div>
+          <div class="bo-comment-stream" data-comment-stream></div>
+        </section>
+
+        <section data-view-panel="settings" hidden>
+          <div class="bo-work-panel bo-settings-panel">
+            <div class="bo-section-head">
+              <div>
+                <span class="bo-mini-kicker">Settings</span>
+                <h2>Shape your protection.</h2>
+                <p>Choose how Block OFF treats your community. Changes apply to future scans.</p>
+              </div>
+            </div>
+            <div class="bo-rule-stack">
+              <label><span><strong>Scam protection</strong><small>Catch fake giveaways, phishing links, and impersonators.</small></span><input type="checkbox" data-rule-toggle="scam_links" /></label>
+              <label><span><strong>Protect useful feedback</strong><small>Keep respectful criticism visible for you and your audience.</small></span><input type="checkbox" data-rule-toggle="constructive_shield" /></label>
+              <label><span><strong>Brand reputation alerts</strong><small>Surface comments that may damage trust in you, a sponsor, or product.</small></span><input type="checkbox" data-rule-toggle="brand_risk" /></label>
+              <label><span><strong>Prioritize visible harm</strong><small>Bring widely seen harmful comments to the front of your review queue.</small></span><input type="checkbox" data-rule-toggle="engagement_priority" /></label>
+            </div>
+            <div class="bo-settings-note"><strong>Automation</strong><p>Use the “Auto scans” control in the top bar whenever you want Block OFF to monitor new comments in the background.</p></div>
+          </div>
+        </section>
+      </section>
+    </section>
+
+    <section class="bo-modal-layer" data-auth-screen aria-label="Log in to Block OFF">
+      <div class="bo-modal-backdrop"></div>
+      <div class="bo-modal bo-auth-card" role="dialog" aria-modal="true" aria-labelledby="bo-login-title">
+        <a class="bo-login-brand" href="/blockoff">
+          <img src="/blockoff/block-off-logo.png" alt="" />
+          <span>Block OFF</span>
+        </a>
+        <div class="bo-auth-loading" data-auth-loading>
+          <span class="bo-loading-mark" aria-hidden="true"></span>
+          <strong>Checking your account...</strong>
+        </div>
+        <div data-auth-content hidden>
+          <span class="bo-mini-kicker">Creator command center</span>
+          <h1 id="bo-login-title">Log in to your comment shield.</h1>
+          <p>Your session stays saved on this device, so returning users go directly to the workspace.</p>
+          <div class="bo-auth-actions">
+            <button class="bo-action bo-action-red" type="button" data-auth-google>Continue with Google</button>
+          </div>
+          <form class="bo-email-auth" method="post" action="/blockoff/app" data-email-auth>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required />
+            </label>
+            <label>
+              <span>Password</span>
+              <span class="bo-password-field">
+                <input type="password" name="password" autocomplete="current-password" placeholder="Minimum 6 characters" minlength="6" required data-password-input />
+                <button class="bo-password-toggle" type="button" aria-label="Show password" aria-pressed="false" data-password-toggle>
+                  <span class="bo-eye-icon" aria-hidden="true"></span>
+                </button>
+              </span>
+            </label>
+            <div class="bo-auth-grid">
+              <button class="bo-action" type="submit" data-auth-mode="signin">Sign in</button>
+              <button class="bo-action bo-action-ghost" type="submit" data-auth-mode="signup">Create account</button>
+            </div>
+          </form>
+          <p class="bo-status-line" role="status" aria-live="polite" data-auth-status></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bo-modal-layer" data-onboarding hidden aria-label="Set up your Block OFF workspace">
+      <div class="bo-modal-backdrop"></div>
+      <div class="bo-modal bo-onboarding-modal" role="dialog" aria-modal="true" aria-labelledby="bo-onboarding-title">
+        <div class="bo-onboarding-copy">
+          <span class="bo-mini-kicker">One-time setup</span>
+          <h2 id="bo-onboarding-title">Tell Block OFF what you protect.</h2>
+          <p>We use this to separate harassment, scams, brand risk, and useful criticism. You can change these choices later.</p>
+        </div>
+        <form class="bo-onboarding-form" data-onboarding-form>
+          <fieldset>
+            <legend>Workspace type</legend>
+            <label><input type="radio" name="mode" value="creator" checked /> Creator</label>
+            <label><input type="radio" name="mode" value="brand" /> Brand</label>
+          </fieldset>
+          <label>
+            <span>Brand or creator names</span>
+            <input name="brand_names" maxlength="300" placeholder="Block OFF, Aaditya, your product" />
+          </label>
+          <label>
+            <span>Sensitive keywords</span>
+            <input name="keywords" maxlength="500" placeholder="refund scam, fake giveaway, sponsor name" />
+          </label>
+          <fieldset>
+            <legend>Default action mode</legend>
+            <label><input type="radio" name="protection_mode" value="review_first" checked /> Review first</label>
+            <label><input type="radio" name="protection_mode" value="auto_high_confidence" /> Auto-hide high confidence only</label>
+          </fieldset>
+          <button class="bo-action bo-action-red" type="submit">Save and enter workspace</button>
+          <p class="bo-status-line" role="status" aria-live="polite" data-onboarding-status></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="bo-modal-layer" data-review-modal hidden aria-label="Review content comments">
+      <div class="bo-modal-backdrop" data-close-review></div>
+      <div class="bo-modal bo-review-modal" role="dialog" aria-modal="true" aria-labelledby="bo-review-title">
+        <div class="bo-review-modal-body" data-review-modal-body></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../../scripts/blockoff-app.js"></script>
+</BlockOffLayout>

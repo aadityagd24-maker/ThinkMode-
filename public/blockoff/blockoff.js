@@ -4,6 +4,7 @@ const waitlistModal = document.querySelector("[data-waitlist-modal]");
 const waitlistForm = document.querySelector("[data-waitlist-form]");
 const formStatus = document.querySelector("[data-form-status]");
 const waitlistIntent = waitlistForm?.querySelector('input[name="intent"]');
+const priceAnimation = document.querySelector("[data-price-animation]");
 
 const SUPABASE_REST_URL = "https://ekmdewlyvvribdbiggup.supabase.co/rest/v1/waitlist_signups";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_B64KXLBA4HtF2FlCPsvvzA_OEGP1IqF";
@@ -21,13 +22,27 @@ const observer = new IntersectionObserver(
 
 revealItems.forEach((item) => observer.observe(item));
 
+if (priceAnimation) {
+  const priceObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.closest(".price-card")?.classList.add("is-price-animated");
+        priceObserver.disconnect();
+      });
+    },
+    { threshold: 0.55 }
+  );
+  priceObserver.observe(priceAnimation);
+}
+
 window.addEventListener("pointermove", (event) => {
   if (!glow) return;
   glow.style.setProperty("--x", `${event.clientX}px`);
   glow.style.setProperty("--y", `${event.clientY}px`);
 });
 
-document.querySelectorAll(".button, .header-cta, .feature-card").forEach((item) => {
+document.querySelectorAll(".button, .header-cta, .header-try, .feature-card").forEach((item) => {
   item.addEventListener("pointermove", (event) => {
     const rect = item.getBoundingClientRect();
     const x = event.clientX - rect.left;

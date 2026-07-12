@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/vercel": "^10.0.8",
     "@supabase/supabase-js": "^2.108.2",
-    "astro": "^6.4.6"
+    "astro": "^6.4.6",
+    "standardwebhooks": "^1.0.0"
   }
 }

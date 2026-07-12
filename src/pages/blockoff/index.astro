@@ -102,7 +102,10 @@ const faqSchema = {
       <a href="/blockoff/#pricing">Pricing</a>
     </nav>
 
-    <a class="header-cta" href="#waitlist" data-open-waitlist data-intent="waitlist">Join waitlist</a>
+    <div class="header-actions">
+      <a class="header-login" href="/blockoff/app">Login</a>
+      <a class="header-cta" href="/blockoff/#pricing" data-member-route>Try now</a>
+    </div>
   </header>
 
   <main>
@@ -119,7 +122,7 @@ const faqSchema = {
         </p>
 
         <div class="hero-actions reveal delay-3">
-          <a class="button primary" href="#waitlist" data-open-waitlist data-intent="early_access">Get early access</a>
+          <a class="button primary" href="#pricing" data-member-route>Get early access</a>
           <a class="button secondary" href="#how">See how it works</a>
         </div>
 
@@ -275,36 +278,40 @@ const faqSchema = {
         <span class="section-kicker">Launch offer</span>
         <h2>Validate Block OFF with founding creator access.</h2>
         <p>
-          For the first launch, people can buy 3 months of Block OFF for the
-          price of 1 month. This gives us real demand before we overbuild.
+          For the first launch, founding users get 3 months of Block OFF for
+          one month of price and lock the same 66.67% discount for life on every
+          future Block OFF plan. You also get a 30-day, no-questions-asked
+          money-back guarantee so you can validate it without pressure.
         </p>
       </div>
       <div class="price-card launch-card">
         <div class="offer-ribbon">Founding creator deal</div>
         <div class="price-head">
           <span>Early access pass</span>
-          <b>$19</b>
-          <p>Get 3 months for the price of 1 month.</p>
+          <div class="animated-price" data-price-animation aria-label="Founding launch price">
+            <b class="old-price">$57</b>
+            <b class="new-price">$19</b>
+          </div>
+          <p>Get 3 months now and keep 66.67% off for life.</p>
         </div>
         <div class="offer-math" aria-label="Launch offer value">
           <div><span>Normal value</span><strong>$57</strong></div>
           <div><span>You pay today</span><strong>$19</strong></div>
-          <div><span>You save</span><strong>$38</strong></div>
+          <div><span>Lifetime discount</span><strong>66.67%</strong></div>
         </div>
         <ul class="offer-list">
           <li>First access when the MVP opens</li>
           <li>1 YouTube or Instagram profile included</li>
-          <li>Unlimited scans during the launch period</li>
+          <li>Founding discount locked for every future plan</li>
+          <li>30-day no-questions-asked refund guarantee</li>
+          <li>Generous scans for recent posts, with older posts checked on a slower smart schedule</li>
+          <li>Manual review, quick previews, and reliable one-click moderation</li>
           <li>Review dashboard and one-click restore</li>
         </ul>
-        <a
-          class="button primary offer-button"
-          href="https://checkout.dodopayments.com/buy/pdt_0NifiEEyfRrWecyWA1Zvb?quantity=1"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <button class="button primary offer-button" type="button" data-open-purchase>
           Claim launch offer
-        </a>
+        </button>
+        <a class="member-offer-link" href="/blockoff/app" data-member-only hidden>Already a member? Open Block OFF</a>
       </div>
     </section>
 
@@ -340,36 +347,67 @@ const faqSchema = {
       </div>
     </section>
 
-    <section class="waitlist reveal" id="waitlist">
-      <h2>Ready to build the first shield?</h2>
-      <p>Claim the launch offer or join the list before the MVP opens.</p>
-      <a class="button primary" href="#waitlist" data-open-waitlist data-intent="waitlist">Join waitlist</a>
+    <section class="waitlist reveal" id="vip-access">
+      <span class="section-kicker">VIP creator access</span>
+      <h2>Large audience? Test Block OFF free for 30 days.</h2>
+      <p>Creators with 100,000+ YouTube subscribers or 300,000+ Instagram followers can apply for complimentary VIP access.</p>
+      <button class="button primary" type="button" data-open-vip>Apply now</button>
     </section>
   </main>
 
-  <div class="modal-backdrop" data-waitlist-modal hidden>
-    <section class="waitlist-modal" role="dialog" aria-modal="true" aria-labelledby="waitlist-title">
-      <button class="modal-close" type="button" data-close-waitlist aria-label="Close waitlist form">x</button>
-      <span class="section-kicker">Early access</span>
-      <h2 id="waitlist-title">Join the Block OFF launch list.</h2>
-      <p>Drop your details and we will invite you when the YouTube and Instagram moderation MVP is ready.</p>
-      <form class="waitlist-form" data-waitlist-form>
-        <input type="hidden" name="intent" value="waitlist" />
+  <div class="modal-backdrop" data-purchase-modal hidden>
+    <section class="waitlist-modal" role="dialog" aria-modal="true" aria-labelledby="purchase-title">
+      <button class="modal-close" type="button" data-close-purchase aria-label="Close purchase form">x</button>
+      <span class="section-kicker">Founding access</span>
+      <h2 id="purchase-title">Set up your creator pass.</h2>
+      <p>Use the same email for checkout and Block OFF login so your access activates automatically.</p>
+      <form class="waitlist-form" data-purchase-form>
         <label>
           <span>Name</span>
           <input name="name" type="text" autocomplete="name" required placeholder="Your name" />
         </label>
         <label>
-          <span>Email</span>
-          <input name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+          <span>YouTube handle</span>
+          <input name="youtube_handle" type="text" autocomplete="off" placeholder="@yourchannel" />
         </label>
         <label>
-          <span>Social media handle <small>optional</small></span>
-          <input name="social_handle" type="text" autocomplete="off" placeholder="@yourhandle" />
+          <span>Instagram handle</span>
+          <input name="instagram_handle" type="text" autocomplete="off" placeholder="@yourprofile" />
         </label>
+        <label><span>Email</span><input name="email" type="email" autocomplete="email" required placeholder="you@example.com" /></label>
         <button class="button primary" type="submit">Save my spot</button>
-        <p class="form-status" data-form-status role="status"></p>
+        <p class="form-status" data-purchase-status role="status"></p>
       </form>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" data-vip-modal hidden>
+    <section class="waitlist-modal" role="dialog" aria-modal="true" aria-labelledby="vip-title">
+      <button class="modal-close" type="button" data-close-vip aria-label="Close VIP application">x</button>
+      <span class="section-kicker">VIP creator access</span>
+      <h2 id="vip-title">Apply for 30 days free.</h2>
+      <p>Share at least one qualifying public creator profile. Applications are reviewed manually.</p>
+      <form class="waitlist-form" data-vip-form>
+        <label><span>Name</span><input name="name" type="text" autocomplete="name" required placeholder="Your name" /></label>
+        <label><span>Email</span><input name="email" type="email" autocomplete="email" required placeholder="you@example.com" /></label>
+        <label><span>YouTube handle</span><input name="youtube_handle" type="text" placeholder="@yourchannel" /></label>
+        <label><span>YouTube subscribers</span><input name="youtube_followers" type="number" min="0" step="1" placeholder="100000" /></label>
+        <label><span>Instagram handle</span><input name="instagram_handle" type="text" placeholder="@yourprofile" /></label>
+        <label><span>Instagram followers</span><input name="instagram_followers" type="number" min="0" step="1" placeholder="300000" /></label>
+        <label><span>What do you create?</span><textarea name="creator_note" rows="3" maxlength="500" placeholder="Your niche and how Block OFF would help"></textarea></label>
+        <button class="button primary" type="submit">Confirm application</button>
+        <p class="form-status" data-vip-status role="status"></p>
+      </form>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" data-vip-success hidden>
+    <section class="waitlist-modal vip-success-modal" role="dialog" aria-modal="true" aria-labelledby="vip-success-title">
+      <button class="modal-close" type="button" data-close-vip-success aria-label="Close confirmation">x</button>
+      <span class="section-kicker">Application received</span>
+      <h2 id="vip-success-title">We’ll review your creator profile.</h2>
+      <p>You’ll receive your access within the next 6 hours after review. Keep an eye on the email you submitted.</p>
+      <button class="button primary" type="button" data-close-vip-success>Done</button>
     </section>
   </div>
 
@@ -381,10 +419,12 @@ const faqSchema = {
     <nav aria-label="Footer navigation">
       <a href="/blockoff/privacy">Privacy Policy</a>
       <a href="/blockoff/terms">Terms & Conditions</a>
+      <a href="/blockoff/returns">Returns & Refunds</a>
       <a href="/blockoff/about">About Us</a>
       <a href="/blockoff/contact">Contact Us</a>
       <a href="/blockoff/support">Support</a>
       <a href="/blockoff/changelog">Changelog</a>
     </nav>
   </footer>
+  <script src="../../scripts/blockoff-landing.js"></script>
 </BlockOffLayout>
